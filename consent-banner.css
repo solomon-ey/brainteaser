@@ -1,0 +1,284 @@
+/**
+ * Consent Banner Styles
+ * 
+ * This stylesheet styles the privacy consent banner.
+ * Include via: <link rel="stylesheet" href="consent-banner.css">
+ */
+
+#consent-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#consent-banner.consent-banner--visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.consent-banner__content {
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.12);
+    padding: 24px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .consent-banner__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 20px 24px;
+    }
+}
+
+.consent-banner__header {
+    margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+    .consent-banner__header {
+        margin-bottom: 0;
+        flex: 0 0 auto;
+    }
+}
+
+.consent-banner__title {
+    margin: 0;
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.consent-banner__body {
+    flex: 1;
+    margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+    .consent-banner__body {
+        margin-bottom: 0;
+    }
+}
+
+.consent-banner__text {
+    margin: 0 0 12px 0;
+    font-size: 0.95em;
+    color: #333;
+    line-height: 1.5;
+}
+
+.consent-banner__text--small {
+    font-size: 0.85em;
+    color: #666;
+}
+
+.consent-banner__text a {
+    color: #1a73e8;
+    text-decoration: none;
+    border-bottom: 1px solid #1a73e8;
+}
+
+.consent-banner__text a:hover {
+    color: #1557b0;
+}
+
+/* Settings Modal Overlay */
+.consent-banner__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9998;
+}
+
+.consent-banner__modal {
+    background: white;
+    border-radius: 8px;
+    padding: 24px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+/* Options */
+.consent-banner__option {
+    margin-bottom: 20px;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+.consent-banner__option-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.consent-banner__checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #1a73e8;
+    flex-shrink: 0;
+}
+
+.consent-banner__checkbox:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.consent-banner__option-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+.consent-banner__option-label strong {
+    font-weight: 600;
+}
+
+.consent-banner__badge {
+    display: inline-block;
+    background: #e8f0fe;
+    color: #1a73e8;
+    font-size: 0.75em;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.consent-banner__option-description {
+    margin: 0;
+    font-size: 0.9em;
+    color: #666;
+    line-height: 1.5;
+    margin-left: 32px;
+}
+
+/* Actions */
+.consent-banner__actions {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+
+@media (max-width: 767px) {
+    .consent-banner__actions {
+        flex-direction: column-reverse;
+        gap: 8px;
+    }
+}
+
+.consent-banner__btn {
+    padding: 10px 20px;
+    font-size: 0.95em;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+    .consent-banner__btn {
+        flex: 1;
+        min-height: 44px;
+    }
+}
+
+.consent-banner__btn--primary {
+    background: #1a73e8;
+    color: white;
+}
+
+.consent-banner__btn--primary:hover {
+    background: #1557b0;
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
+}
+
+.consent-banner__btn--primary:active {
+    background: #124db0;
+}
+
+.consent-banner__btn--secondary {
+    background: #f1f3f4;
+    color: #1a1a1a;
+    border: 1px solid #dadce0;
+}
+
+.consent-banner__btn--secondary:hover {
+    background: #e8eaed;
+    border-color: #9aa0a6;
+}
+
+.consent-banner__btn--secondary:active {
+    background: #dadce0;
+}
+
+/* Accessibility */
+.consent-banner__btn:focus,
+.consent-banner__checkbox:focus {
+    outline: 2px solid #1a73e8;
+    outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#consent-banner.consent-banner--visible .consent-banner__content {
+    animation: slideUp 0.3s ease;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    #consent-banner,
+    #consent-banner.consent-banner--visible .consent-banner__content {
+        transition: none;
+        animation: none;
+    }
+}
+
+/* Print styles */
+@media print {
+    #consent-banner {
+        display: none;
+    }
+}

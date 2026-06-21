@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- dark background with rounded corners — works as maskable (safe zone = centre 80%) -->
+  <rect width="512" height="512" rx="96" fill="#171034"/>
+  <!-- lightbulb body (scaled from 24×24 original, centred with padding) -->
+  <g transform="translate(256,256) scale(14.5) translate(-12,-12)">
+    <path d="M12 2c4 0 7 3 7 7 0 3-2 4.5-3 6-.4.6-.5 1.2-.5 2H8.5c0-.8-.1-1.4-.5-2-1-1.5-3-3-3-6 0-4 3-7 7-7Z" fill="#ffb43d"/>
+    <rect x="9" y="19" width="6" height="2.4" rx="1.2" fill="#ffb43d"/>
+    <circle cx="12" cy="9" r="2.3" fill="#fff6e0"/>
+  </g>
+</svg>

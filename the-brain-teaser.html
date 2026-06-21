@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="The Brain Teaser — fast, fun reasoning games and brain puzzles for kids and adults. Climb grade stages, explore professions, beat the Expedition, and grow your Mind Map." />
+<meta name="theme-color" content="#171034" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="The Brain Teaser" />
+<meta property="og:description" content="Fast, fun reasoning games and brain puzzles for kids and adults." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:site_name" content="The Brain Teaser" />
+<meta name="twitter:title" content="The Brain Teaser" />
+<meta name="twitter:description" content="Fast, fun reasoning games and brain puzzles for kids and adults." />
+<meta name="robots" content="index, follow" />
+<!-- TODO at deploy: add absolute <link rel="canonical">, og:url and og:image once your domain is set -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"The Brain Teaser","applicationCategory":"EducationalApplication","operatingSystem":"Web","description":"Fast, fun reasoning games and brain puzzles for kids and adults — grade stages, profession ladders, a reading club, and endless brain games.","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2c4 0 7 3 7 7 0 3-2 4.5-3 6-.4.6-.5 1.2-.5 2H8.5c0-.8-.1-1.4-.5-2-1-1.5-3-3-3-6 0-4 3-7 7-7Z' fill='%23ffb43d'/%3E%3Crect x='9' y='19' width='6' height='2.4' rx='1.2' fill='%23ffb43d'/%3E%3C/svg%3E" />
+<title>The Brain Teaser — reasoning games for curious minds</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#171034; --night-2:#241a52; --panel:#2c2160; --panel-2:#372a72;
+    --lantern:#ffb43d; --lantern-soft:#ffd98a; --glow:rgba(255,180,61,.5);
+    --leaf:#34d39a; --sky:#4fb6ff; --berry:#ff6f9d; --clay:#ff8a5c; --grape:#b48cff;
+    --good:#34d39a; --bad:#ff6f7d;
+    --cloth:#f6efe1; --muted:#a99fd6; --line:rgba(255,255,255,.10);
+    --disp:'Fredoka',system-ui,sans-serif; --body:'Nunito',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box} html,body{margin:0}
+  body{font-family:var(--body); color:var(--cloth); min-height:100vh; -webkit-font-smoothing:antialiased;
+    background:radial-gradient(1200px 600px at 80% -10%,#3a2a7a 0,transparent 55%),
+      radial-gradient(900px 500px at 0% 110%,#2a1c5c 0,transparent 55%),var(--night);}
+  .wrap{max-width:760px; margin:0 auto; padding:20px 16px 70px}
+  button{font-family:var(--disp); cursor:pointer}
+  .topbar{display:flex; align-items:center; gap:12px; margin-bottom:22px}
+  .mark{width:40px;height:40px;flex:none;filter:drop-shadow(0 0 14px var(--glow))}
+  .wm-title{font-family:var(--disp); font-weight:700; font-size:clamp(20px,3vw,26px); line-height:1}
+  .wm-sub{color:var(--muted); font-size:13px; margin-top:2px}
+  .crumbs{margin-left:auto; display:flex; gap:8px; align-items:center; flex-wrap:wrap; justify-content:flex-end}
+  .crumb{background:transparent;border:1.5px solid var(--line);color:var(--cloth);border-radius:11px;padding:8px 13px;font-weight:600;font-size:13px}
+  .crumb:hover{border-color:rgba(255,255,255,.3)}
+  .hero{background:linear-gradient(180deg,var(--panel),transparent);border:1px solid var(--line);border-radius:22px;padding:24px;margin-bottom:22px}
+  .hero h1{font-family:var(--disp);font-weight:700;font-size:clamp(22px,3.4vw,30px);margin:0 0 8px}
+  .hero p{color:#e7e1f8;line-height:1.55;font-size:15.5px;margin:0;max-width:58ch}
+  .disclaimer{margin-top:14px;font-size:12.5px;color:var(--muted);border-left:3px solid var(--line);padding-left:12px;line-height:1.5}
+  .cards{display:grid;gap:16px}
+  .two{grid-template-columns:1fr 1fr} .multi{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+  @media(max-width:560px){.two{grid-template-columns:1fr}}
+  .card{position:relative;text-align:left;border:1px solid var(--line);border-radius:20px;padding:20px;background:var(--night-2);
+    overflow:hidden;transition:transform .14s,border-color .2s;color:var(--cloth)}
+  .card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.22)}
+  .card:before{content:"";position:absolute;right:-30px;top:-30px;width:130px;height:130px;border-radius:50%;
+    background:radial-gradient(circle,var(--rc,var(--lantern)),transparent 70%);opacity:.3}
+  .card .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:rgba(255,255,255,.08);margin-bottom:13px;position:relative}
+  .card h3{font-family:var(--disp);font-weight:600;font-size:19px;margin:0 0 5px;position:relative}
+  .card p{color:var(--muted);font-size:13px;line-height:1.5;margin:0;position:relative}
+  .card .meta{margin-top:11px;font-size:12px;color:var(--rc,var(--lantern));font-weight:700;position:relative}
+  .card.done-sub{border-color:rgba(255,180,61,.4)}
+
+  .ladder{display:flex;flex-direction:column;gap:14px}
+  .stage{position:relative;display:flex;align-items:center;gap:16px;background:var(--night-2);border:1px solid var(--line);
+    border-radius:18px;padding:16px 18px;text-align:left;color:var(--cloth);transition:transform .14s,border-color .2s;width:100%}
+  .stage.open:hover{transform:translateX(4px);border-color:rgba(255,255,255,.25)}
+  .stage.locked{opacity:.5;filter:grayscale(.3);cursor:not-allowed}
+  .stage.complete{border-color:rgba(255,180,61,.4)}
+  .lnode{width:54px;height:54px;flex:none;border-radius:16px;display:grid;place-items:center;position:relative;background:rgba(255,255,255,.05)}
+  .lnode svg{width:58%;height:58%;color:#5a5183;transition:.4s}
+  .stage.lit .lnode svg{color:var(--lantern);filter:drop-shadow(0 0 10px var(--glow))}
+  .stage.current .lnode{box-shadow:0 0 0 2px var(--lantern),0 0 18px -2px var(--glow)}
+  .lnode .lock{position:absolute;font-size:18px}
+  .sbody{flex:1;min-width:0}
+  .sbody .gr{font-family:var(--disp);font-weight:600;font-size:18px}
+  .sbody .age{font-size:12.5px;color:var(--muted);margin-top:1px}
+  .pips{display:flex;gap:5px;margin-top:8px}
+  .pips i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.14)}
+  .pips i.on{background:var(--lantern);box-shadow:0 0 8px var(--glow)}
+  .sstat{font-family:var(--disp);font-weight:700;font-size:13.5px;white-space:nowrap}
+  .sstat.go{color:var(--lantern)} .sstat.done{color:var(--leaf)} .sstat.lock{color:var(--muted)}
+  .note{font-size:12.5px;color:var(--muted);margin-top:16px;line-height:1.5;text-align:center}
+
+  .qbar{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .qcount{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--muted);white-space:nowrap}
+  .track{flex:1;height:9px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+  .fill{height:100%;background:linear-gradient(90deg,var(--lantern),var(--lantern-soft));border-radius:999px;transition:width .3s}
+  .qcard{background:var(--night-2);border:1px solid var(--line);border-radius:22px;padding:24px}
+  .qtype{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--night);
+    background:var(--lantern);padding:3px 10px;border-radius:999px;margin-bottom:14px}
+  .qtext{font-family:var(--disp);font-weight:500;font-size:21px;line-height:1.4;margin:0 0 6px}
+  .qvisual{font-size:38px;letter-spacing:8px;text-align:center;margin:18px 0 8px}
+  .opts{display:flex;flex-direction:column;gap:10px;margin-top:18px}
+  .opt{text-align:left;border:1.5px solid var(--line);background:rgba(0,0,0,.16);color:var(--cloth);border-radius:14px;
+    padding:14px 16px;font-family:var(--disp);font-weight:500;font-size:16px;transition:.12s;display:flex;align-items:center;gap:10px}
+  .opt:not(:disabled):hover{border-color:rgba(255,255,255,.3);transform:translateY(-1px)}
+  .opt .key{width:26px;height:26px;flex:none;border-radius:8px;background:rgba(255,255,255,.1);display:grid;place-items:center;font-size:13px;font-weight:700}
+  .opt.correct{border-color:var(--good);background:rgba(52,211,154,.14)} .opt.correct .key{background:var(--good);color:var(--night)}
+  .opt.wrong{border-color:var(--bad);background:rgba(255,111,125,.12)} .opt.wrong .key{background:var(--bad);color:var(--night)}
+  .opt:disabled{cursor:default}
+  .explain{margin-top:16px;background:rgba(79,182,255,.08);border:1px solid rgba(79,182,255,.25);border-radius:14px;padding:14px 16px;font-size:14.5px;line-height:1.55}
+  .explain .verdict{font-family:var(--disp);font-weight:700;font-size:15px;margin-bottom:4px}
+  .explain .verdict.yes{color:var(--good)} .explain .verdict.no{color:var(--bad)}
+  .qfoot{display:flex;margin-top:18px}
+  .next{margin-left:auto;font-family:var(--disp);font-weight:700;font-size:16px;color:var(--night);background:var(--lantern);border:none;border-radius:13px;padding:12px 26px;box-shadow:0 4px 0 #b9802a}
+  .next:active{transform:translateY(2px);box-shadow:0 2px 0 #b9802a}
+
+  .res{background:var(--night-2);border:1px solid var(--line);border-radius:22px;padding:26px;text-align:center}
+  .scorebig{font-family:var(--disp);font-weight:700;font-size:46px;line-height:1;margin:6px 0}
+  .scorebig small{font-size:22px;color:var(--muted)}
+  .restier{font-family:var(--disp);font-weight:600;font-size:20px;margin:8px 0 4px}
+  .resmsg{color:#e7e1f8;font-size:15px;line-height:1.55;max-width:46ch;margin:0 auto 18px}
+  .unlock{background:rgba(255,180,61,.1);border:1px solid rgba(255,180,61,.35);border-radius:14px;padding:13px 16px;margin:0 auto 16px;max-width:44ch;font-size:14px;font-family:var(--disp);font-weight:500;color:var(--lantern-soft)}
+  .profile{text-align:left;background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:6px 0 4px}
+  .profile h4{font-family:var(--disp);font-weight:600;font-size:13px;margin:0 0 12px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .prow{display:flex;align-items:center;gap:12px;margin-bottom:10px;font-size:14px}
+  .prow .lbl{width:74px;font-weight:600}
+  .pbar{flex:1;height:12px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+  .pbar i{display:block;height:100%;border-radius:999px;transition:width .5s}
+  .prow .pct{width:40px;text-align:right;color:var(--muted);font-size:13px}
+  .resnote{font-size:12.5px;color:var(--muted);margin-top:16px;line-height:1.5}
+  .resbtns{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+  .btn{font-family:var(--disp);font-weight:700;font-size:15px;color:var(--night);background:var(--lantern);border:none;border-radius:13px;padding:12px 20px;box-shadow:0 4px 0 #b9802a}
+  .btn:active{transform:translateY(2px);box-shadow:0 2px 0 #b9802a}
+  .btn.ghost{background:transparent;color:var(--cloth);border:1.5px solid var(--line);box-shadow:none;font-weight:600}
+  .btn.ghost:hover{border-color:rgba(255,255,255,.3)}
+
+  /* ---- topbar profile cluster ---- */
+  .topbar{flex-wrap:wrap}
+  .pcluster{display:flex;align-items:center;gap:10px;margin-left:auto}
+  .iconbtn{width:38px;height:38px;border-radius:11px;border:1.5px solid var(--line);background:transparent;color:var(--cloth);font-size:16px;display:grid;place-items:center}
+  .iconbtn:hover{border-color:rgba(255,255,255,.3)}
+  .iconbtn.on{background:rgba(255,180,61,.15);border-color:rgba(255,180,61,.4)}
+  .pchip{display:flex;align-items:center;gap:10px;background:var(--night-2);border:1px solid var(--line);border-radius:14px;padding:6px 12px 6px 8px;cursor:pointer}
+  .pchip:hover{border-color:rgba(255,255,255,.25)}
+  .pav{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:20px;background:rgba(255,255,255,.08);flex:none}
+  .pmeta{min-width:0}
+  .pname{font-family:var(--disp);font-weight:600;font-size:13.5px;line-height:1.1;white-space:nowrap;max-width:120px;overflow:hidden;text-overflow:ellipsis}
+  .plvl{font-size:10.5px;color:var(--muted);margin-top:2px;display:flex;align-items:center;gap:6px}
+  .xpbar{width:70px;height:6px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
+  .xpbar i{display:block;height:100%;background:linear-gradient(90deg,var(--lantern),var(--lantern-soft));border-radius:999px;transition:width .5s}
+
+  /* ---- onboarding ---- */
+  .avgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(70px,1fr));gap:12px;margin:6px 0 18px}
+  .avpick{aspect-ratio:1/1;border-radius:16px;border:2px solid var(--line);background:rgba(255,255,255,.05);font-size:34px;display:grid;place-items:center}
+  .avpick.on{border-color:var(--lantern);background:rgba(255,180,61,.12);box-shadow:0 0 16px -4px var(--glow)}
+  .namein{width:100%;font-family:var(--disp);font-weight:500;font-size:17px;color:var(--cloth);background:rgba(0,0,0,.2);border:1.5px solid var(--line);border-radius:13px;padding:13px 15px;outline:none}
+  .namein:focus{border-color:var(--lantern)}
+
+  /* ---- daily card ---- */
+  .daily{display:flex;align-items:center;gap:16px;background:linear-gradient(110deg,rgba(255,180,61,.14),var(--night-2));border:1px solid rgba(255,180,61,.3);border-radius:20px;padding:18px;margin-bottom:18px;width:100%;text-align:left;color:var(--cloth)}
+  .daily:hover{border-color:rgba(255,180,61,.5)}
+  .daily .dic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:26px;background:rgba(255,180,61,.18);flex:none}
+  .daily h3{font-family:var(--disp);font-weight:600;font-size:18px;margin:0 0 2px}
+  .daily p{margin:0;color:var(--muted);font-size:13px}
+  .daily .go{margin-left:auto;font-family:var(--disp);font-weight:700;color:var(--lantern);font-size:14px;white-space:nowrap}
+  .daily.done{opacity:.75} .daily.done .go{color:var(--leaf)}
+
+  /* ---- stars ---- */
+  .stars{display:inline-flex;gap:2px;font-size:14px;line-height:1}
+  .stars .s{color:rgba(255,255,255,.18)} .stars .s.on{color:var(--lantern);filter:drop-shadow(0 0 5px var(--glow))}
+  .card .meta .stars{font-size:13px}
+
+  /* ---- combo + timer in quiz ---- */
+  .combo{display:inline-flex;align-items:center;gap:6px;font-family:var(--disp);font-weight:700;font-size:13px;color:var(--clay);
+    background:rgba(255,138,92,.14);border:1px solid rgba(255,138,92,.35);border-radius:999px;padding:4px 11px;white-space:nowrap;animation:pop .25s}
+  @keyframes pop{0%{transform:scale(.7)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+  .timer{height:7px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin-bottom:14px}
+  .timer i{display:block;height:100%;background:linear-gradient(90deg,var(--berry),var(--clay));width:100%;transition:width .25s linear}
+  .timer.warn i{background:var(--bad)}
+
+  /* ---- badges ---- */
+  .bgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:4px}
+  .badge{display:flex;gap:12px;align-items:center;background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:16px;padding:14px}
+  .badge.locked{opacity:.45;filter:grayscale(.5)}
+  .badge .bic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:23px;background:rgba(255,180,61,.14);flex:none}
+  .badge.locked .bic{background:rgba(255,255,255,.06)}
+  .badge .bn{font-family:var(--disp);font-weight:600;font-size:14px}
+  .badge .bd{font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.35}
+
+  /* ---- modal (level up / badge) ---- */
+  .modal{position:fixed;inset:0;background:rgba(10,6,28,.74);backdrop-filter:blur(4px);display:grid;place-items:center;z-index:90;padding:20px;opacity:0;pointer-events:none;transition:.25s}
+  .modal.show{opacity:1;pointer-events:auto}
+  .mcard{background:linear-gradient(180deg,var(--panel),var(--night-2));border:1px solid var(--line);border-radius:22px;padding:28px;max-width:380px;width:100%;text-align:center;transform:scale(.94);transition:.25s}
+  .modal.show .mcard{transform:scale(1)}
+  .mcard .big{font-size:54px;margin-bottom:8px;filter:drop-shadow(0 0 16px var(--glow))}
+  .mcard h2{font-family:var(--disp);font-weight:700;font-size:24px;margin:0 0 6px}
+  .mcard p{color:#e7e1f8;font-size:15px;line-height:1.5;margin:0 0 18px}
+
+  /* ---- confetti ---- */
+  #fx{position:fixed;inset:0;pointer-events:none;z-index:100;overflow:hidden}
+  .conf{position:absolute;width:10px;height:14px;border-radius:2px;will-change:transform,opacity}
+
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--panel-2);border:1px solid var(--line);border-radius:14px;padding:12px 18px;font-size:14px;font-family:var(--disp);font-weight:500;max-width:90vw;opacity:0;pointer-events:none;transition:.3s;z-index:95;box-shadow:0 12px 40px rgba(0,0,0,.5)}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  .toast .ic{margin-right:4px}
+
+  /* ---- affiliate / brain shelf ---- */
+  .recwrap{margin-top:18px;text-align:left}
+  .recwrap h4{font-family:var(--disp);font-weight:600;font-size:13px;margin:0 0 10px;color:var(--muted);text-transform:uppercase;letter-spacing:.6px}
+  .reclist{display:grid;gap:10px}
+  .rec{display:flex;gap:12px;align-items:center;background:rgba(0,0,0,.18);border:1px solid var(--line);border-radius:14px;padding:12px 14px;text-decoration:none;color:var(--cloth)}
+  .rec:hover{border-color:rgba(255,255,255,.25)}
+  .rec .remoji{font-size:24px;width:40px;text-align:center;flex:none}
+  .rec .rmeta{min-width:0;flex:1}
+  .rec .rt{font-family:var(--disp);font-weight:600;font-size:14.5px;line-height:1.2}
+  .rec .rb{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
+  .rec .rcta{margin-left:auto;font-family:var(--disp);font-weight:700;font-size:12.5px;color:var(--night);background:var(--lantern);border-radius:10px;padding:7px 12px;white-space:nowrap;flex:none}
+  .disc{font-size:11.5px;color:var(--muted);margin-top:10px;line-height:1.45;border-left:3px solid var(--line);padding-left:10px}
+  .forgrownups{font-size:11px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--grape);margin-bottom:8px}
+  .shelfgroup{margin-bottom:22px}
+  .shelfgroup>.gh{font-family:var(--disp);font-weight:600;font-size:17px;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+
+  .matchcard{aspect-ratio:1/1;border-radius:14px;border:1px solid var(--line);background:#1d1547;font-size:26px;display:grid;place-items:center;cursor:pointer;transition:.15s}
+  .matchcard.up{background:var(--panel-2)}
+  .matchcard.done{background:rgba(52,211,154,.18);border-color:rgba(52,211,154,.4)}
+  .simonpad{aspect-ratio:1.5/1;border:none;border-radius:16px;cursor:pointer;opacity:.5;transition:.12s}
+  .simonpad.lit{opacity:1;box-shadow:0 0 26px -2px #fff;transform:scale(1.03)}
+  .huntcell{aspect-ratio:1/1;border-radius:14px;border:1px solid var(--line);background:#1d1547;font-family:var(--disp);font-weight:700;font-size:24px;color:var(--cloth);cursor:pointer}
+  .huntcell.done{background:rgba(52,211,154,.15);border-color:transparent;cursor:default;color:transparent}
+  /* ---- reading club ---- */
+  .bigemoji{font-size:84px;text-align:center;margin:6px 0 4px;line-height:1}
+  .spk{display:inline-grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--lantern);color:var(--night);font-size:22px;border:none;cursor:pointer;box-shadow:0 3px 0 #b9802a}
+  .spk:active{transform:translateY(2px);box-shadow:0 1px 0 #b9802a}
+  .slots{display:flex;gap:8px;justify-content:center;margin:16px 0;flex-wrap:wrap}
+  .slot2{width:46px;height:54px;border-radius:12px;border:2px dashed var(--line);display:grid;place-items:center;font-family:var(--disp);font-weight:700;font-size:26px;background:rgba(0,0,0,.18)}
+  .slot2.filled{border-style:solid;border-color:var(--leaf);background:rgba(52,211,154,.12)}
+  .tiles{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .tile2{width:50px;height:50px;border-radius:12px;border:none;background:var(--sky);color:var(--night);font-family:var(--disp);font-weight:700;font-size:24px;cursor:pointer;box-shadow:0 3px 0 rgba(0,0,0,.25)}
+  .tile2:active{transform:translateY(2px)}
+  .tile2.used{opacity:.3;pointer-events:none}
+  .bigword{font-family:var(--disp);font-weight:700;font-size:46px;text-align:center;letter-spacing:3px}
+  .picopts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+  .picopt{font-size:48px;aspect-ratio:1.5/1;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.05);cursor:pointer;display:grid;place-items:center}
+  .picopt:hover{border-color:rgba(255,255,255,.25)}
+  .letteropt{justify-content:center !important;font-family:var(--disp);font-weight:700;font-size:28px}
+  /* ---- touch & mobile polish ---- */
+  button{-webkit-tap-highlight-color:transparent}
+  @media(hover:none){.card:hover{transform:none} .opt:not(:disabled):hover{transform:none} .btn.ghost:hover{border-color:var(--line)} .stage.open:hover{transform:none}}
+  @media(max-width:480px){
+    .wrap{padding:15px 13px 64px}
+    .hero p{font-size:14.5px;line-height:1.5}
+    .cards{gap:13px}
+    .multi{grid-template-columns:1fr}
+    .card{padding:17px;border-radius:18px}
+    .card h3{font-size:18px}
+    .qcard{padding:19px;border-radius:18px}
+    .qtext{font-size:18.5px}
+    .opt{font-size:15.5px;padding:15px 14px;min-height:52px}
+    .btn,.next{padding:13px 18px;font-size:15px;min-height:48px}
+    .resbtns{gap:8px}
+    .resbtns .btn{flex:1 1 44%}
+    .scorebig{font-size:40px}
+    .stage{padding:14px;gap:12px}
+    .lnode{width:48px;height:48px}
+    .picopt{font-size:42px}
+    .tile2{width:46px;height:46px;font-size:22px}
+    .slot2{width:42px;height:50px;font-size:23px}
+    .bigword{font-size:40px}
+    .bigemoji{font-size:72px}
+    .mcard{padding:22px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <svg class="mark" viewBox="0 0 24 24" fill="none"><path d="M12 2c4 0 7 3 7 7 0 3-2 4.5-3 6-.4.6-.5 1.2-.5 2H8.5c0-.8-.1-1.4-.5-2-1-1.5-3-3-3-6 0-4 3-7 7-7Z" fill="#ffb43d"/><rect x="9" y="19" width="6" height="2.4" rx="1.2" fill="#ffb43d"/><circle cx="12" cy="9" r="2.3" fill="#fff6e0"/></svg>
+    <div><div class="wm-title">The Brain Teaser</div><div class="wm-sub" id="sub">Reasoning challenges for curious minds.</div></div>
+    <div class="pcluster" id="pcluster"></div>
+  </div>
+  <div class="crumbs" id="crumbs" style="margin:0 0 12px"></div>
+  <div id="app"></div>
+</div>
+<div id="fx"></div>
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal"><div class="mcard" id="mcard"></div></div>
+
+<script>
+const $=id=>document.getElementById(id);
+const app=$('app'), sub=$('sub'), crumbs=$('crumbs');
+const TYPE_COLOR={Pattern:'var(--sky)',Logic:'var(--leaf)',Verbal:'var(--grape)',Numbers:'var(--lantern)',Spatial:'var(--berry)',Lateral:'var(--clay)'};
+const PASS=0.6;
+
+// subjects available within every grade
+const SUBJECTS=[
+  {id:'math',  name:'Numbers', icon:'🔢', color:'var(--lantern)', blurb:'Counting, sums and number patterns.'},
+  {id:'words', name:'Words',   icon:'💬', color:'var(--grape)',   blurb:'Meanings, opposites and word links.'},
+  {id:'logic', name:'Logic',   icon:'🧩', color:'var(--sky)',     blurb:'Patterns, deduction and puzzles.'},
+  {id:'science',name:'Science',icon:'🌿', color:'var(--leaf)',    blurb:'Why things happen in nature.'},
+];
+
+// question shorthand: t=type, q=question, v=visual(optional), o=options, a=answer index, e=explanation
+const GRADES=[
+ {id:'g1', name:'Grade 1', age:'Ages 5–6', subjects:{
+   math:[
+     {t:'Numbers',q:'What number comes next?',v:'1  2  3  ?',o:['4','5','2','6'],a:0,e:'Count up by one: after 3 comes 4.'},
+     {t:'Numbers',q:'How many apples?',v:'🍎 🍎 🍎 🍎',o:['3','4','5','2'],a:1,e:'Count them one by one — there are 4.'},
+     {t:'Numbers',q:'Which is more?',v:'5   or   3',o:['5','3','same','none'],a:0,e:'5 is bigger than 3.'},{t:'Numbers',q:'What number comes next?',v:'3  4  5  ?',o:['6','7','5','2'],a:0,e:'Count up by one: after 5 comes 6.'},{t:'Numbers',q:'How many stars?',v:'⭐ ⭐ ⭐',o:['2','3','4','5'],a:1,e:'Count them — 3 stars.'},{t:'Numbers',q:'Which is the smallest?',v:'4   1   3',o:['4','1','3','5'],a:1,e:'1 is smaller than 3 and 4.'},{t:'Numbers',q:'1 + 1 = ?',o:['1','2','3','11'],a:1,e:'One and one more make two.'},{t:'Pattern',q:'What comes next?',v:'1  2  1  2  ?',o:['1','2','3','4'],a:0,e:'It goes 1, 2, 1, 2… so 1.'}],
+   words:[
+     {t:'Verbal',q:'What is the opposite of "big"?',o:['huge','small','tall','wide'],a:1,e:'The opposite of big is small.'},
+     {t:'Verbal',q:'Which one is an animal?',o:['chair','dog','spoon','cup'],a:1,e:'A dog is a living animal; the others are objects.'},
+     {t:'Verbal',q:'Which word rhymes with "cat"?',o:['dog','hat','sun','cup'],a:1,e:'"Hat" ends with the same -at sound.'},{t:'Verbal',q:'Opposite of "up"?',o:['down','high','top','over'],a:0,e:'The opposite of up is down.'},{t:'Verbal',q:'Opposite of "hot"?',o:['warm','cold','fire','sun'],a:1,e:'The opposite of hot is cold.'},{t:'Verbal',q:'Which rhymes with "sun"?',o:['run','cat','dog','top'],a:0,e:'"Run" sounds like "sun".'},{t:'Verbal',q:'Which one is a colour?',o:['blue','chair','jump','three'],a:0,e:'Blue is a colour.'},{t:'Verbal',q:'A baby dog is a…?',o:['kitten','puppy','calf','chick'],a:1,e:'A baby dog is a puppy.'}],
+   logic:[
+     {t:'Pattern',q:'What comes next?',v:'🔴 🔵 🔴 ?',o:['🔴','🔵','🟢','🟡'],a:1,e:'Red, blue, red… so blue is next.'},
+     {t:'Logic',q:'Which is heavier?',o:['a feather','an elephant','a leaf','a coin'],a:1,e:'An elephant is much heavier.'},
+     {t:'Logic',q:'A puppy grows into a…?',o:['kitten','dog','bird','fish'],a:1,e:'A puppy is a baby dog.'},{t:'Pattern',q:'What comes next?',v:'🟢 🟡 🟢 🟡 ?',o:['🟢','🟡','🔴','🔵'],a:0,e:'Green, yellow, green… so green.'},{t:'Logic',q:'Which is biggest?',o:['an ant','a dog','a house','a cup'],a:2,e:'A house is the biggest here.'},{t:'Logic',q:'Ice feels…?',o:['hot','cold','soft','loud'],a:1,e:'Ice is cold.'},{t:'Pattern',q:'What comes next?',v:'🔺 🔵 🔺 🔵 ?',o:['🔺','🔵','🟢','⭐'],a:0,e:'Triangle, circle, triangle… so triangle.'},{t:'Logic',q:'You wear shoes on your…?',o:['hands','head','feet','ears'],a:2,e:'Shoes go on your feet.'}],
+   science:[
+     {t:'Logic',q:'When do we see the Sun?',o:['at night','in the daytime','never','at midnight'],a:1,e:'The Sun is up during the day.'},
+     {t:'Logic',q:'Which one can fly?',o:['a fish','a bird','a snake','a frog'],a:1,e:'Birds have wings and fly.'},
+     {t:'Logic',q:'What do we drink when thirsty?',o:['sand','water','rocks','paper'],a:1,e:'Our body needs water.'},{t:'Logic',q:'A clear daytime sky is…?',o:['green','blue','red','black'],a:1,e:'A clear sky in the day is blue.'},{t:'Logic',q:'Which one is an animal?',o:['rock','tree','dog','chair'],a:2,e:'A dog is an animal.'},{t:'Logic',q:'We use our nose to…?',o:['see','smell','hear','walk'],a:1,e:'The nose is for smelling.'},{t:'Logic',q:'Rain falls from the…?',o:['ground','clouds','grass','sea'],a:1,e:'Rain comes from clouds.'},{t:'Logic',q:'A fish lives in…?',o:['trees','water','sand','sky'],a:1,e:'Fish live in water.'}],
+ }},
+ {id:'g2', name:'Grade 2', age:'Ages 6–7', subjects:{
+   math:[
+     {t:'Numbers',q:'What comes next?',v:'2  4  6  ?',o:['7','8','9','10'],a:1,e:'Jumps of 2: after 6 comes 8.'},
+     {t:'Numbers',q:'2 + 3 = ?',o:['4','5','6','23'],a:1,e:'2 and 3 together make 5.'},
+     {t:'Numbers',q:'You have 5 sweets and give away 2. How many are left?',o:['2','3','5','7'],a:1,e:'5 − 2 = 3.'},{t:'Numbers',q:'What comes next?',v:'10  20  30  ?',o:['31','40','35','50'],a:1,e:'Counting in tens: after 30 comes 40.'},{t:'Numbers',q:'4 + 4 = ?',o:['6','7','8','9'],a:2,e:'4 and 4 make 8.'},{t:'Numbers',q:'You had 6 sweets and ate 2. How many left?',o:['2','3','4','8'],a:2,e:'6 − 2 = 4.'},{t:'Numbers',q:'Which is the biggest?',v:'12   8   15',o:['12','8','15','9'],a:2,e:'15 is the biggest.'},{t:'Pattern',q:'What comes next?',v:'1  3  5  7  ?',o:['8','9','10','11'],a:1,e:'Odd numbers up by 2: after 7 comes 9.'}],
+   words:[
+     {t:'Verbal',q:'Cat is to kitten as dog is to…?',o:['bone','puppy','bark','tail'],a:1,e:'Baby cat = kitten; baby dog = puppy.'},
+     {t:'Verbal',q:'Opposite of "fast"?',o:['quick','slow','run','speed'],a:1,e:'The opposite of fast is slow.'},
+     {t:'Verbal',q:'Which does NOT belong?',v:'red · blue · green · apple',o:['red','blue','green','apple'],a:3,e:'Three are colours; an apple is a fruit.'},{t:'Verbal',q:'Day is to night as up is to…?',o:['high','down','top','sky'],a:1,e:'Opposites: day/night, up/down.'},{t:'Verbal',q:'Which does NOT belong?',v:'dog · cat · cow · car',o:['dog','cat','cow','car'],a:3,e:'A car is not an animal.'},{t:'Verbal',q:'Opposite of "happy"?',o:['glad','sad','nice','kind'],a:1,e:'The opposite of happy is sad.'},{t:'Verbal',q:'A baby cat is a…?',o:['puppy','kitten','cub','foal'],a:1,e:'A baby cat is a kitten.'},{t:'Verbal',q:'Which rhymes with "tree"?',o:['bee','car','sun','hat'],a:0,e:'"Bee" rhymes with "tree".'}],
+   logic:[
+     {t:'Pattern',q:'What comes next?',v:'🌟 🌟 🌙 🌟 🌟 ?',o:['🌟','🌙','☀️','⭐'],a:1,e:'Two stars then a moon, repeating.'},
+     {t:'Logic',q:'If today is Monday, tomorrow is…?',o:['Sunday','Tuesday','Friday','Monday'],a:1,e:'The day after Monday is Tuesday.'},
+     {t:'Logic',q:'Which is the smallest?',v:'7   2   9',o:['7','2','9','none'],a:1,e:'2 is smaller than 7 and 9.'},{t:'Pattern',q:'What comes next?',v:'🔵🔵🔴🔵🔵🔴🔵🔵?',o:['🔵','🔴','🟢','🟡'],a:1,e:'Two blue then a red, repeating — red is next.'},{t:'Logic',q:'3 apples and 1 more makes…?',o:['2','3','4','5'],a:2,e:'3 + 1 = 4.'},{t:'Logic',q:'Yesterday was Sunday. Today is…?',o:['Saturday','Monday','Friday','Sunday'],a:1,e:'The day after Sunday is Monday.'},{t:'Logic',q:'A is bigger than B, B bigger than C. Smallest is…?',o:['A','B','C','same'],a:2,e:'A > B > C, so C.'},{t:'Pattern',q:'What comes next?',v:'2  4  6  8  ?',o:['9','10','11','12'],a:1,e:'Up by 2: after 8 comes 10.'}],
+   science:[
+     {t:'Logic',q:'Ice is water that became very…?',o:['hot','cold','loud','dry'],a:1,e:'Water freezes into ice when very cold.'},
+     {t:'Logic',q:'Which lives in water?',o:['lion','fish','goat','cat'],a:1,e:'Fish live and breathe in water.'},
+     {t:'Pattern',q:'Day comes, and then…?',o:['day','night','noon','morning'],a:1,e:'Day is followed by night.'},{t:'Logic',q:'Which gives light in the day?',o:['the Moon','the Sun','a lamp','a star'],a:1,e:'The Sun lights the day.'},{t:'Logic',q:'Which is hot?',o:['ice','snow','fire','rain'],a:2,e:'Fire is hot.'},{t:'Pattern',q:'A caterpillar turns into a…?',o:['bird','butterfly','fish','frog'],a:1,e:'A caterpillar becomes a butterfly.'},{t:'Logic',q:'We hear with our…?',o:['eyes','ears','nose','hands'],a:1,e:'Ears are for hearing.'},{t:'Logic',q:'Plants need water and… to grow?',o:['sunlight','candy','toys','rocks'],a:0,e:'Plants need sunlight.'}],
+ }},
+ {id:'g3', name:'Grade 3', age:'Ages 7–8', subjects:{
+   math:[
+     {t:'Numbers',q:'One cat has 4 legs. How many legs do 3 cats have?',o:['7','8','12','16'],a:2,e:'4 + 4 + 4 = 12.'},
+     {t:'Numbers',q:'What comes next?',v:'5  10  15  ?',o:['16','18','20','25'],a:2,e:'Counting in 5s: after 15 comes 20.'},
+     {t:'Numbers',q:'Half of 10 is…?',o:['2','5','10','20'],a:1,e:'10 split into two equal parts is 5.'},{t:'Numbers',q:'3 × 2 = ?',o:['5','6','8','9'],a:1,e:'3 groups of 2 make 6.'},{t:'Pattern',q:'What comes next?',v:'2  4  8  16  ?',o:['18','24','32','20'],a:2,e:'Each number doubles: 16 → 32.'},{t:'Numbers',q:'Half of 12 is…?',o:['4','5','6','8'],a:2,e:'12 ÷ 2 = 6.'},{t:'Numbers',q:'4 boxes with 3 balls each. Total?',o:['7','10','12','15'],a:2,e:'4 × 3 = 12.'},{t:'Pattern',q:'What comes next?',v:'20  18  16  ?',o:['15','14','12','17'],a:1,e:'Down by 2: 16 − 2 = 14.'}],
+   words:[
+     {t:'Verbal',q:'Which does NOT belong?',v:'apple · banana · carrot · mango',o:['apple','banana','carrot','mango'],a:2,e:'Carrot is a vegetable; the rest are fruits.'},
+     {t:'Verbal',q:'Big is to small as tall is to…?',o:['high','short','long','up'],a:1,e:'Opposites: big/small, tall/short.'},
+     {t:'Verbal',q:'A baby cow is called a…?',o:['cub','calf','foal','chick'],a:1,e:'A baby cow is a calf.'},{t:'Verbal',q:'Hot is to cold as big is to…?',o:['large','small','huge','tall'],a:1,e:'Opposites: hot/cold, big/small.'},{t:'Verbal',q:'Which means almost the same as "fast"?',o:['slow','quick','heavy','soft'],a:1,e:'"Quick" means fast.'},{t:'Verbal',q:'Which does NOT belong?',v:'shoe · sock · hat · spoon',o:['shoe','sock','hat','spoon'],a:3,e:'A spoon is not clothing.'},{t:'Verbal',q:'A group of cows is a…?',o:['pack','herd','school','swarm'],a:1,e:'Cows move in a herd.'},{t:'Verbal',q:'Bird is to fly as fish is to…?',o:['walk','swim','jump','run'],a:1,e:'Birds fly; fish swim.'}],
+   logic:[
+     {t:'Logic',q:'Ada is taller than Bem. Bem is taller than Tari. Who is shortest?',o:['Ada','Bem','Tari','same'],a:2,e:'Ada > Bem > Tari, so Tari.'},
+     {t:'Pattern',q:'What comes next?',v:'1  2  4  8  ?',o:['10','12','16','9'],a:2,e:'Each number doubles: 8 → 16.'},
+     {t:'Logic',q:'Every ball in a box is red. You take one out. It is…?',o:['blue','red','green','any colour'],a:1,e:'If all are red, your pick must be red.'},{t:'Lateral',q:'A box has only red and blue balls. You take one — it is NOT blue. It is…?',o:['green','red','yellow','white'],a:1,e:'If not blue and only red/blue exist, it is red.'},{t:'Pattern',q:'What comes next?',v:'1  4  9  16  ?',o:['20','24','25','30'],a:2,e:'Square numbers: 1,4,9,16,25.'},{t:'Logic',q:'All cats say meow. Whiskers is a cat. So Whiskers…?',o:['barks','says meow','flies','swims'],a:1,e:'If all cats meow and Whiskers is a cat, it meows.'},{t:'Logic',q:'It is raining, so the ground is…?',o:['dry','wet','hot','empty'],a:1,e:'Rain makes the ground wet.'},{t:'Pattern',q:'What comes next?',v:'5  10  20  40  ?',o:['45','60','80','50'],a:2,e:'Each number doubles: 40 → 80.'}],
+   science:[
+     {t:'Logic',q:'Why can we see the Moon at night?',o:['it is on fire','it reflects sunlight','it has lamps','it is hot'],a:1,e:'The Moon bounces back light from the Sun.'},
+     {t:'Pattern',q:'Seed → ? → tree. What belongs in the middle?',o:['rock','sprout','cloud','river'],a:1,e:'A seed becomes a sprout, then a tree.'},
+     {t:'Logic',q:'Which one floats on water?',o:['a stone','a coin','a leaf','a key'],a:2,e:'A light leaf floats; heavy metal sinks.'},{t:'Logic',q:'Which is NOT a living thing?',o:['a tree','a cat','a stone','a bird'],a:2,e:'A stone does not grow or breathe.'},{t:'Pattern',q:'Order: egg → ? → frog. What is missing?',o:['tadpole','chick','seed','fish'],a:0,e:'A frog starts as an egg, then a tadpole.'},{t:'Logic',q:'Magnets stick to…?',o:['wood','plastic','iron','glass'],a:2,e:'Magnets attract iron.'},{t:'Logic',q:'We breathe in…?',o:['water','air','sand','milk'],a:1,e:'We breathe air.'},{t:'Logic',q:'The Sun is a…?',o:['planet','star','moon','cloud'],a:1,e:'The Sun is a star.'}],
+ }},
+ {id:'g4', name:'Grade 4', age:'Ages 8–9', subjects:{
+   math:[
+     {t:'Numbers',q:'Half of 30 is…?',o:['10','15','20','60'],a:1,e:'30 ÷ 2 = 15.'},
+     {t:'Numbers',q:'What comes next?',v:'3  6  9  12  ?',o:['13','14','15','18'],a:2,e:'Counting in 3s: 12 + 3 = 15.'},
+     {t:'Numbers',q:'A box has 4 rows of 5 eggs. How many eggs in total?',o:['9','15','20','25'],a:2,e:'4 × 5 = 20.'},{t:'Numbers',q:'7 × 3 = ?',o:['18','21','24','27'],a:1,e:'7 groups of 3 make 21.'},{t:'Numbers',q:'A quarter of 20 is…?',o:['4','5','10','2'],a:1,e:'20 ÷ 4 = 5.'},{t:'Pattern',q:'What comes next?',v:'3  6  12  24  ?',o:['36','48','30','40'],a:1,e:'Each number doubles: 24 → 48.'},{t:'Numbers',q:'A pencil costs ₦50. How much for 6?',o:['₦250','₦300','₦350','₦56'],a:1,e:'50 × 6 = ₦300.'},{t:'Numbers',q:'36 ÷ 6 = ?',o:['5','6','7','9'],a:1,e:'Six sixes make 36.'}],
+   words:[
+     {t:'Verbal',q:'Glove is to hand as sock is to…?',o:['arm','foot','head','shoe'],a:1,e:'A glove covers a hand; a sock covers a foot.'},
+     {t:'Verbal',q:'Which word means almost the same as "happy"?',o:['sad','glad','angry','tired'],a:1,e:'"Glad" is a synonym for happy.'},
+     {t:'Verbal',q:'Which does NOT belong?',v:'circle · square · triangle · red',o:['circle','square','triangle','red'],a:3,e:'Three are shapes; red is a colour.'},{t:'Verbal',q:'Teacher is to school as doctor is to…?',o:['hospital','car','book','farm'],a:0,e:'A teacher works at a school; a doctor at a hospital.'},{t:'Verbal',q:'Opposite of "ancient"?',o:['old','modern','huge','rare'],a:1,e:'Ancient means very old; modern is the opposite.'},{t:'Verbal',q:'Which does NOT belong?',v:'happy · joyful · cheerful · angry',o:['happy','joyful','cheerful','angry'],a:3,e:'Three mean happy; angry is the odd one.'},{t:'Verbal',q:'Pen is to write as scissors is to…?',o:['draw','cut','paint','glue'],a:1,e:'A pen writes; scissors cut.'},{t:'Verbal',q:'A baby horse is a…?',o:['calf','foal','cub','kit'],a:1,e:'A baby horse is a foal.'}],
+   logic:[
+     {t:'Lateral',q:'A farmer has 5 sheep. All but 3 run away. How many are left?',o:['2','3','5','0'],a:1,e:'"All but 3" means 3 stay behind — the trick. 3 are left.'},
+     {t:'Logic',q:'"All birds can fly." A penguin is a bird but cannot fly. So the sentence is…',o:['always true','not always true','about fish','silly'],a:1,e:'One exception shows it is not always true.'},
+     {t:'Spatial',q:'Fold a flat square of paper exactly in half. How many layers now?',o:['1','2','3','4'],a:1,e:'One fold stacks it: 2 layers.'},{t:'Logic',q:'If all the lights are off, the room is…?',o:['bright','dark','warm','loud'],a:1,e:'No lights means dark.'},{t:'Pattern',q:'What comes next?',v:'1  2  4  7  11  ?',o:['14','15','16','18'],a:2,e:'Gaps grow +1,+2,+3,+4, then +5 → 16.'},{t:'Lateral',q:'A clock shows 3:00. In 2 hours it will be…?',o:['1:00','4:00','5:00','6:00'],a:2,e:'3:00 + 2 hours = 5:00.'},{t:'Logic',q:'Sam is older than Ada, Ada older than Tomi. Youngest is…?',o:['Sam','Ada','Tomi','same'],a:2,e:'Sam > Ada > Tomi, so Tomi.'},{t:'Spatial',q:'How many corners does a square have?',o:['3','4','5','6'],a:1,e:'A square has 4 corners.'}],
+   science:[
+     {t:'Logic',q:'Plants need sunlight, water and ___ to grow.',o:['air','candy','music','plastic'],a:0,e:'Plants take in air (carbon dioxide) to make food.'},
+     {t:'Lateral',q:'It is raining, but the ground under the big tree is dry. Why?',o:['the rain is fake','the leaves block the rain','it is not raining','the tree drinks fast'],a:1,e:'Thick leaves catch the rain like an umbrella.'},
+     {t:'Logic',q:'Heating water turns it into…?',o:['ice','steam','rock','sand'],a:1,e:'Heat turns liquid water into steam, a gas.'},{t:'Logic',q:'Which one is a liquid?',o:['ice','steam','water','stone'],a:2,e:'Water is liquid; ice is solid, steam is gas.'},{t:'Logic',q:'A shadow forms when something blocks…?',o:['water','light','wind','sound'],a:1,e:'Blocking light makes a shadow.'},{t:'Logic',q:'Bees help flowers by…?',o:['eating them','carrying pollen','drinking rain','digging'],a:1,e:'Bees carry pollen between flowers.'},{t:'Logic',q:'Which sense uses your tongue?',o:['sight','taste','hearing','smell'],a:1,e:'The tongue is for taste.'},{t:'Pattern',q:'Day and night happen because the Earth…?',o:['stops','spins','melts','shrinks'],a:1,e:'Earth spins, giving day and night.'}],
+ }},
+ {id:'g5', name:'Grade 5', age:'Ages 9–10', subjects:{
+   math:[
+     {t:'Pattern',q:'What comes next?',v:'1  1  2  3  5  ?',o:['6','7','8','10'],a:2,e:'Add the two before it: 2+3=5, then 3+5=8.'},
+     {t:'Numbers',q:'12 sweets shared equally by 4 children. Each gets…?',o:['2','3','4','6'],a:1,e:'12 ÷ 4 = 3.'},
+     {t:'Numbers',q:'What comes next?',v:'100  90  80  ?',o:['75','70','60','85'],a:1,e:'Counting down by 10: 80 − 10 = 70.'},{t:'Numbers',q:'What is 15% of 100?',o:['10','15','20','50'],a:1,e:'15% of 100 is 15.'},{t:'Pattern',q:'What comes next?',v:'1  4  9  16  25  ?',o:['30','36','40','49'],a:1,e:'Square numbers: next is 6×6 = 36.'},{t:'Numbers',q:'A train goes 60 km in 1 hour. In 2 hours…?',o:['60 km','100 km','120 km','30 km'],a:2,e:'60 × 2 = 120 km.'},{t:'Numbers',q:'8 × 7 = ?',o:['54','56','58','64'],a:1,e:'Eight sevens are 56.'},{t:'Pattern',q:'What comes next?',v:'100  50  25  ?',o:['20','15','12.5','10'],a:2,e:'Each number is halved: 25 ÷ 2 = 12.5.'}],
+   words:[
+     {t:'Verbal',q:'Hot is to cold as up is to…?',o:['high','down','over','warm'],a:1,e:'Opposites: hot/cold, up/down.'},
+     {t:'Verbal',q:'Which word is the odd one out?',v:'shout · whisper · yell · scream',o:['shout','whisper','yell','scream'],a:1,e:'Three mean loud; whisper means quiet.'},
+     {t:'Verbal',q:'Author is to book as painter is to…?',o:['brush','painting','wall','colour'],a:1,e:'An author makes a book; a painter makes a painting.'},{t:'Verbal',q:'Closest in meaning to "brave"?',o:['scared','bold','quiet','tired'],a:1,e:'"Bold" means brave.'},{t:'Verbal',q:'Finger is to hand as toe is to…?',o:['arm','foot','leg','knee'],a:1,e:'Fingers on a hand; toes on a foot.'},{t:'Verbal',q:'Odd one out?',o:['run','walk','jump','sleep'],a:3,e:'Three are ways of moving; sleep is rest.'},{t:'Verbal',q:'"Enormous" means…?',o:['tiny','huge','fast','soft'],a:1,e:'Enormous means very large.'},{t:'Verbal',q:'Author is to book as composer is to…?',o:['music','paint','dance','film'],a:0,e:'Authors write books; composers write music.'}],
+   logic:[
+     {t:'Logic',q:'Rule: "If it rained, the ground is wet." The ground is dry. Did it rain?',o:['yes','no','maybe','cannot tell'],a:1,e:'If rain always wets the ground, dry ground means no rain.'},
+     {t:'Pattern',q:'What comes next?',v:'2  6  18  ?',o:['24','36','54','20'],a:2,e:'Multiply by 3 each time: 18 × 3 = 54.'},
+     {t:'Logic',q:'Every cat in the room is asleep. Whiskers is awake. Is Whiskers in the room?',o:['yes','no','maybe','cannot tell'],a:1,e:'If every cat in the room is asleep and Whiskers is awake, Whiskers is not in the room.'},{t:'Logic',q:'Rule: "If it is a weekday, there is school." No school today. So today is…?',o:['a weekday','a weekend','Monday','rainy'],a:1,e:'No school means not a weekday — a weekend.'},{t:'Pattern',q:'What comes next?',v:'3  6  11  18  ?',o:['25','27','24','30'],a:1,e:'Gaps grow +3,+5,+7, then +9 → 27.'},{t:'Lateral',q:'Two coins make 30k. One is NOT 20k. They are…?',o:['20k + 10k','two 15k','5k + 25k','none'],a:0,e:'One is not 20k — but the other is. 20k + 10k.'},{t:'Logic',q:'All squares are rectangles. Is every rectangle a square?',o:['yes','no','sometimes','always'],a:1,e:'Long rectangles are not squares, so no.'},{t:'Pattern',q:'What comes next?',v:'1  2  6  24  ?',o:['48','96','120','60'],a:2,e:'Multiply by 2, 3, 4, then 5: 24 × 5 = 120.'}],
+   science:[
+     {t:'Logic',q:'What is wind?',o:['the sky shaking','moving air','falling clouds','trees breathing'],a:1,e:'Wind is simply air on the move.'},
+     {t:'Numbers',q:'A snail moves 2 cm each minute. How far in 5 minutes?',o:['7 cm','10 cm','2 cm','25 cm'],a:1,e:'2 × 5 = 10 cm.'},
+     {t:'Logic',q:'Which of these is NOT a living thing?',o:['a tree','a dog','a rock','a fish'],a:2,e:'A rock does not grow, eat or breathe.'},{t:'Logic',q:'Which travels fastest?',o:['sound','light','a car','wind'],a:1,e:'Light is the fastest.'},{t:'Logic',q:'Water turning into ice is called…?',o:['melting','freezing','boiling','floating'],a:1,e:'Cooling water until solid is freezing.'},{t:'Logic',q:'Earth\'s main source of energy is…?',o:['the Moon','the Sun','clouds','rocks'],a:1,e:'The Sun provides most of Earth\'s energy.'},{t:'Numbers',q:'A plant grows 3 cm a week. After 4 weeks it grew…?',o:['7 cm','12 cm','3 cm','9 cm'],a:1,e:'3 × 4 = 12 cm.'},{t:'Logic',q:'Why do heavy ships float?',o:['they are light','they push aside enough water','magic','they never sink'],a:1,e:'They displace enough water to support their weight.'}],
+ }},
+ {id:'g6', name:'Grade 6', age:'Ages 10–11', subjects:{
+   math:[
+     {t:'Pattern',q:'What comes next?',v:'1  3  6  10  ?',o:['12','13','15','16'],a:2,e:'The gaps grow +2,+3,+4, then +5 → 15.'},
+     {t:'Lateral',q:'A bat and a ball cost ₦110 together. The bat costs ₦100 more than the ball. The ball costs…?',o:['₦10','₦5','₦55','₦100'],a:1,e:'Ball ₦5, bat ₦105 → ₦110. The quick "₦10" answer fools almost everyone.'},
+     {t:'Numbers',q:'What is 25% of 80?',o:['10','20','25','40'],a:1,e:'25% is one quarter: 80 ÷ 4 = 20.'},{t:'Numbers',q:'What is 20% of 150?',o:['20','30','40','50'],a:1,e:'10% is 15, so 20% is 30.'},{t:'Lateral',q:'A pen and a ruler cost ₦220. The pen costs ₦200 more than the ruler. The ruler is…?',o:['₦20','₦10','₦110','₦100'],a:1,e:'Ruler ₦10, pen ₦210 → ₦220. The quick "₦20" is the trap.'},{t:'Pattern',q:'What comes next?',v:'2  3  5  7  11  ?',o:['12','13','14','15'],a:1,e:'Prime numbers: after 11 comes 13.'},{t:'Numbers',q:'A ₦2,000 shirt has 25% off. You pay…?',o:['₦500','₦1,500','₦1,750','₦1,950'],a:1,e:'25% off is ₦500 off, so ₦1,500.'},{t:'Numbers',q:'The average of 4, 8 and 6 is…?',o:['5','6','7','8'],a:1,e:'(4+8+6) ÷ 3 = 6.'}],
+   words:[
+     {t:'Verbal',q:'Library is to books as gallery is to…?',o:['paintings','desks','plants','cars'],a:0,e:'A library holds books; a gallery holds paintings.'},
+     {t:'Verbal',q:'Which word is closest in meaning to "ancient"?',o:['modern','very old','tiny','fast'],a:1,e:'Ancient means very old.'},
+     {t:'Logic',q:'"All roses are flowers." Is every flower a rose?',o:['yes','no','only red ones','cannot tell'],a:1,e:'Roses are flowers, but tulips and lilies are flowers too — so no.'},{t:'Verbal',q:'Closest to "reluctant"?',o:['eager','unwilling','happy','fast'],a:1,e:'Reluctant means unwilling.'},{t:'Verbal',q:'Doctor is to patient as teacher is to…?',o:['book','student','desk','school'],a:1,e:'A doctor helps a patient; a teacher helps a student.'},{t:'Verbal',q:'Odd one out?',o:['novel','poem','essay','piano'],a:3,e:'Three are writing; a piano is an instrument.'},{t:'Verbal',q:'"Generous" is the opposite of…?',o:['kind','selfish','rich','tall'],a:1,e:'Generous means giving; selfish is the opposite.'},{t:'Verbal',q:'Hive is to bee as web is to…?',o:['fly','spider','bird','ant'],a:1,e:'Bees make hives; spiders make webs.'}],
+   logic:[
+     {t:'Logic',q:'A box has 9 red balls and 1 blue. You take one without looking. It is more likely to be…',o:['blue','red','equal chance','impossible to say'],a:1,e:'Far more red balls means red is more likely.'},
+     {t:'Lateral',q:'Two coins add up to ₦30. One of them is NOT a ₦10 coin. What are they?',o:['₦10 + ₦20','two ₦15','₦5 + ₦25','no answer'],a:0,e:'"One is not ₦10" — but the OTHER one is. ₦20 + ₦10 = ₦30.'},
+     {t:'Pattern',q:'What comes next?',v:'J  F  M  A  M  ?',o:['J','A','S','D'],a:0,e:'First letters of the months: Jan, Feb, Mar, Apr, May, then June → J.'},{t:'Logic',q:'A bag has 8 white and 2 black socks. One drawn at random is most likely…?',o:['black','white','equal','impossible'],a:1,e:'More white socks means white is more likely.'},{t:'Lateral',q:'A snail climbs 3 m by day, slips 2 m at night. After one full day it is…?',o:['1 m up','3 m up','5 m up','0 m'],a:0,e:'Up 3, down 2 → net 1 m.'},{t:'Pattern',q:'What comes next?',v:'1  1  2  3  5  8  ?',o:['11','12','13','15'],a:2,e:'Add the two before: 5 + 8 = 13.'},{t:'Logic',q:'"If you study, you pass." Ada passed. Did she definitely study?',o:['yes','not necessarily','no','always'],a:1,e:'She could have passed another way — passing alone is not proof.'},{t:'Lateral',q:'5 machines make 5 toys in 5 minutes. How long for 100 machines to make 100 toys?',o:['5 minutes','100 minutes','20 minutes','1 minute'],a:0,e:'Each machine makes one toy in 5 minutes, so 100 do 100 in 5.'}],
+   science:[
+     {t:'Logic',q:'A shadow is LONGEST when the Sun is…?',o:['high overhead','low near the horizon','behind clouds','straight above'],a:1,e:'A low Sun stretches shadows long; a high Sun makes them short.'},
+     {t:'Numbers',q:'A car travels 60 km in 1 hour. At the same speed, how far in 30 minutes?',o:['15 km','30 km','45 km','60 km'],a:1,e:'Half the time at the same speed = half the distance: 30 km.'},
+     {t:'Logic',q:'Living things grow and need food. Which is therefore living?',o:['a cloud','a candle flame','a young plant','a river'],a:2,e:'A plant grows and feeds; the others only change or move.'},{t:'Logic',q:'Which is a gas?',o:['ice','steam','water','rock'],a:1,e:'Steam is water as a gas.'},{t:'Logic',q:'With no air, a heavy and a light ball dropped together land…?',o:['heavy first','light first','at the same time','never'],a:2,e:'Without air resistance, gravity pulls them equally.'},{t:'Logic',q:'Plants make food from sunlight in a process called…?',o:['digestion','photosynthesis','evaporation','gravity'],a:1,e:'Photosynthesis turns sunlight into food.'},{t:'Pattern',q:'The Moon\'s shape appears to cycle about every…?',o:['a day','a week','a month','a year'],a:2,e:'The Moon\'s phases repeat roughly monthly.'},{t:'Logic',q:'Why does a metal spoon in hot soup get hot?',o:['it is alive','heat travels through it','it is magic','the light'],a:1,e:'Metal conducts heat from the soup up the spoon.'}],
+ }},
+];
+
+const PROFESSIONS=[
+  {id:'dev',name:'Developer',icon:'💻',color:'var(--sky)',blurb:'Logic, edge cases, complexity and debugging.',questions:[
+    {t:'Logic',q:'A function works for every input except 0, where it crashes. The most likely cause is…',o:['a slow algorithm','an unhandled edge case','a typo in a comment','too much memory'],a:1,e:'A failure isolated to one special value is the signature of a missing edge-case check.'},
+    {t:'Pattern',q:'What number continues the sequence?',v:'1  1  2  3  5  8  ?',o:['11','12','13','15'],a:2,e:'Each term is the sum of the previous two (Fibonacci): 5 + 8 = 13.'},
+    {t:'Logic',q:'Rule: "Every valid user has a token." A request has no token. What follows?',o:['the user is valid','the user is not valid','the token expired','nothing'],a:1,e:'Contrapositive: no token means not a valid user.'},
+    {t:'Numbers',q:'Doubling the input size roughly doubles the running time. The complexity is about…',o:['O(1)','O(n)','O(n²)','O(log n)'],a:1,e:'Time scaling in direct proportion is linear, O(n).'},
+    {t:'Lateral',q:'Two functions return identical output, but one is 100× slower. Inspect first…',o:['variable names','code comments','loops & data structures','file size'],a:2,e:'Large speed gaps come from algorithmic work, not cosmetics.'},{t:'Logic',q:'Code works on your machine but crashes on the server. The likely culprit is…',o:['the keyboard','an environment/config difference','bad luck','the monitor'],a:1,e:'"Works on my machine" almost always means the environments differ — versions, config or data.'},{t:'Numbers',q:'A list has 1,000,000 items. A linear search may check up to about…',o:['10','1,000','1,000,000','10'],a:2,e:'Linear search can scan every item — up to a million checks.'},{t:'Lateral',q:'A bug appears once a week at random. Best first step?',o:['rewrite everything','add logging to capture it','ignore it','blame the user'],a:1,e:'Rare, intermittent bugs need data — logging captures the conditions when it strikes.'},{t:'Logic',q:'A test passes locally but fails in the CI pipeline. The most likely difference is…',o:['the language changed','the environment or config differs','the test failed by luck','nothing at all'],a:1,e:'CI runs elsewhere — versions, env vars or config usually differ.'},{t:'Numbers',q:'An array has 8 sorted items. A binary search checks at most about…',o:['8','4','3','1'],a:2,e:'About log2(8) = 3 checks.'},{t:'Logic',q:'A variable still holds yesterday\'s value. The most likely cause is…',o:['the screen','a stale cache or value never refreshed','the keyboard','the font'],a:1,e:'Old data usually means a cache or a value that was never re-read.'},{t:'Lateral',q:'A page is slow only for some users. First compare their…',o:['names','device, network or data size','star sign','keyboard colour'],a:1,e:'Selective slowness tracks differences in device, connection or data volume.'},{t:'Numbers',q:'A loop nested inside another loop over n items does about…',o:['n steps','2n steps','n² steps','log n steps'],a:2,e:'Nested loops over n give roughly n × n = n² work.'},{t:'Logic',q:'Two services must agree on a value but sometimes disagree. The usual root cause is…',o:['colour','a race condition — timing','the keyboard','the font'],a:1,e:'Concurrent updates without coordination cause races.'},{t:'Lateral',q:'Adding a database index made writes slower. Why?',o:['indexes are free','each write must also update the index','writes never change data','no reason'],a:1,e:'Indexes speed reads but add work to every write.'},{t:'Logic',q:'A feature works for 1 user but breaks for 1,000 at once. You likely hit a…',o:['typo','scaling or concurrency limit','colour bug','font issue'],a:1,e:'Load exposes limits a single user never triggers.'},{t:'Numbers',q:'Caching turns a 200 ms call into a 2 ms call — about…',o:['10× faster','2× faster','100× faster','no change'],a:2,e:'200 ÷ 2 = 100, so roughly 100× faster.'},{t:'Lateral',q:'A test passes 9 times then fails once. The usual cause is…',o:['pure luck','hidden timing or shared state','the test name','too few tests'],a:1,e:'Flakiness usually comes from timing or shared, mutable state.'},{t:'Logic',q:'By the CAP theorem, a system must stay available during a network split by giving up…',o:['availability','strong consistency','partition tolerance','all three'],a:1,e:'During a partition you trade consistency to keep availability.'},{t:'Numbers',q:'Sorting n items with a good comparison sort takes about…',o:['n','n log n','n²','log n'],a:1,e:'Efficient comparison sorts are O(n log n).'},{t:'Lateral',q:'Latency is fine but throughput stalls under load. The bottleneck is most likely…',o:['a single shared resource or lock','the icon','the colour scheme','the font'],a:0,e:'A contended shared resource caps how much work flows through.'},{t:'Logic',q:'An idempotent API call can safely be…',o:['called only once','retried with the same effect','never retried','deleted'],a:1,e:'Idempotency means repeating the call has the same result — safe to retry.'},{t:'Lateral',q:'A query is fast on 1k rows but crawls on 10M. The fix is usually…',o:['a faster mouse','an index or better query plan','a bigger monitor','more browser tabs'],a:1,e:'At scale, indexing and the query plan dominate.'},{t:'Logic',q:'Events arrive out of order across machines. To order them reliably you use…',o:['wall clocks only','logical timestamps or version vectors','colour codes','the alphabet'],a:1,e:'Clocks drift; logical timestamps order events safely.'},{t:'Numbers',q:'Doubling servers cuts response time far less than half. This points to…',o:['perfect scaling','a serial, non-parallel part','a typo','more RAM needed'],a:1,e:'A non-parallel portion limits speedup — Amdahl\'s law.'},{t:'Lateral',q:'A retry storm makes an outage worse. A good safeguard is…',o:['retry faster','backoff with jitter','infinite retries','no logging'],a:1,e:'Exponential backoff with jitter stops synchronized retry floods.'},{t:'Logic',q:'Caching can serve stale data after an update. The core tension is between…',o:['speed and freshness','red and blue','up and down','big and small'],a:0,e:'Caching trades freshness for speed; invalidation manages the gap.'},{t:'Lateral',q:'One slow downstream service drags your whole API down. A resilient fix is…',o:['ignore it','a timeout plus circuit breaker','retry forever','remove logging'],a:1,e:'Timeouts and circuit breakers isolate a failing dependency.'},{t:'Lateral',q:'An app uses more and more memory until it crashes. This pattern is a…',o:['feature','memory leak','fast app','cache hit'],a:1,e:'Memory that grows and is never freed is a leak.'},{t:'Logic',q:'Removing duplicated logic into one place means a future fix needs…',o:['two edits','one edit','no edits','three edits'],a:1,e:'One shared place means one change fixes everything — the point of DRY.'}]},
+  {id:'doctor',name:'Doctor',icon:'🩺',color:'var(--berry)',blurb:'Diagnostic reasoning, probability and risk.',questions:[
+    {t:'Logic',q:'A disease affects 1 in 10,000. A test is 99% accurate. A patient tests positive. Most likely they…',o:['definitely have it','probably do NOT have it','have a mild case','need no follow-up'],a:1,e:'With a very rare disease, false positives outnumber true ones — base rates dominate.'},
+    {t:'Logic',q:'Symptom X occurs in diseases A and B. Symptom Y only in A. A patient shows both. Likely diagnosis?',o:['A','B','neither','cannot tell'],a:0,e:'Y points only to A, and the patient has Y.'},
+    {t:'Logic',q:'Rule: "If infection, then fever." This patient has no fever. So they…',o:['have an infection','do not have an infection','have a virus','need antibiotics'],a:1,e:'Contrapositive: no fever means no infection under this rule.'},
+    {t:'Lateral',q:'Treatment A helps 80% with mild side effects. B helps 82% with severe ones. Reasonable first choice?',o:['B, it is higher','A, better risk/benefit','neither','flip a coin'],a:1,e:'A 2% gain rarely justifies severe harm.'},
+    {t:'Numbers',q:'A heart beats ~70 times a minute. Roughly how many beats in an hour?',o:['700','1,400','4,200','42,000'],a:2,e:'70 × 60 ≈ 4,200.'},{t:'Logic',q:'A patient improves after a treatment with no proven effect. Most likely…',o:['a miracle','placebo or natural recovery','proof it works','impossible'],a:1,e:'Improvement alone does not prove cause — placebo and natural healing confound it.'},{t:'Numbers',q:'A drip gives 20 drops per minute. Roughly how many in 5 minutes?',o:['25','60','100','200'],a:2,e:'20 × 5 = 100 drops.'},{t:'Lateral',q:'Two patients share every symptom but one is far sicker. Most worth checking is…',o:['their names','vital signs and history','the room number','the time'],a:1,e:'Objective vitals and history reveal severity beyond matching symptoms.'},{t:'Logic',q:'A patient improves only on days they take the medicine. This suggests it is…',o:['useless','likely helping','harmful','random'],a:1,e:'Improvement tracking the dose suggests a real effect.'},{t:'Lateral',q:'Two illnesses share one symptom. To tell them apart you look for…',o:['the shared symptom','a symptom only one has','the patient name','the room number'],a:1,e:'A distinguishing symptom separates similar conditions.'}]},
+  {id:'lawyer',name:'Lawyer',icon:'⚖️',color:'var(--lantern)',blurb:'Conditional logic, evidence and argument.',questions:[
+    {t:'Logic',q:'Rule: "If signed, the contract is binding." This one is NOT binding. Therefore it was…',o:['signed','not signed','witnessed','verbal'],a:1,e:'Contrapositive: not binding means not signed.'},
+    {t:'Verbal',q:'Which is the strongest form of evidence?',o:['a rumour','an eyewitness guess','a signed dated document','a hunch'],a:2,e:'A signed, dated document is concrete and verifiable.'},
+    {t:'Logic',q:'Every valid contract here needs two signatures. This one has only one. It is…',o:['valid','invalid','pending','renewed'],a:1,e:'A required condition is unmet, so it is invalid.'},
+    {t:'Lateral',q:'A clause can honestly be read two ways. Best first move is to…',o:['pick the one you prefer','define terms / seek clarification','ignore the clause','sign quickly'],a:1,e:'Resolve ambiguity by clarifying definitions and intent.'},
+    {t:'Logic',q:'Rule: "No one under 18 may sign." A 17-year-old signed. The signature is…',o:['valid','invalid','optional','binding'],a:1,e:'They fall in the prohibited category, so it does not count.'},{t:'Logic',q:'"If A then B." You know B is true. Can you conclude A?',o:['yes','no','always','guaranteed'],a:1,e:'Affirming the consequent is a fallacy — B can be true for other reasons.'},{t:'Verbal',q:'Which is a fact, not an opinion?',o:['"The film was boring"','"Signed on May 3"','"He seems guilty"','"It feels unfair"'],a:1,e:'A dated signing is verifiable; the rest are judgements.'},{t:'Lateral',q:'A witness is confident but was 100m away at night. Their account is…',o:['fully reliable','weighed against the conditions','irrelevant','proof'],a:1,e:'Confidence is not accuracy; conditions affecting perception must be weighed.'},{t:'Logic',q:'A contract says either party may cancel with 30 days notice. Cancelling today takes effect in…',o:['immediately','about 30 days','one year','never'],a:1,e:'The notice period delays the effect by 30 days.'},{t:'Verbal',q:'A clause can be read two ways. The safest drafting fix is to…',o:['leave it vague','define the term clearly','delete the contract','add more vague words'],a:1,e:'Precise definitions remove ambiguity.'}]},
+  {id:'designer',name:'Designer',icon:'🎨',color:'var(--clay)',blurb:'Spatial reasoning, hierarchy, framing.',questions:[
+    {t:'Spatial',q:'A busy layout feels stressful. The simplest fix is usually to…',o:['add more colours','add whitespace','make text bigger','add more icons'],a:1,e:'Breathing room reduces visual noise.'},
+    {t:'Lateral',q:'Every element on a screen is equally bold and large. The fix is to…',o:['shrink everything','establish a clear hierarchy','remove all colour','add animation'],a:1,e:'When everything shouts, nothing is heard.'},
+    {t:'Lateral',q:'Many users miss an important button. The most likely cause is…',o:['users are careless','low contrast or placement','the wrong font','too few users'],a:1,e:'Blame the design first: visibility and placement guide attention.'},
+    {t:'Spatial',q:'Reflecting a shape across a vertical line creates…',o:['a rotation','symmetry','a gradient','a shadow'],a:1,e:'Mirroring across an axis produces symmetry.'},
+    {t:'Pattern',q:'Two buttons are green, one is red. Which most likely means "stop"?',o:['a green one','the red one','none','all'],a:1,e:'Red is the shared signal for stop or danger.'},{t:'Spatial',q:'To draw the eye to one button, make it…',o:['same as the rest','clearly contrast in colour/size','smaller','hidden'],a:1,e:'Contrast creates focus — the standout element gets noticed.'},{t:'Lateral',q:'Users abandon a 12-field signup form. The likely fix is…',o:['add more fields','cut to the essentials','bigger title','more colours'],a:1,e:'Friction kills completion — fewer fields means more finish.'},{t:'Pattern',q:'Consistent spacing and alignment mainly create a sense of…',o:['chaos','order and trust','speed','danger'],a:1,e:'Visual consistency signals care and makes interfaces feel trustworthy.'},{t:'Spatial',q:'A button blends into the background. To make it stand out, raise the…',o:['contrast','file size','word count','margins only'],a:0,e:'Higher contrast makes an element pop.'},{t:'Lateral',q:'Users keep missing an important link. Before a full redesign, first check its…',o:['colour name','visibility and placement','file format','copyright'],a:1,e:'Often the fix is simply making it more visible or better placed.'}]},
+  {id:'engineer',name:'Engineer',icon:'⚙️',color:'var(--leaf)',blurb:'Systems, trade-offs and failure analysis.',questions:[
+    {t:'Logic',q:'A bridge is rated for 10 tonnes. A safety factor of 3 means it should actually withstand about…',o:['3 tonnes','10 tonnes','30 tonnes','100 tonnes'],a:2,e:'A safety factor multiplies the rating: 10 × 3 = 30 tonnes before failure.'},
+    {t:'Lateral',q:'A machine fails only on very hot afternoons. The smartest first hypothesis is…',o:['bad luck','heat-related expansion or cooling','the operator','the colour'],a:1,e:'A condition that tracks temperature points to thermal causes, not chance.'},
+    {t:'Numbers',q:'A gear turns at 100 rpm. A second gear with twice the teeth turns at…',o:['25 rpm','50 rpm','100 rpm','200 rpm'],a:1,e:'Twice the teeth means half the speed: 50 rpm.'},
+    {t:'Logic',q:'Two designs meet the spec; one uses half the parts. All else equal, prefer…',o:['the complex one','the simpler one','either','the heavier one'],a:1,e:'Fewer parts means fewer failure points and lower cost — simplicity wins.'},
+    {t:'Spatial',q:'A triangle is the strongest simple frame shape because it…',o:['looks nice','cannot deform without changing side lengths','is light','has three sides'],a:1,e:'Triangles are rigid: you cannot change their angles without stretching a side.'},{t:'Logic',q:'A chain is only as strong as its…',o:['longest link','weakest link','first link','colour'],a:1,e:'Failure starts at the weakest point — that sets the system limit.'},{t:'Lateral',q:'A prototype works but overheats. Best next move?',o:['ship it anyway','find and fix the heat source','paint it','ignore it'],a:1,e:'Address the root cause before release, not the symptom.'},{t:'Numbers',q:'A pump fills a tank in 4 hours. Two identical pumps together take about…',o:['8 hours','4 hours','2 hours','1 hour'],a:2,e:'Two pumps do double the work — half the time, 2 hours.'},{t:'Logic',q:'A part fails under heavy load but not light load. The issue is its…',o:['colour','strength or capacity limit','name','manufacture date'],a:1,e:'Failure under load points to a strength limit.'},{t:'Numbers',q:'A safety factor of 2 means the design can hold about… the expected load.',o:['half','the same as','twice','ten times'],a:2,e:'A factor of 2 means twice the expected load.'}]},
+  {id:'teacher',name:'Teacher',icon:'📚',color:'var(--grape)',blurb:'Sequencing, diagnosis and clear explanation.',questions:[
+    {t:'Logic',q:'A student gets every "carry" subtraction wrong but simple ones right. The gap is most likely…',o:['laziness','the borrowing step','eyesight','the pencil'],a:1,e:'The error clusters on one concept — borrowing — so that is what to reteach.'},
+    {t:'Lateral',q:'Half the class fails one question. Best first response is to…',o:['blame the class','re-examine how it was taught','ignore it','lower the grade'],a:1,e:'A shared failure usually signals the explanation, not the students.'},
+    {t:'Pattern',q:'To teach a hard idea, the usual order is…',o:['abstract → example','example → abstract rule','test → teach','random'],a:1,e:'Concrete examples first build intuition before the general rule.'},
+    {t:'Verbal',q:'Which feedback helps a learner most?',o:['"Wrong."','"Good job!"','"Close — check step 2"','"Try harder"'],a:2,e:'Specific, actionable feedback points to exactly what to fix.'},
+    {t:'Logic',q:'A quiz where everyone scores 100% mainly tells you it was…',o:['a great class','possibly too easy to distinguish','badly marked','unfair'],a:1,e:'If it cannot separate levels of understanding, it may have been too easy.'},{t:'Logic',q:'A student recites a rule but cannot use it. They likely have…',o:['mastery','memorised it without understanding','a discipline issue','perfect grasp'],a:1,e:'Recall without application signals shallow, rote learning.'},{t:'Verbal',q:'The clearest learning objective starts with…',o:['"understand stuff"','an action verb like "calculate"','"know things"','"be smart"'],a:1,e:'Measurable verbs make objectives clear and assessable.'},{t:'Lateral',q:'One method bores fast learners but suits slow ones. The fix is to…',o:['pick one forever','differentiate / offer extensions','remove slow ones','always go faster'],a:1,e:'Different paces need different paths — differentiation serves both.'},{t:'Lateral',q:'Most of a class fails the same question. The likely problem is…',o:['the whole class','how that idea was taught','the room','the date'],a:1,e:'A shared gap usually points to the explanation, not the students.'},{t:'Logic',q:'A student learns best by doing. The best lesson gives them more…',o:['lectures','hands-on practice','silence','tests only'],a:1,e:'Active practice suits a hands-on learner.'}]},
+  {id:'nurse',name:'Nurse',icon:'💊',color:'var(--berry)',blurb:'Prioritising, dosage and patient reasoning.',questions:[
+    {t:'Lateral',q:'Four patients arrive at once. Who is seen first?',o:['the loudest','the one struggling to breathe','first to arrive','the calmest'],a:1,e:'Triage treats the most life-threatening problem first — breathing comes before comfort.'},
+    {t:'Numbers',q:'A dose is 5 mg per 10 kg of weight. A 30 kg child needs…',o:['5 mg','10 mg','15 mg','30 mg'],a:2,e:'30 kg is three lots of 10 kg → 3 × 5 = 15 mg.'},
+    {t:'Logic',q:'A patient says they took "the blue pill twice." Before acting you should…',o:['assume the dose','clarify which pill and how much','ignore it','double it'],a:1,e:'Ambiguity around medication is resolved by confirming exact drug and amount.'},
+    {t:'Numbers',q:'Medication is due every 6 hours. If the last dose was at 08:00, the next is at…',o:['12:00','14:00','16:00','20:00'],a:1,e:'08:00 + 6 hours = 14:00.'},
+    {t:'Logic',q:'A reading looks abnormal but the patient feels fine and looks well. You should…',o:['panic','recheck the reading/equipment','ignore the patient','discharge them'],a:1,e:'When data and the whole picture disagree, verify the measurement before acting.'},{t:'Numbers',q:'Target is 2,000 ml a day. By noon a patient has had 800 ml. Remaining is…',o:['800 ml','1,200 ml','2,000 ml','200 ml'],a:1,e:'2,000 − 800 = 1,200 ml left.'},{t:'Lateral',q:'Before giving medication, the safest habit is checking the…',o:['clock only','right patient, drug, dose, route, time','colour','label font'],a:1,e:'The "five rights" prevent the most common medication errors.'},{t:'Logic',q:'A monitor alarms constantly for tiny changes. The risk is that staff…',o:['respond faster','start ignoring real alarms','feel calmer','sleep better'],a:1,e:'Alarm fatigue makes people tune out — including genuine emergencies.'},{t:'Lateral',q:'A patient\'s readings look normal but they seem unwell. You should…',o:['trust only the numbers','look closer and reassess','ignore it','go off shift'],a:1,e:'Clinical signs matter even when numbers seem fine.'},{t:'Logic',q:'Two patients need help at once — one in danger, one stable. You attend…',o:['the stable one','the one in danger first','neither','at random'],a:1,e:'Triage treats the most urgent need first.'}]},
+  {id:'founder',name:'Entrepreneur',icon:'🚀',color:'var(--lantern)',blurb:'Decisions under uncertainty and trade-offs.',questions:[
+    {t:'Lateral',q:'A new feature took 3 months and nobody uses it. The healthiest view is…',o:['build more of it','treat the 3 months as a sunk cost and move on','blame users','hide the data'],a:1,e:'Past effort is sunk; decisions should look forward, not chase what is already spent.'},
+    {t:'Numbers',q:'You earn ₦400 per sale and spend ₦100 to get each customer. Profit per sale is…',o:['₦100','₦300','₦400','₦500'],a:1,e:'₦400 earned − ₦100 to acquire = ₦300 profit per sale.'},
+    {t:'Logic',q:'Two markets: one huge but crowded, one small but empty. For a tiny new team, often best to…',o:['fight the crowd','start in the small open niche','do both','do neither'],a:1,e:'A focused beachhead is winnable; competing everywhere spreads a small team too thin.'},
+    {t:'Lateral',q:'Five friends love your product. Before scaling you most need to know…',o:['the logo colour','whether strangers will pay too','your office size','a fancy name'],a:1,e:'Friends are biased; real validation is paying customers who do not know you.'},
+    {t:'Numbers',q:'Revenue grows 10% each month. After about how many months does it roughly double?',o:['2','7','12','20'],a:1,e:'At ~10% monthly growth it doubles in roughly 7 months (the "rule of 70": 70 ÷ 10).'},{t:'Lateral',q:'Everyone says they\'d "definitely buy" yet nobody pre-orders. Trust…',o:['the words','the behaviour (no orders)','neither','the loudest'],a:1,e:'Stated intent is cheap; paying behaviour is the real signal.'},{t:'Numbers',q:'You keep ₦200 profit per customer but spend ₦600 to get one. This is…',o:['profitable','losing money per customer','break-even','great'],a:1,e:'Spending ₦600 to earn ₦200 loses ₦400 each time — unsustainable.'},{t:'Logic',q:'A feature doubles signups but triples costs. Keeping it depends on…',o:['the colour','whether new users are worth more than the added cost','the name','the season'],a:1,e:'Growth only helps if user value exceeds the cost to serve them.'},{t:'Lateral',q:'Lots of signups but few keep using the product. The real problem is…',o:['marketing','retention — value delivered','the logo','the office'],a:1,e:'Sign-ups without retention means the product is not delivering lasting value.'},{t:'Numbers',q:'You spend ₦5,000 to win a customer worth ₦3,000. This is…',o:['profitable','losing money per customer','free','doubling money'],a:1,e:'Paying more to acquire than a customer is worth loses money.'}]},
+{id:'accountant',name:'Accountant',icon:'💰',color:'var(--leaf)',blurb:'Numbers, balance and audit logic.',questions:[
+ {t:'Numbers',q:'Revenue is ₦500k and costs are ₦320k. Profit is…',o:['₦180k','₦220k','₦820k','₦320k'],a:0,e:'500 − 320 = ₦180k.'},
+ {t:'Logic',q:'Debits must equal credits, but they do not. That means…',o:['extra profit','a recording error','more cash','nothing'],a:1,e:'Unbalanced books signal an error to find.'},
+ {t:'Numbers',q:'Add 10% VAT to a ₦2,000 item. The total is…',o:['₦2,200','₦2,020','₦1,800','₦2,000'],a:0,e:'10% of 2,000 is 200, so ₦2,200.'},
+ {t:'Lateral',q:'Cash is high but profit is low. Most useful to check…',o:['the logo','when income and costs are recorded','staff names','the date'],a:1,e:'Cash and profit differ because of timing — accruals and unpaid bills.'},
+ {t:'Numbers',q:'Saving ₦5,000 every month, after one year you have…',o:['₦50,000','₦60,000','₦55,000','₦600,000'],a:1,e:'5,000 × 12 = ₦60,000.'},
+ {t:'Logic',q:'An expense accidentally recorded twice makes profit look…',o:['higher','lower','the same','zero'],a:1,e:'Double-counted costs cut into reported profit.'},
+ {t:'Numbers',q:'Buy at ₦800, sell at ₦1,000. The profit margin is…',o:['10%','20%','25%','80%'],a:1,e:'₦200 profit on a ₦1,000 sale is 20%.'},
+ {t:'Lateral',q:'Two months have identical sales but very different profit. First check…',o:['the colour','expenses that changed','the weather','the font'],a:1,e:'If sales match, the difference lives in the costs.'},{t:'Numbers',q:'Assets are ₦900k and liabilities ₦400k. Owner\'s equity is…',o:['₦1,300k','₦500k','₦400k','₦900k'],a:1,e:'Equity = assets − liabilities = 900 − 400 = ₦500k.'},{t:'Logic',q:'Profit is positive but the bank balance is falling. A likely reason is…',o:['too much cash','unpaid invoices or large purchases','nothing','more profit'],a:1,e:'Profit on paper can differ from cash when money is tied up.'}]},
+{id:'scientist',name:'Scientist',icon:'🔬',color:'var(--sky)',blurb:'Hypotheses, controls and evidence.',questions:[
+ {t:'Logic',q:'To test if a plant needs light, compare it with one that is…',o:['watered more','kept in the dark','given music','painted'],a:1,e:'A control changes only the light to isolate its effect.'},
+ {t:'Lateral',q:'One experiment supports your idea. The next step is to…',o:['publish at once','repeat and test more','stop testing','assume proof'],a:1,e:'Single results can be flukes — repetition builds confidence.'},
+ {t:'Logic',q:'A result no one else can reproduce is…',o:['definitely true','not yet reliable','a law','magic'],a:1,e:'Reproducibility is what makes a finding trustworthy.'},
+ {t:'Pattern',q:'Water boils at 100°C at sea level. High on a mountain it boils at…',o:['a higher temperature','a lower temperature','the same','never'],a:1,e:'Lower air pressure lets water boil cooler.'},
+ {t:'Logic',q:'Ice-cream sales and sunburns rise together. This means…',o:['ice cream burns skin','a third cause — the sun','sunburn sells ice cream','nothing'],a:1,e:'Correlation is not cause; sunshine drives both.'},
+ {t:'Lateral',q:'Your data has one wildly different point. You should…',o:['delete it quietly','investigate why it differs','ignore all data','round it off'],a:1,e:'Outliers can be errors or discoveries — examine, do not hide.'},
+ {t:'Numbers',q:'Which sample gives a more reliable average — 5 people or 5,000?',o:['5','5,000','the same','neither'],a:1,e:'Larger samples smooth out random noise.'},
+ {t:'Logic',q:'A good scientific hypothesis must be…',o:['popular','testable','complicated','old'],a:1,e:'If nothing could ever disprove it, it is not science.'},{t:'Logic',q:'A drug is tested against a sugar pill so you can…',o:['save money','compare it against no real treatment','skip testing','please patients'],a:1,e:'A placebo control shows whether the drug beats no treatment.'},{t:'Lateral',q:'Two test groups differ in many ways at once. It becomes hard to know…',o:['the date','which difference caused the result','their names','the room'],a:1,e:'Many varying factors make cause hard to isolate — control them.'}]},
+{id:'pilot',name:'Pilot',icon:'✈️',color:'var(--lantern)',blurb:'Procedures, spatial sense and decisions.',questions:[
+ {t:'Lateral',q:'A warning light comes on mid-flight. First you should…',o:['guess','follow the checklist','switch it off','land anywhere'],a:1,e:'Checklists turn panic into proven, ordered steps.'},
+ {t:'Spatial',q:'Heading due North, you turn right 90°. You now head…',o:['South','East','West','North'],a:1,e:'A right turn from North faces East.'},
+ {t:'Numbers',q:'Cruising at 600 km/h, how far do you travel in 30 minutes?',o:['150 km','300 km','600 km','1,200 km'],a:1,e:'Half an hour at 600 km/h is 300 km.'},
+ {t:'Logic',q:'Two instruments disagree. The safer assumption is…',o:['both are right','one may be faulty','ignore both','trust the prettier one'],a:1,e:'Cross-check; never assume a disagreeing instrument is correct.'},
+ {t:'Numbers',q:'Descending 3,000 ft at 1,000 ft per minute takes…',o:['1 minute','3 minutes','30 minutes','300 minutes'],a:1,e:'3,000 ÷ 1,000 = 3 minutes.'},
+ {t:'Spatial',q:'A runway marked "09" points roughly toward…',o:['North','East','South','West'],a:1,e:'Runway numbers are the heading ÷ 10 — 09 means about 090°, East.'},
+ {t:'Logic',q:'Pre-flight checklists exist mainly to…',o:['look official','stop steps being missed under stress','waste time','slow you down'],a:1,e:'Under pressure, memory fails — the list does not.'},
+ {t:'Lateral',q:'Fuel is lower than planned because of headwind. You should…',o:['speed up blindly','reassess and divert if needed','ignore it','climb forever'],a:1,e:'Re-plan with the real numbers rather than hoping.'},{t:'Numbers',q:'Climbing 9,000 ft at 1,500 ft per minute takes…',o:['3 min','6 min','9 min','15 min'],a:1,e:'9,000 ÷ 1,500 = 6 minutes.'},{t:'Lateral',q:'Weather at the destination turns dangerous. A wise flight plan always includes…',o:['no plan','an alternate airport','flying faster','ignoring it'],a:1,e:'Always carry a diversion option.'}]},
+{id:'chef',name:'Chef',icon:'🍳',color:'var(--berry)',blurb:'Sequencing, ratios and timing.',questions:[
+ {t:'Numbers',q:'A recipe for 2 needs 200g of flour. For 6 people you need…',o:['200g','400g','600g','1,200g'],a:2,e:'Three times the people means three times the flour: 600g.'},
+ {t:'Pattern',q:'You boil pasta before adding sauce. This is mostly about…',o:['the colour','the right order of steps','the plate','the price'],a:1,e:'Sequence matters — sauce cannot cook the pasta.'},
+ {t:'Lateral',q:'A dish tastes flat. The quickest thing to try first is…',o:['more heat','a pinch of salt','a bigger plate','more oil'],a:1,e:'Salt lifts flavour faster than almost anything else.'},
+ {t:'Numbers',q:'One cake bakes in 40 minutes. Two cakes side by side take about…',o:['20 minutes','40 minutes','80 minutes','120 minutes'],a:1,e:'They bake in parallel in the same oven — still about 40.'},
+ {t:'Logic',q:'Raw chicken touched a board. Before cutting salad on it you must…',o:['use it as is','wash and sanitise it','wipe it dry','flip it over'],a:1,e:'Cross-contamination is a real food-safety risk.'},
+ {t:'Numbers',q:'A dressing is 3 parts oil to 1 part vinegar. For 6 tbsp oil, use…',o:['1 tbsp vinegar','2 tbsp vinegar','3 tbsp vinegar','6 tbsp vinegar'],a:1,e:'6 ÷ 3 = 2 tbsp vinegar keeps the 3:1 ratio.'},
+ {t:'Lateral',q:'Guests arrive in 10 minutes but the roast needs 40. Best move…',o:['serve it raw','adjust the menu','cancel dinner','oven on max'],a:1,e:'Switch to something that fits the time; never serve unsafe food.'},
+ {t:'Pattern',q:'Prepping everything before cooking (mise en place) mainly helps…',o:['taste only','timing and flow','the bill','decoration'],a:1,e:'With prep done, the cook keeps pace instead of scrambling.'},{t:'Numbers',q:'A custard needs 1 egg per 2 servings. For 8 servings you need…',o:['2 eggs','4 eggs','8 eggs','1 egg'],a:1,e:'8 ÷ 2 = 4 eggs.'},{t:'Lateral',q:'A sauce is too salty. The safest fix is to…',o:['add more salt','dilute it or add unsalted volume','serve it as is','add more heat'],a:1,e:'Diluting spreads the salt across more food.'}]},
+{id:'journalist',name:'Journalist',icon:'📰',color:'var(--grape)',blurb:'Verification, sourcing and bias.',questions:[
+ {t:'Lateral',q:'One anonymous source makes a big claim. Before publishing you should…',o:['print it at once','verify with more sources','ignore it','just guess'],a:1,e:'Single unverified claims get confirmed before they run.'},
+ {t:'Verbal',q:'Which headline is the most neutral?',o:['"Greedy council forces road"','"Council approves road plan"','"Disaster road approved"','"Heroes save the road"'],a:1,e:'It states what happened without loaded words.'},
+ {t:'Logic',q:'A striking photo could be old or edited. First you should…',o:['use it anyway','check its origin and date','just crop it','ignore it'],a:1,e:'Provenance matters — verify before you publish.'},
+ {t:'Lateral',q:'A study praising a product was funded by that company. You should…',o:['trust it fully','note the conflict of interest','hide the funding','reject all studies'],a:1,e:'Disclose the conflict so readers can judge.'},
+ {t:'Verbal',q:'"Some people say…" with no name attached is…',o:['strong proof','weak and unsourced','a hard fact','a real quote'],a:1,e:'Unnamed "some say" carries almost no weight.'},
+ {t:'Logic',q:'Two eyewitnesses flatly contradict each other. At least one must be…',o:['lying for sure','mistaken or wrong','correct','irrelevant'],a:1,e:'Both cannot be right, but it need not be deliberate.'},
+ {t:'Lateral',q:'A story is exciting but you cannot confirm it. The right call is…',o:['publish for clicks','hold it until confirmed','exaggerate it','give up reporting'],a:1,e:'Accuracy beats being first.'},
+ {t:'Verbal',q:'"The bridge is 2 km long" is an example of a…',o:['opinion','fact','rumour','prediction'],a:1,e:'It is measurable and verifiable — a fact.'},{t:'Logic',q:'A quote is repeated by many outlets, all citing one source. It is really…',o:['many sources','one source repeated','independently confirmed','irrelevant'],a:1,e:'Echoing a single origin is still one source.'},{t:'Lateral',q:'A leaked document looks real. Before reporting it you must…',o:['publish at once','verify it is authentic','trust the leaker','ignore it'],a:1,e:'Authenticity must be checked before publishing.'}]},
+{id:'architect',name:'Architect',icon:'📐',color:'var(--clay)',blurb:'Space, constraints and structure.',questions:[
+ {t:'Spatial',q:'A room 4 m by 5 m has a floor area of…',o:['9 m²','20 m²','40 m²','45 m²'],a:1,e:'Area = length × width = 4 × 5 = 20 m².'},
+ {t:'Logic',q:'A design must fit both the budget and the site. If it busts the budget it is…',o:['perfect','not yet viable','already built','automatically cheap'],a:1,e:'A constraint that fails means back to the drawing board.'},
+ {t:'Spatial',q:'To catch morning light, big windows are best facing…',o:['North','East','West','underground'],a:1,e:'The sun rises in the East, so east-facing windows catch the morning.'},
+ {t:'Lateral',q:'Clients want more rooms on the same footprint. One real option is to…',o:['ignore them','build upward, add a floor','only remove walls','shrink the land'],a:1,e:'When you cannot spread out, you go up.'},
+ {t:'Logic',q:'Load-bearing walls mainly exist to…',o:['decorate','hold the structure up','save paint','block sound only'],a:1,e:'Remove one carelessly and the building can fail.'},
+ {t:'Spatial',q:'Doubling the side length of a square room multiplies its floor area by…',o:['2','3','4','8'],a:2,e:'Area scales with the side squared — double the side, four times the area.'},
+ {t:'Lateral',q:'A beautiful building ignores how people move through it. The flaw is…',o:['the colour','poor flow and usability','it is too cheap','small windows'],a:1,e:'Good architecture serves how people actually use the space.'},
+ {t:'Numbers',q:'A staircase must rise 3 m using steps 0.15 m tall. That needs…',o:['10 steps','15 steps','20 steps','30 steps'],a:2,e:'3 ÷ 0.15 = 20 steps.'},{t:'Spatial',q:'A corridor is 2 m wide and 10 m long. Its floor area is…',o:['12 m²','20 m²','5 m²','100 m²'],a:1,e:'2 × 10 = 20 m².'},{t:'Logic',q:'A fire exit would be blocked by a planned wall. The design must…',o:['keep the wall','keep a clear exit','remove the exit','ignore safety'],a:1,e:'Safe escape is a hard requirement — the exit wins.'}]},
+{id:'detective',name:'Detective',icon:'🕵️',color:'var(--sky)',blurb:'Deduction, evidence and inference.',questions:[
+ {t:'Logic',q:'A room was locked from inside, but a window stood open. The likely exit is…',o:['the door','the window','the chimney','no exit at all'],a:1,e:'The only unsecured opening is the most likely route.'},
+ {t:'Logic',q:'A suspect was filmed across town when the crime happened. They are…',o:['guilty','likely cleared','definitely lying','still the main suspect'],a:1,e:'A solid alibi removes them from the scene.'},
+ {t:'Lateral',q:'Footprints stop suddenly in soft mud. A reasonable inference is…',o:['the person vanished','they left another way, perhaps a vehicle','it was magic','ignore it'],a:1,e:'People do not vanish — look for how the trail changed.'},
+ {t:'Logic',q:'Only the gardener had a key and the room was locked. That makes the gardener…',o:['guilty for certain','a strong lead, not yet proof','clearly innocent','just a witness'],a:1,e:'Opportunity points at them, but you still need proof.'},
+ {t:'Lateral',q:'Two clues point one way and one points the other. You should…',o:['ignore the odd clue','re-examine the odd clue','flip a coin','close the case'],a:1,e:'The clue that does not fit often hides the real story.'},
+ {t:'Logic',q:'After a thorough search, finding no evidence is…',o:['proof of innocence','suggestive but not proof','proof of guilt','irrelevant'],a:1,e:'Absence of evidence is weak evidence, not certainty.'},
+ {t:'Lateral',q:'A confession contradicts the physical evidence. It should be…',o:['trusted completely','checked against the evidence','ignored','celebrated'],a:1,e:'Facts outrank words — verify before believing.'},
+ {t:'Logic',q:'A suspect with motive, means and opportunity is…',o:['guilty for sure','a prime suspect who still needs proof','automatically cleared','only a witness'],a:1,e:'All three together is strong — but proof still decides.'},{t:'Logic',q:'A witness changes their story each time. Their account is…',o:['fully reliable','less reliable','solid proof','irrelevant'],a:1,e:'Inconsistency lowers reliability.'},{t:'Lateral',q:'Mud on the suspect\'s shoes matches the garden, not the street. This is…',o:['meaningless','evidence placing them in the garden','proof of innocence','a pure coincidence'],a:1,e:'Matching trace evidence links them to a specific place.'}]}
+];
+
+// ===================== REFS =====================
+const pcluster=$('pcluster'), modal=$('modal'), mcard=$('mcard'), fxLayer=$('fx');
+
+// ===================== PROFILE + STORE =====================
+const AVATARS=[{e:'🦊',lv:1},{e:'🦉',lv:1},{e:'🐢',lv:1},{e:'🐝',lv:2},{e:'🦋',lv:3},{e:'🐙',lv:4},{e:'🦄',lv:5},{e:'🐉',lv:7},{e:'🦅',lv:9},{e:'🐳',lv:12}];
+const avatarLv=e=>{const a=AVATARS.find(x=>x.e===e);return a?a.lv:1;};
+const unlockedCount=lvl=>AVATARS.filter(a=>lvl>=a.lv).length;
+const defaultProfile=()=>({name:'',avatar:'🦊',xp:0,badges:{},stars:{},unlocked:0,prof:{},daily:{},mind:{},seen:{},arcade:{},expBest:0,settings:{sound:true,timed:false}});
+let P=defaultProfile();
+const KEY='brainteaser_profile';
+const Store={
+  async load(){
+    try{const ls=localStorage.getItem(KEY)||localStorage.getItem('tl_profile');if(ls)return JSON.parse(ls);}catch(e){}
+    try{if(window.storage){const r=await window.storage.get(KEY);if(r&&r.value)return JSON.parse(r.value);}}catch(e){}
+    return null;
+  },
+  save(){const data=JSON.stringify(P);
+    try{localStorage.setItem(KEY,data);}catch(e){}
+    try{if(window.storage)window.storage.set(KEY,data);}catch(e){}
+  }
+};
+
+// ===================== HELPERS =====================
+const TYPES=['Logic','Pattern','Numbers','Verbal','Spatial','Lateral'];
+const levelFor=xp=>Math.floor(xp/100)+1;
+const xpInto=xp=>xp%100;
+function starsFor(score,total){ if(score>=total)return 3; if(score/total>=PASS)return 2; if(score>0)return 1; return 0; }
+const subjKey=(gi,sid)=>GRADES[gi].id+'.'+sid;
+const subjStars=(gi,sid)=>P.stars[subjKey(gi,sid)]||0;
+const subjLit=(gi,sid)=>subjStars(gi,sid)>=2;
+const gradeComplete=gi=>SUBJECTS.every(s=>subjLit(gi,s.id));
+const litCount=gi=>SUBJECTS.filter(s=>subjLit(gi,s.id)).length;
+const MAX_STARS=GRADES.length*SUBJECTS.length*3;
+const totalStars=()=>{let t=0;GRADES.forEach((g,i)=>SUBJECTS.forEach(su=>t+=Math.min(3,subjStars(i,su.id))));return t;};
+const allGradesComplete=()=>GRADES.every((_,i)=>gradeComplete(i));
+const starHTML=n=>`<span class="stars">${[0,1,2].map(i=>`<span class="s ${i<n?'on':''}">★</span>`).join('')}</span>`;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+const KID_ROUND=5;
+function prepQ(q){const order=shuffle(q.o.map((_,i)=>i));return Object.assign({},q,{o:order.map(i=>q.o[i]),a:order.indexOf(q.a)});}
+function drawSubset(arr,n,key){
+  if(arr.length<=n)return shuffle(arr);
+  P.seen=P.seen||{};let seen=Array.isArray(P.seen[key])?P.seen[key]:[];
+  const idxs=arr.map((_,i)=>i);let unseen=idxs.filter(i=>!seen.includes(i));
+  if(unseen.length<n){seen=[];unseen=idxs;}
+  const chosen=shuffle(unseen).slice(0,n);
+  P.seen[key]=Array.from(new Set(seen.concat(chosen)));Store.save();
+  return shuffle(chosen.map(i=>arr[i]));
+}
+function kidQuiz(gi,sid){const g=GRADES[gi],su=SUBJECTS.find(x=>x.id===sid);S.gradeIdx=gi;S.subjId=sid;
+  startQuiz(drawSubset(g.subjects[sid],KID_ROUND,g.id+'.'+sid),g.name+' · '+su.name,su.color,'child');}
+const exploredTypes=()=>TYPES.filter(t=>P.mind[t]&&P.mind[t].t>0).length;
+function addMind(type,correct){P.mind[type]=P.mind[type]||{c:0,t:0};P.mind[type].t++;if(correct)P.mind[type].c++;}
+
+// ===================== AUDIO =====================
+let actx=null;
+function actxInit(){try{if(!actx)actx=new (window.AudioContext||window.webkitAudioContext)();if(actx&&actx.state==='suspended')actx.resume();}catch(e){}}
+function tone(freq,t0,dur,type,vol){if(!P.settings.sound)return;actxInit();if(!actx)return;const o=actx.createOscillator(),g=actx.createGain();o.type=type||'sine';o.frequency.value=freq;o.connect(g);g.connect(actx.destination);const t=actx.currentTime+t0;g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol||.18,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.start(t);o.stop(t+dur+.02);}
+const SFX={
+  correct(){tone(660,0,.12,'sine',.18);tone(990,.08,.16,'sine',.18);},
+  wrong(){tone(200,0,.18,'sawtooth',.13);tone(150,.06,.2,'sawtooth',.11);},
+  click(){tone(520,0,.04,'square',.05);},
+  star(){tone(880,0,.1,'triangle',.16);tone(1320,.07,.13,'triangle',.14);},
+  level(){[523,659,784,1046].forEach((f,i)=>tone(f,i*.09,.2,'triangle',.18));},
+};
+
+// ===================== CELEBRATION =====================
+function confetti(n){const colors=['#ffb43d','#34d39a','#4fb6ff','#ff6f9d','#b48cff'];n=n||90;
+  for(let i=0;i<n;i++){const d=document.createElement('div');d.className='conf';d.style.background=colors[i%colors.length];
+    d.style.left=Math.random()*100+'vw';d.style.top='-20px';fxLayer.appendChild(d);
+    const dx=(Math.random()-.5)*260,dur=1500+Math.random()*1300,rot=Math.random()*720;
+    d.animate([{transform:'translate(0,0) rotate(0)',opacity:1},{transform:`translate(${dx}px,${window.innerHeight+80}px) rotate(${rot}deg)`,opacity:.9}],{duration:dur,easing:'cubic-bezier(.2,.6,.5,1)'}).onfinish=()=>d.remove();}}
+function showModal(html){mcard.innerHTML=html;modal.classList.add('show');
+  mcard.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>modal.classList.remove('show'));
+  modal.onclick=e=>{if(e.target===modal)modal.classList.remove('show');};}
+let toastT;function toast(html){const t=$('toast');t.innerHTML=html;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2600);}
+
+// ===================== BADGES =====================
+const BADGES=[
+ {id:'first_light',ic:'✦',n:'First Light',d:'Light your first subject.'},
+ {id:'perfect',ic:'💯',n:'Flawless',d:'Get a perfect round.'},
+ {id:'on_fire',ic:'🔥',n:'On Fire',d:'Hit a 5-answer streak.'},
+ {id:'explorer',ic:'🧭',n:'Grade Master',d:'Complete every subject in a grade.'},
+ {id:'climber',ic:'🪜',n:'Climber',d:'Reach Grade 3.'},
+ {id:'summit',ic:'🏔️',n:'Summit',d:'Complete Grade 6.'},
+ {id:'brainiac',ic:'🧠',n:'Brainiac',d:'Earn 500 XP.'},
+ {id:'pro',ic:'💼',n:'Pro Thinker',d:'Ace any profession set.'},
+ {id:'pathfinder',ic:'🏁',n:'Pathfinder',d:'Score 100+ in an Expedition.'},
+ {id:'cartographer',ic:'🗺️',n:'Cartographer',d:'Practise all six reasoning types.'},
+ {id:'collector',ic:'🌈',n:'Spirit Collector',d:'Unlock five spirits.'},
+ {id:'arcadia',ic:'🕹️',n:'Arcade Ace',d:'Score 400+ in a Brain Arcade game.'},
+ {id:'graduate',ic:'🎓',n:'Graduate',d:'Complete all six grades.'},
+ {id:'scholar',ic:'🌟',n:'Star Scholar',d:'Earn 3 stars on every subject.'},
+ {id:'reader',ic:'📖',n:'Reader',d:'Finish a Reading Club round.'},
+];
+const badgeDef=id=>BADGES.find(b=>b.id===id);
+function award(id){if(P.badges[id])return false;P.badges[id]=Date.now();return true;}
+
+// ===================== AFFILIATE / BRAIN SHELF =====================
+// Swap each url with your real affiliate tracking link (Jumia / Amazon / Coursera, etc).
+// Titles are editable placeholders — point them at the specific product you're promoting.
+const AFF_DISCLOSURE='For grown-ups: some links here are affiliate links. If you buy through them we may earn a small commission, at no extra cost to you. Picks are chosen to fit what was just played.';
+const RECS={
+  // kids — parent-facing
+  math:[{e:'🧮',t:'Mental-maths puzzle book',b:'Playful number challenges to build on Numbers.',u:'#'},{e:'🔢',t:'Hands-on counting toy',b:'A tactile set for early number sense.',u:'#'}],
+  words:[{e:'📕',t:"A children's picture dictionary",b:'Grow vocabulary the fun way.',u:'#'},{e:'🔤',t:'Word & rhyme game set',b:'Family word games that reward Words skills.',u:'#'}],
+  logic:[{e:'🧩',t:'Logic-puzzle activity book',b:'Patterns and deduction, age-graded.',u:'#'},{e:'🤖',t:'A beginner coding toy',b:'Sequences and loops, off-screen.',u:'#'}],
+  science:[{e:'🔬',t:'Home science experiment kit',b:'Safe, supervised "why does it happen" fun.',u:'#'},{e:'🌍',t:"Kids' first encyclopedia",b:'Feeds endless Science curiosity.',u:'#'}],
+  // adults — direct
+  dev:[{e:'💻',t:'An algorithms & problem-solving course',b:'Turn this reasoning into real skill.',u:'#'},{e:'📘',t:'A clean-code / interview prep book',b:'Sharpen the edge-case instinct.',u:'#'}],
+  doctor:[{e:'🩺',t:'A clinical-reasoning book',b:'Diagnostic thinking & probability.',u:'#'}],
+  lawyer:[{e:'⚖️',t:'A book on logic & argument',b:'Conditional reasoning, formalised.',u:'#'}],
+  designer:[{e:'🎨',t:'A design-fundamentals course',b:'Hierarchy, layout and clarity.',u:'#'}],
+  engineer:[{e:'⚙️',t:'A systems-thinking book',b:'Trade-offs and failure analysis.',u:'#'}],
+  teacher:[{e:'📚',t:'A teaching-craft book',b:'Explaining hard ideas simply.',u:'#'}],
+  nurse:[{e:'💊',t:'A clinical priorities handbook',b:'Triage and dosage reasoning.',u:'#'}],
+  founder:[{e:'🚀',t:'A lean-startup reading list',b:'Decisions under uncertainty.',u:'#'}],
+  accountant:[{e:'📊',t:'A personal-finance & accounting primer',b:'Statements, margins and audit logic.',u:'#'}],
+  scientist:[{e:'🔬',t:'A book on the scientific method',b:'Hypotheses, controls and evidence.',u:'#'}],
+  pilot:[{e:'✈️',t:'An intro to aviation decision-making',b:'Procedures and judgement under pressure.',u:'#'}],
+  chef:[{e:'🍳',t:'A cooking-technique fundamentals book',b:'Ratios, timing and sequencing.',u:'#'}],
+  journalist:[{e:'📰',t:'A media-literacy & verification guide',b:'Sourcing, bias and fact-checking.',u:'#'}],
+  architect:[{e:'📐',t:'An architecture & design-thinking book',b:'Space, constraints and structure.',u:'#'}],
+  detective:[{e:'🕵️',t:'A logic & deduction puzzle book',b:'Inference and evidence reasoning.',u:'#'}],
+  // by reasoning strength (Mind Map)
+  Logic:[{e:'🧠',t:'A logic-puzzle collection',b:'Pure deduction workouts.',u:'#'}],
+  Pattern:[{e:'🔷',t:'A pattern & IQ puzzle book',b:'Sequences and visual patterns.',u:'#'}],
+  Numbers:[{e:'➗',t:'A mental-arithmetic guide',b:'Faster, sharper number sense.',u:'#'}],
+  Verbal:[{e:'🔠',t:'A vocabulary & analogies book',b:'Word reasoning and links.',u:'#'}],
+  Spatial:[{e:'📐',t:'A spatial-reasoning puzzle set',b:'Shapes, symmetry, rotation.',u:'#'}],
+  Lateral:[{e:'💡',t:'A lateral-thinking riddle book',b:'The sideways-thinking workout.',u:'#'}],
+};
+function recCard(it){return `<a class="rec" href="${it.u}" target="_blank" rel="sponsored nofollow noopener"><span class="remoji">${it.e}</span><span class="rmeta"><span class="rt">${it.t}</span><span class="rb">${it.b}</span></span><span class="rcta">View ›</span></a>`;}
+function recBlock(key,opts){opts=opts||{};const items=(RECS[key]||[]).slice(0,opts.limit||2);if(!items.length)return '';
+  return `<div class="recwrap">${opts.parent?`<div class="forgrownups">For grown-ups</div>`:''}<h4>${opts.heading||'You might like'}</h4>
+    <div class="reclist">${items.map(recCard).join('')}</div><div class="disc">${AFF_DISCLOSURE}</div></div>`;}
+
+// ===================== STATE =====================
+let S={ screen:'home', audience:null, mode:null, qi:0, answers:[], gradeIdx:0, subjId:null, profId:null,
+        quiz:null, locked:false, streakLive:0, timed:false, qStart:0, exp:null };
+
+// ===================== DAILY =====================
+function dailyKey(){const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();}
+function buildDaily(){
+  const all=[];GRADES.forEach(g=>SUBJECTS.forEach(s=>g.subjects[s.id].forEach(q=>all.push(q))));PROFESSIONS.forEach(p=>p.questions.forEach(q=>all.push(q)));
+  let seed=0;for(const c of dailyKey())seed=(seed*31+c.charCodeAt(0))>>>0;seed=seed||1;
+  const rng=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+  const idx=new Set();let guard=0;while(idx.size<5&&guard++<999)idx.add(Math.floor(rng()*all.length));
+  return [...idx].map(i=>all[i]);
+}
+
+// ===================== EXPEDITION POOL =====================
+let EXP_POOL=null;
+function expPool(){if(EXP_POOL)return EXP_POOL;const p=[];
+  GRADES.forEach((g,i)=>SUBJECTS.forEach(s=>g.subjects[s.id].forEach(q=>p.push({q,tier:i+1}))));
+  PROFESSIONS.forEach(pr=>pr.questions.forEach(q=>p.push({q,tier:6})));EXP_POOL=p;return p;}
+
+// ===================== ROUTER + CHROME =====================
+let timerHandle=null;
+function clearTimer(){if(timerHandle){clearInterval(timerHandle);timerHandle=null;}}
+function render(){
+  clearTimer();clearArc();renderChrome();crumbs.innerHTML='';
+  if(['cats','subjects','quiz','results','profile','expedition','expresults','shelf','arcade','arcplay','arcresult','profstages','reading','readplay','readresult'].includes(S.screen)) addCrumb('Home',()=>go('home'));
+  if(S.audience==='child'){
+    if(['subjects','quiz','results'].includes(S.screen)&&S.mode!=='daily') addCrumb('The path',()=>go('cats'));
+    if(['quiz','results'].includes(S.screen)&&S.mode==='child') addCrumb(GRADES[S.gradeIdx].name,()=>go('subjects'));
+  } else if(S.audience==='adult'){
+    if(['quiz','results'].includes(S.screen)&&S.mode==='adult') addCrumb('Professions',()=>go('cats'));
+  }
+  ({home:screenHome,cats:screenCats,subjects:screenSubjects,quiz:screenQuiz,results:screenResults,welcome:screenWelcome,profile:screenProfile,expedition:screenExpedition,expresults:screenExpResults,shelf:screenShelf,arcade:screenArcade,arcplay:screenArcPlay,arcresult:screenArcResult,profstages:screenProfStages,reading:screenReading,readplay:screenReadPlay,readresult:screenReadResult}[S.screen])();
+}
+function renderChrome(){
+  if(!P.name||S.screen==='welcome'){pcluster.innerHTML='';return;}
+  const lvl=levelFor(P.xp), into=xpInto(P.xp);
+  pcluster.innerHTML=`
+    <button class="iconbtn ${P.settings.sound?'on':''}" id="soundBtn" title="Sound">${P.settings.sound?'🔊':'🔇'}</button>
+    <button class="pchip" id="pchip">
+      <span class="pav">${P.avatar}</span>
+      <span class="pmeta"><span class="pname">${P.name}</span>
+      <span class="plvl">Lv ${lvl}<span class="xpbar"><i style="width:${into}%"></i></span></span></span>
+    </button>`;
+  $('soundBtn').onclick=()=>{P.settings.sound=!P.settings.sound;Store.save();if(P.settings.sound){actxInit();SFX.click();}renderChrome();};
+  $('pchip').onclick=()=>{SFX.click();go('profile');};
+}
+function addCrumb(label,fn){const b=document.createElement('button');b.className='crumb';b.textContent='‹ '+label;b.onclick=()=>{SFX.click();fn();};crumbs.appendChild(b);}
+function go(s){S.screen=s;window.scrollTo(0,0);render();}
+const STAGE_SIZE=10;
+const profStageCount=pr=>Math.min(10,Math.max(1,Math.ceil(pr.questions.length/STAGE_SIZE)));
+const profStageQs=(pr,i)=>pr.questions.slice(i*STAGE_SIZE,i*STAGE_SIZE+STAGE_SIZE);
+const stageStars=(id,i)=>P.prof[id+'#'+i]||0;
+const stageCleared=(id,i)=>stageStars(id,i)>=2;
+const stageUnlocked=(pr,i)=>i===0||stageCleared(pr.id,i-1);
+const profClearedCount=pr=>{let n=0;for(let i=0;i<profStageCount(pr);i++)if(stageCleared(pr.id,i))n++;return n;};
+function startStage(id,i){const pr=PROFESSIONS.find(p=>p.id===id);const pool=profStageQs(pr,i);S.profId=id;S.stageIdx=i;const round=drawSubset(pool,Math.min(STAGE_SIZE,pool.length),'st.'+id+'.'+i);startQuiz(round,pr.name+' · Stage '+(i+1),pr.color,'adult');}
+function startQuiz(questions,title,color,mode){S.quiz={questions:shuffle(questions).map(prepQ),title,color};S.mode=mode;S.qi=0;S.answers=[];S.streakLive=0;S.timed=!!P.settings.timed;go('quiz');}
+
+// ===================== WELCOME =====================
+let pickAv=AVATARS[0].e;
+function screenWelcome(){
+  sub.textContent='Make your spirit';
+  app.innerHTML=`<div class="hero"><h1>Welcome, little maker.</h1><p>Pick a light-spirit and a name. You'll earn XP, light up stars, collect badges and unlock new spirits as you climb.</p></div>
+    <div class="qcard"><h4 class="lab" style="margin-bottom:6px">Choose your spirit</h4><div class="avgrid" id="avg"></div>
+    <h4 class="lab" style="margin-bottom:6px">Your name</h4><input class="namein" id="nm" maxlength="16" placeholder="Type a name…">
+    <div class="qfoot"><button class="next" id="startP">Begin ✦</button></div></div>`;
+  const g=$('avg');AVATARS.forEach(a=>{const open=a.lv<=1;const b=document.createElement('button');b.className='avpick'+(a.e===pickAv?' on':'');
+    b.innerHTML=open?a.e:`🔒`;if(!open)b.style.opacity='.4';
+    if(open)b.onclick=()=>{pickAv=a.e;SFX.click();[...g.children].forEach(c=>c.classList.remove('on'));b.classList.add('on');};
+    else b.title='Unlocks at Level '+a.lv;g.appendChild(b);});
+  $('startP').onclick=()=>{const nm=$('nm').value.trim()||'Explorer';P.name=nm;P.avatar=pickAv;Store.save();actxInit();SFX.level();confetti(60);go('home');};
+}
+
+// ===================== MIND MAP RADAR =====================
+function mindRadar(){
+  const cx=110,cy=104,R=78,N=TYPES.length;
+  const pt=(i,r)=>{const ang=-Math.PI/2+i*2*Math.PI/N;return[cx+Math.cos(ang)*r,cy+Math.sin(ang)*r];};
+  let rings='';[0.34,0.67,1].forEach(f=>{const p=TYPES.map((_,i)=>pt(i,R*f).join(',')).join(' ');rings+=`<polygon points="${p}" fill="none" stroke="rgba(255,255,255,.10)"/>`;});
+  let axes='',labels='';
+  TYPES.forEach((t,i)=>{const[x,y]=pt(i,R);axes+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="rgba(255,255,255,.10)"/>`;
+    const[lx,ly]=pt(i,R+16);labels+=`<text x="${lx}" y="${ly}" font-size="10" fill="#a99fd6" text-anchor="middle" dominant-baseline="middle" font-family="Nunito,sans-serif">${t}</text>`;});
+  const poly=TYPES.map((t,i)=>{const m=P.mind[t];const acc=m&&m.t?m.c/m.t:0;const r=12+acc*(R-12);return pt(i,m&&m.t?r:12).join(',');}).join(' ');
+  return `<svg viewBox="0 0 220 210" style="width:100%;max-width:300px;display:block;margin:0 auto">${rings}${axes}
+    <polygon points="${poly}" fill="rgba(255,180,61,.22)" stroke="var(--lantern)" stroke-width="2"/>
+    ${TYPES.map((t,i)=>{const m=P.mind[t];const acc=m&&m.t?m.c/m.t:0;const[x,y]=pt(i,m&&m.t?12+acc*(R-12):12);return `<circle cx="${x}" cy="${y}" r="3" fill="var(--lantern-soft)"/>`;}).join('')}
+    ${labels}</svg>`;
+}
+
+// ===================== PROFILE =====================
+function screenProfile(){
+  sub.textContent='Your profile';
+  const lvl=levelFor(P.xp), into=xpInto(P.xp), earned=Object.keys(P.badges).length;
+  app.innerHTML=`<div class="hero" style="display:flex;align-items:center;gap:18px">
+      <div class="pav" style="width:64px;height:64px;font-size:36px;border-radius:18px">${P.avatar}</div>
+      <div style="flex:1"><h1 style="margin:0">${P.name}</h1>
+        <div class="plvl" style="font-size:13px;margin-top:6px">Level ${lvl} · ${P.xp} XP
+          <span class="xpbar" style="width:130px;height:8px"><i style="width:${into}%"></i></span></div>
+        ${P.expBest?`<div class="age" style="margin-top:6px">🏁 Best Expedition: ${P.expBest}</div>`:''}</div></div>
+
+    <div class="qcard"><h4 class="lab">Mind Map · explored ${exploredTypes()}/6 types</h4>
+      ${mindRadar()}
+      <div class="resnote" style="text-align:center;margin-top:4px">Play across subjects and modes to grow your shape. The further out a point, the stronger that thinking.</div></div>
+
+    <div class="qcard" style="margin-top:16px"><h4 class="lab">Spirits · ${unlockedCount(lvl)}/${AVATARS.length} unlocked</h4><div class="avgrid" id="avg"></div></div>
+
+    <div class="qcard" style="margin-top:16px"><h4 class="lab">Badges · ${earned}/${BADGES.length}</h4><div class="bgrid" id="bg"></div></div>
+
+    <div class="qcard" style="margin-top:16px"><h4 class="lab">Settings</h4>
+      <div class="resbtns" style="justify-content:flex-start">
+        <button class="btn ghost" id="sndT">${P.settings.sound?'🔊 Sound: on':'🔇 Sound: off'}</button>
+        <button class="btn ghost" id="tmrT">${P.settings.timed?'⏱ Beat-the-clock: on':'⏱ Beat-the-clock: off'}</button>
+        <button class="btn ghost" id="rst">↺ Reset progress</button>
+        <button class="btn" id="hm">Back to start</button>
+      </div></div>`;
+  const av=$('avg');AVATARS.forEach(a=>{const open=lvl>=a.lv;const b=document.createElement('button');
+    b.className='avpick'+(P.avatar===a.e?' on':'');b.innerHTML=open?a.e:'🔒';if(!open){b.style.opacity='.4';b.title='Unlocks at Level '+a.lv;}
+    if(open)b.onclick=()=>{P.avatar=a.e;Store.save();SFX.star();render();};av.appendChild(b);});
+  const bg=$('bg');BADGES.forEach(b=>{const has=!!P.badges[b.id];const d=document.createElement('div');d.className='badge'+(has?'':' locked');
+    d.innerHTML=`<div class="bic">${has?b.ic:'🔒'}</div><div><div class="bn">${b.n}</div><div class="bd">${b.d}</div></div>`;bg.appendChild(d);});
+  $('sndT').onclick=()=>{P.settings.sound=!P.settings.sound;Store.save();SFX.click();render();};
+  $('tmrT').onclick=()=>{P.settings.timed=!P.settings.timed;Store.save();SFX.click();render();};
+  $('hm').onclick=()=>{SFX.click();go('home');};
+  $('rst').onclick=()=>{showModal(`<div class="big">↺</div><h2>Reset everything?</h2><p>This clears your XP, stars, badges and Mind Map. Your spirit stays.</p>
+    <div class="resbtns"><button class="btn" id="rok">Yes, reset</button><button class="btn ghost" data-close>Keep it</button></div>`);
+    setTimeout(()=>{const ok=document.getElementById('rok');if(ok)ok.onclick=()=>{const nm=P.name,av=P.avatar,st=P.settings;P=defaultProfile();P.name=nm;P.avatar=av;P.settings=st;Store.save();modal.classList.remove('show');go('home');};},30);};
+}
+
+// ===================== HOME =====================
+function screenHome(){
+  sub.textContent='Reasoning challenges for curious minds.';
+  const dk=dailyKey(), dDone=P.daily[dk]!==undefined;
+  app.innerHTML=`
+    <button class="daily ${dDone?'done':''}" id="daily">
+      <div class="dic">${dDone?'✓':'⚡'}</div>
+      <div><h3>Daily Challenge</h3><p>${dDone?`Done today — you scored ${P.daily[dk]}/5. Back tomorrow!`:'Five fresh mixed questions. New set every day.'}</p></div>
+      <span class="go">${dDone?'Replay':'Play ›'}</span></button>
+    <button class="daily" id="exped" style="background:linear-gradient(110deg,rgba(79,182,255,.16),var(--night-2));border-color:rgba(79,182,255,.32)">
+      <div class="dic" style="background:rgba(79,182,255,.2)">🏁</div>
+      <div><h3>Expedition</h3><p>Endless mixed run — 3 lives, rising difficulty, build a combo. ${P.expBest?`Your best: ${P.expBest}.`:'How far can you go?'}</p></div>
+      <span class="go" style="color:var(--sky)">Start ›</span></button>
+    <button class="daily" id="arcTile" style="background:linear-gradient(110deg,rgba(255,111,157,.16),var(--night-2));border-color:rgba(255,111,157,.32)">
+      <div class="dic" style="background:rgba(255,111,157,.2)">🕹️</div>
+      <div><h3>Brain Arcade</h3><p>Fast puzzle games — memory, speed and focus. For all ages.</p></div>
+      <span class="go" style="color:var(--berry)">Open ›</span></button>
+    <div class="hero"><h1>Who's thinking today?</h1>
+      <p>Children climb grade stages — each grade opening into four subjects; grown-ups explore professions. Earn XP, stars, spirits and badges as you go.</p>
+      <div class="disclaimer">A note: this is brain practice and reasoning fun — <b>not</b> a clinical IQ test or a measure of how clever anyone is.</div></div>
+    <div class="cards two" id="aud"></div>
+    <button class="daily" id="shelfTile" style="margin-top:18px;background:linear-gradient(110deg,rgba(180,140,255,.16),var(--night-2));border-color:rgba(180,140,255,.32)">
+      <div class="dic" style="background:rgba(180,140,255,.2)">🛍️</div>
+      <div><h3>Brain Shelf</h3><p>Hand-picked books, kits and courses to go deeper — for grown-ups.</p></div>
+      <span class="go" style="color:var(--grape)">Browse ›</span></button>`;
+  $('daily').onclick=()=>{SFX.click();S.audience='daily';startQuiz(buildDaily(),'Daily Challenge','var(--lantern)','daily');};
+  $('exped').onclick=()=>{SFX.click();startExpedition();};
+  $('arcTile').onclick=()=>{SFX.click();go('arcade');};
+  $('shelfTile').onclick=()=>{SFX.click();go('shelf');};
+  const w=$('aud');
+  [['child','🧒','For Children','Climb grade stages — Numbers, Words, Logic and Science.','var(--leaf)',GRADES.length+' grades'],
+   ['adult','🧑‍💼','For Adults','Reasoning puzzles in the flavour of real professions.','var(--sky)',PROFESSIONS.length+' professions']]
+  .forEach(([id,ic,name,blurb,col,meta])=>{const b=document.createElement('button');b.className='card';b.style.setProperty('--rc',col);
+    b.innerHTML=`<div class="ic">${ic}</div><h3>${name}</h3><p>${blurb}</p><div class="meta">${meta} ›</div>`;
+    b.onclick=()=>{SFX.click();S.audience=id;go('cats');};w.appendChild(b);});
+}
+
+// ===================== BRAIN SHELF (affiliate hub) =====================
+function screenShelf(){
+  sub.textContent='Brain Shelf';
+  const grp=(title,keys)=>`<div class="shelfgroup"><div class="gh">${title}</div><div class="reclist">${keys.flatMap(k=>RECS[k]||[]).map(recCard).join('')}</div></div>`;
+  app.innerHTML=`<div class="hero"><h1>🛍️ Brain Shelf</h1><p>Books, kits and courses chosen to match what you're learning here. Picks are for grown-ups to choose.</p>
+    <div class="disclaimer">${AFF_DISCLOSURE}</div></div>
+    ${grp("For children — grown-up picks",['math','words','logic','science'])}
+    ${grp("For adults — by field",['dev','doctor','lawyer','designer','engineer','teacher','nurse','founder'])}
+    ${grp("Sharpen a thinking strength",['Logic','Pattern','Numbers','Verbal','Spatial','Lateral'])}`;
+}
+
+function screenCats(){ S.audience==='child'?screenLadder():screenProfessions(); }
+
+function screenProfessions(){
+  sub.textContent='Adults · pick a profession';
+  app.innerHTML=`<div class="hero"><h1>The career quarter</h1><p>Each field is a ladder of stages — 10 reasoning puzzles each, harder as you climb. Clear a stage to unlock the next.</p></div><div class="cards multi" id="cats"></div>`;
+  const w=$('cats');PROFESSIONS.forEach(c=>{const sc=profStageCount(c),cl=profClearedCount(c);const b=document.createElement('button');b.className='card'+(cl>0&&cl===sc?' done-sub':'');b.style.setProperty('--rc',c.color);
+    b.innerHTML=`<div class="ic">${c.icon}</div><h3>${c.name}</h3><p>${c.blurb}</p><div class="meta">${cl>0?`✦ ${cl}/${sc} stage${sc>1?'s':''} cleared`:`${sc} stage${sc>1?'s':''} · ${c.questions.length} questions ›`}</div>`;
+    b.onclick=()=>{SFX.click();S.profId=c.id;go('profstages');};w.appendChild(b);});
+}
+
+function screenProfStages(){const pr=PROFESSIONS.find(p=>p.id===S.profId);sub.textContent=pr.name+' · stages';
+  const sc=profStageCount(pr),cl=profClearedCount(pr);
+  app.innerHTML=`<div class="hero"><h1>${pr.icon} ${pr.name}</h1><p>${pr.blurb} Clear a stage (★★ or more) to unlock the next — each one a fresh, harder set of 10.</p>
+    <div class="plvl" style="font-size:13px;margin-top:12px">Mastery ✦ ${cl}/${sc} stage${sc>1?'s':''}<span class="xpbar" style="width:120px;height:8px"><i style="width:${cl/sc*100}%"></i></span></div></div>
+    <div class="ladder" id="lad"></div>`;
+  const w=$('lad');
+  for(let i=0;i<sc;i++){const stars=stageStars(pr.id,i),open=stageUnlocked(pr,i),cleared=stageCleared(pr.id,i),current=open&&!cleared;
+    const b=document.createElement('button');b.className='stage '+(open?'open ':'locked ')+(cleared?'complete lit ':'')+(current?'current':'');
+    const pips=[0,1,2].map(k=>`<i class="${k<stars?'on':''}"></i>`).join('');
+    const stat=cleared?`<span class="sstat done">★ ${stars}/3</span>`:open?`<span class="sstat go">${stars>0?'Improve ›':'Start ›'}</span>`:`<span class="sstat lock">Locked</span>`;
+    b.innerHTML=`<div class="lnode" style="font-family:var(--disp);font-weight:700;font-size:20px;color:${open?'var(--lantern)':'#5a5183'}">${open?(cleared?'✦':(i+1)):'<span class="lock">🔒</span>'}</div>
+      <div class="sbody"><div class="gr">Stage ${i+1}</div><div class="age">${open?(cleared?'Cleared — replay for 3★':'10 questions'):'Clear the stage before to open'}</div><div class="pips">${pips}</div></div>${stat}`;
+    if(open)b.onclick=()=>{SFX.click();startStage(pr.id,i);};w.appendChild(b);}
+}
+const lanternIcon=`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3h6v2h-1v1.5a5 5 0 0 1 2 4V17a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-5.5a5 5 0 0 1 2-4V5H9V3Z"/></svg>`;
+function screenLadder(){
+  sub.textContent='Children · the lantern path';
+  const ts=totalStars(),done=allGradesComplete();
+  const read=`<button class="daily" id="readclub" style="background:linear-gradient(110deg,rgba(180,140,255,.16),var(--night-2));border-color:rgba(180,140,255,.34)"><div class="dic" style="background:rgba(180,140,255,.2)">📖</div><div><h3>Reading Club</h3><p>Sound out words, spell, and read — every word is read aloud.</p></div><span class="go" style="color:var(--grape)">Open ›</span></button>`;
+  const grad = done?`<button class="daily" id="trials" style="background:linear-gradient(110deg,rgba(255,180,61,.18),var(--night-2));border-color:rgba(255,180,61,.45)">
+      <div class="dic">🎓</div><div><h3>You graduated all six grades!</h3><p>Keep your mind sharp — endless Scholar's Trials, the Arcade and the Daily await.</p></div>
+      <span class="go">Trials ›</span></button>`:'';
+  app.innerHTML=`<div class="hero"><h1>The lantern path</h1><p>Each grade is a stage with four subjects. Light all four to complete a grade and open the next. Chase 3 stars everywhere!</p>
+      <div class="plvl" style="font-size:13px;margin-top:12px">Mastery ⭐ ${ts}/${MAX_STARS}<span class="xpbar" style="width:120px;height:8px"><i style="width:${ts/MAX_STARS*100}%"></i></span></div></div>
+    ${read}
+    ${grad}
+    <div class="ladder" id="ladder"></div><div class="note">Light a subject (★★ or more) to fill a lantern. ${done?'Three-star every subject to become a Star Scholar!':'Everything stays open for revisiting.'}</div>`;
+  const w=$('ladder');
+  GRADES.forEach((g,i)=>{const unlocked=i<=P.unlocked,complete=gradeComplete(i),lit=litCount(i),current=i===P.unlocked&&!complete;
+    const b=document.createElement('button');b.className='stage '+(unlocked?'open ':'locked ')+(complete?'complete lit ':(lit>0?'lit ':''))+(current?'current':'');
+    const stat=complete?`<span class="sstat done">✦ Complete</span>`:unlocked?`<span class="sstat go">${lit>0?'Continue ›':'Start ›'}</span>`:`<span class="sstat lock">Locked</span>`;
+    const pips=SUBJECTS.map(s=>`<i class="${subjLit(i,s.id)?'on':''}"></i>`).join('');
+    b.innerHTML=`<div class="lnode">${lanternIcon}${unlocked?'':'<span class="lock">🔒</span>'}</div>
+      <div class="sbody"><div class="gr">${g.name}</div><div class="age">${g.age}</div><div class="pips">${pips}</div></div>${stat}`;
+    if(unlocked)b.onclick=()=>{SFX.click();S.gradeIdx=i;go('subjects');};w.appendChild(b);});
+  if(done){const tb=$('trials');if(tb)tb.onclick=()=>{SFX.click();startExpedition();};}
+  const rc=$('readclub');if(rc)rc.onclick=()=>{SFX.click();go('reading');};
+}
+
+function screenSubjects(){
+  const g=GRADES[S.gradeIdx];sub.textContent=g.name+' · '+g.age;
+  app.innerHTML=`<div class="hero"><h1>${g.name} <span style="color:var(--muted);font-size:.6em;font-weight:500">· ${g.age}</span></h1>
+    <p>Pick a subject. Light all four to complete ${g.name} and open the next grade.</p></div><div class="cards multi" id="subs"></div>`;
+  const w=$('subs');SUBJECTS.forEach(s=>{const stars=subjStars(S.gradeIdx,s.id),n=g.subjects[s.id].length;
+    const b=document.createElement('button');b.className='card'+(subjLit(S.gradeIdx,s.id)?' done-sub':'');b.style.setProperty('--rc',s.color);
+    b.innerHTML=`<div class="ic">${s.icon}</div><h3>${s.name}</h3><p>${s.blurb}</p>
+      <div class="meta">${stars>0?`${starHTML(stars)} · Replay`:`${n} questions ›`}</div>`;
+    b.onclick=()=>{SFX.click();kidQuiz(S.gradeIdx,s.id);};w.appendChild(b);});
+}
+
+// ===================== QUIZ =====================
+function screenQuiz(){
+  const Q=S.quiz,q=Q.questions[S.qi],total=Q.questions.length;S.locked=false;
+  sub.textContent=Q.title+(S.timed?' · ⏱':'');
+  app.innerHTML=`
+    <div class="qbar"><span class="qcount">Q ${S.qi+1}/${total}</span>
+      <div class="track"><div class="fill" style="width:${(S.qi/total)*100}%"></div></div>
+      <span id="comboSlot"></span></div>
+    ${S.timed?`<div class="timer" id="timerWrap"><i id="timerFill"></i></div>`:''}
+    <div class="qcard"><span class="qtype" style="background:${TYPE_COLOR[q.t]}">${q.t} reasoning</span>
+      <p class="qtext">${q.q}</p>${q.v?`<div class="qvisual">${q.v}</div>`:''}
+      <div class="opts" id="opts"></div><div id="afterwrap"></div></div>`;
+  updateCombo();
+  const opts=$('opts');
+  q.o.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';
+    b.innerHTML=`<span class="key">${String.fromCharCode(65+i)}</span><span>${o}</span>`;b.onclick=()=>answer(i);opts.appendChild(b);});
+  if(S.timed)startTimer(18000,()=>answer(-1));
+}
+function updateCombo(){const el=$('comboSlot');if(!el)return;
+  el.innerHTML = S.streakLive>=3?`<span class="combo">🔥 ${S.streakLive} combo${S.streakLive>=5?' ×3':' ×2'}</span>`:'';}
+function startTimer(dur,onEnd){clearTimer();S.qStart=Date.now();
+  timerHandle=setInterval(()=>{const el=Date.now()-S.qStart,frac=Math.max(0,1-el/dur);const bar=$('timerFill'),wrap=$('timerWrap');
+    if(bar)bar.style.width=(frac*100)+'%';if(wrap)wrap.classList.toggle('warn',frac<.25);
+    if(frac<=0){clearTimer();if(!S.locked)onEnd();}},120);}
+function answer(i){
+  if(S.locked)return;S.locked=true;clearTimer();
+  const q=S.quiz.questions[S.qi],correct=i===q.a;
+  let tl=null;if(S.timed){const el=Date.now()-S.qStart;tl=Math.max(0,1-el/18000);}
+  S.answers.push({type:q.t,correct,tl});
+  if(correct){S.streakLive++;SFX.correct();}else{S.streakLive=0;SFX.wrong();}
+  updateCombo();
+  [...$('opts').children].forEach((b,idx)=>{b.disabled=true;if(idx===q.a)b.classList.add('correct');if(idx===i&&!correct)b.classList.add('wrong');});
+  const last=S.qi===S.quiz.questions.length-1;
+  const verdict=i===-1?'⏰ Time! ':(correct?'✓ Correct':'✗ Not quite');
+  $('afterwrap').innerHTML=`<div class="explain"><div class="verdict ${correct?'yes':'no'}">${verdict}</div>${q.e}</div>
+    <div class="qfoot"><button class="next" id="nextBtn">${last?'See results':'Next'} ›</button></div>`;
+  $('nextBtn').onclick=()=>{SFX.click();last?go('results'):(S.qi++,render());};
+}
+
+// ===================== EXPEDITION =====================
+function startExpedition(){S.exp={n:0,lives:3,score:0,streak:0,mult:1,cur:null,lastIdx:-1,locked:false,seenRun:new Set()};go('expedition');}
+function nextExp(){const pool=expPool();const E=S.exp;const cap=Math.min(6,1+Math.floor(E.n/2)),lo=Math.max(1,cap-2);
+  P.seen.exp=P.seen.exp||{};
+  const inWin=i=>pool[i].tier<=cap&&pool[i].tier>=lo;
+  let elig=[];for(let i=0;i<pool.length;i++)if(inWin(i)&&!E.seenRun.has(i)&&!P.seen.exp[i])elig.push(i);          // fresh this run AND recently
+  if(!elig.length)for(let i=0;i<pool.length;i++)if(inWin(i)&&!E.seenRun.has(i))elig.push(i);                     // at least not repeated this run
+  if(!elig.length)for(let i=0;i<pool.length;i++)if(inWin(i))elig.push(i);                                       // last resort
+  const idx=elig[Math.floor(Math.random()*elig.length)];
+  E.seenRun.add(idx);P.seen.exp[idx]=1;
+  if(Object.keys(P.seen.exp).length>pool.length*0.7)P.seen.exp={};                                              // recycle once most are used
+  Store.save();E.lastIdx=idx;return {q:prepQ(pool[idx].q),tier:pool[idx].tier};}
+function hearts(n){return '❤️'.repeat(n)+'🖤'.repeat(3-n);}
+function screenExpedition(){
+  const E=S.exp;if(!E.cur)E.cur=nextExp();E.locked=false;const q=E.cur.q;
+  sub.textContent='Expedition · depth '+(E.n+1);
+  app.innerHTML=`
+    <div class="qbar"><span class="qcount" style="font-size:16px">${hearts(E.lives)}</span>
+      <div class="track"><div class="fill" style="width:100%;background:linear-gradient(90deg,var(--sky),var(--lantern))"></div></div>
+      <span class="combo" style="color:var(--sky);background:rgba(79,182,255,.14);border-color:rgba(79,182,255,.35)">★ ${E.score} ${E.mult>1?'· ×'+E.mult:''}</span></div>
+    <div class="timer" id="timerWrap"><i id="timerFill"></i></div>
+    <div class="qcard"><span class="qtype" style="background:${TYPE_COLOR[q.t]}">${q.t} · tier ${E.cur.tier}</span>
+      <p class="qtext">${q.q}</p>${q.v?`<div class="qvisual">${q.v}</div>`:''}
+      <div class="opts" id="opts"></div><div id="afterwrap"></div></div>`;
+  const opts=$('opts');q.o.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';
+    b.innerHTML=`<span class="key">${String.fromCharCode(65+i)}</span><span>${o}</span>`;b.onclick=()=>expAnswer(i);opts.appendChild(b);});
+  startTimer(15000,()=>expAnswer(-1));
+}
+function expAnswer(i){
+  const E=S.exp;if(E.locked)return;E.locked=true;clearTimer();
+  const q=E.cur.q,correct=i===q.a;
+  addMind(q.t,correct);
+  if(correct){E.streak++;E.mult=E.streak>=6?3:E.streak>=3?2:1;E.score+=10*E.mult;SFX.correct();}
+  else{E.lives--;E.streak=0;E.mult=1;SFX.wrong();}
+  [...$('opts').children].forEach((b,idx)=>{b.disabled=true;if(idx===q.a)b.classList.add('correct');if(idx===i&&!correct)b.classList.add('wrong');});
+  const dead=E.lives<=0;
+  const verdict=i===-1?'⏰ Time!':(correct?`✓ +${10*E.mult}`:'✗ Lost a life');
+  $('afterwrap').innerHTML=`<div class="explain"><div class="verdict ${correct?'yes':'no'}">${verdict}</div>${q.e}</div>
+    <div class="qfoot"><button class="next" id="nextBtn">${dead?'See how far you got':'Keep going'} ›</button></div>`;
+  $('nextBtn').onclick=()=>{SFX.click();if(dead){go('expresults');}else{E.n++;E.cur=null;render();}};
+}
+function screenExpResults(){
+  const E=S.exp;const isBest=E.score>P.expBest;if(isBest)P.expBest=E.score;
+  const xpGain=Math.floor(E.score/4);
+  const prevLevel=levelFor(P.xp);P.xp+=xpGain;const newLevel=levelFor(P.xp);const leveled=newLevel>prevLevel;
+  const newB=[];
+  if(E.score>=100&&award('pathfinder'))newB.push('pathfinder');
+  if(exploredTypes()>=6&&award('cartographer'))newB.push('cartographer');
+  if(unlockedCount(newLevel)>=5&&award('collector'))newB.push('collector');
+  if(P.xp>=500&&award('brainiac'))newB.push('brainiac');
+  Store.save();
+  sub.textContent='Expedition · results';
+  app.innerHTML=`<div class="res">
+    <div class="qtype" style="background:var(--sky)">Expedition</div>
+    <div class="scorebig">${E.score}</div>
+    <div class="restier">${isBest?'New best! 🏁':'Run complete'}</div>
+    <p class="resmsg">You reached depth ${E.n+1} and built it up to ${E.score}. ${isBest?'Furthest yet!':'Best so far: '+P.expBest+'.'}</p>
+    <div class="unlock" style="border-color:rgba(79,182,255,.4)">+${xpGain} XP from this run</div>
+    <div class="resbtns" id="rb"></div></div>`;
+  const rb=$('rb');mkBtn(rb,'🏁 Go again',true,()=>startExpedition());mkBtn(rb,'Home',false,()=>go('home'));
+  setTimeout(()=>{
+    if(leveled){confetti(110);SFX.level();showModal(`<div class="big">⭐</div><h2>Level ${newLevel}!</h2><p>You crossed ${newLevel*100} XP.</p><button class="btn" data-close>Nice!</button>`);}
+    else if(newB.length){const b=badgeDef(newB[0]);confetti(90);SFX.star();showModal(`<div class="big">${b.ic}</div><h2>Badge unlocked!</h2><p><b>${b.n}</b> — ${b.d}</p><button class="btn" data-close>Collect</button>`);}
+    else if(isBest){confetti(70);SFX.star();}
+  },380);
+}
+
+// ===================== RESULTS (graded / daily) =====================
+function screenResults(){
+  const Q=S.quiz,total=S.answers.length,score=S.answers.filter(a=>a.correct).length,pct=Math.round(score/total*100),passed=score/total>=PASS;
+  sub.textContent=Q.title+' · results';
+  let base=0,streak=0,maxStreak=0,speed=0;
+  S.answers.forEach(a=>{if(a.correct){base+=10;streak++;maxStreak=Math.max(maxStreak,streak);if(streak>=5)base+=10;else if(streak>=3)base+=5;if(a.tl!=null)speed+=Math.round(a.tl*8);}else streak=0;});
+  let bonus=0; if(score===total)bonus+=50;
+  let gradeUp=false,newStars=0,celebrateStar=false;
+  const kid=S.mode==='child';
+  if(kid){const key=subjKey(S.gradeIdx,S.subjId),prev=P.stars[key]||0;newStars=starsFor(score,total);
+    if(newStars>prev){P.stars[key]=newStars;celebrateStar=newStars>=2;}
+    if(newStars>=2&&prev<2)bonus+=20;
+    if(gradeComplete(S.gradeIdx)&&S.gradeIdx===P.unlocked&&S.gradeIdx+1<GRADES.length){P.unlocked=S.gradeIdx+1;gradeUp=true;bonus+=100;}
+  } else if(S.mode==='adult'){const sk=S.profId+'#'+S.stageIdx,ns=starsFor(score,total),pv=P.prof[sk]||0;if(ns>pv)P.prof[sk]=ns;if(ns>=2&&pv<2)bonus+=30;
+  } else if(S.mode==='daily'){const dk=dailyKey();if(P.daily[dk]===undefined){P.daily[dk]=score;bonus+=40;}else if(score>P.daily[dk])P.daily[dk]=score;}
+  const xpGain=base+speed+bonus;
+  const prevLevel=levelFor(P.xp);P.xp+=xpGain;const newLevel=levelFor(P.xp);const leveled=newLevel>prevLevel;
+
+  const byType={};S.answers.forEach(a=>{byType[a.type]=byType[a.type]||{c:0,t:0};byType[a.type].t++;if(a.correct)byType[a.type].c++;addMind(a.type,a.correct);});
+
+  const newB=[];
+  if(kid&&Object.values(P.stars).some(v=>v>=2)&&award('first_light'))newB.push('first_light');
+  if(score===total&&award('perfect'))newB.push('perfect');
+  if(maxStreak>=5&&award('on_fire'))newB.push('on_fire');
+  if(kid&&gradeComplete(S.gradeIdx)&&award('explorer'))newB.push('explorer');
+  if(kid&&allGradesComplete()&&award('graduate'))newB.push('graduate');
+  if(kid&&totalStars()===MAX_STARS&&award('scholar'))newB.push('scholar');
+  if(P.unlocked>=2&&award('climber'))newB.push('climber');
+  if(gradeComplete(5)&&award('summit'))newB.push('summit');
+  if(P.xp>=500&&award('brainiac'))newB.push('brainiac');
+  if(S.mode==='adult'&&score===total&&award('pro'))newB.push('pro');
+  if(exploredTypes()>=6&&award('cartographer'))newB.push('cartographer');
+  if(unlockedCount(newLevel)>=5&&award('collector'))newB.push('collector');
+  Store.save();
+
+  let tier,msg;
+  if(pct===100){tier='Sharp thinking! ✦';msg=kid?'Every single one! Your brain was really paying attention.':'A clean sweep — strong, careful reasoning.';}
+  else if(passed){tier='Nicely reasoned';msg=kid?'You worked out most of them. The tricky ones are how thinking grows.':'Solid reasoning. The misses below are where sharpening happens.';}
+  else {tier='Good try — give it another go';msg=kid?'This one needs a little more thinking — read the explanations and try again!':'A few slipped past. The explanations above are the workout.';}
+
+  let unlockHTML='';
+  if(kid){const g=GRADES[S.gradeIdx];
+    if(gradeUp)unlockHTML=`<div class="unlock">✦ ${g.name} complete — ${GRADES[S.gradeIdx+1].name} just opened!</div>`;
+    else if(newStars>=2)unlockHTML=`<div class="unlock">✦ Subject lit! ${litCount(S.gradeIdx)} of ${SUBJECTS.length} done in ${g.name}.</div>`;
+    else if(!passed)unlockHTML=`<div class="unlock">Get ${Math.ceil(total*PASS)} of ${total} to light this lantern.</div>`;
+  } else if(S.mode==='adult'){const pr=PROFESSIONS.find(p=>p.id===S.profId);const sc=profStageCount(pr),ns=starsFor(score,total);
+    if(ns>=2&&S.stageIdx+1<sc)unlockHTML=`<div class="unlock">✦ Stage ${S.stageIdx+1} cleared — Stage ${S.stageIdx+2} unlocked!</div>`;
+    else if(ns>=2)unlockHTML=`<div class="unlock">✦ ${pr.name} mastered — every stage cleared!</div>`;
+    else unlockHTML=`<div class="unlock">Score ${Math.ceil(total*PASS)} of ${total} to clear this stage.</div>`;
+  }
+
+  const recHTML = S.mode==='child' ? recBlock(S.subjId,{parent:true,heading:'Go deeper at home'})
+                : S.mode==='adult' ? recBlock(S.profId,{heading:'Sharpen this skill'}) : '';
+  app.innerHTML=`<div class="res">
+    <div class="qtype" style="background:${Q.color||'var(--lantern)'}">${Q.title}</div>
+    <div class="scorebig">${score}<small>/${total}</small></div>
+    ${(kid||S.mode==='adult')?`<div style="margin:2px 0 4px">${starHTML(kid?newStars:starsFor(score,total))}</div>`:''}
+    <div class="restier">${tier}</div><p class="resmsg">${msg}</p>
+    <div class="unlock" style="border-color:rgba(255,180,61,.5)">+${xpGain} XP earned${speed?` · ⏱ +${speed} speed`:''}${maxStreak>=3?` · 🔥 best combo ${maxStreak}`:''}</div>
+    ${unlockHTML}
+    <div class="profile"><h4>Thinking profile</h4><div id="prof"></div></div>
+    <div class="resnote">A fun snapshot of reasoning styles this round — see your full Mind Map on your profile.</div>
+    ${recHTML}
+    <div class="resbtns" id="rb"></div></div>`;
+  const prof=$('prof');Object.keys(byType).forEach(t=>{const o=byType[t],p=Math.round(o.c/o.t*100);const row=document.createElement('div');row.className='prow';
+    row.innerHTML=`<span class="lbl">${t}</span><div class="pbar"><i style="width:${p}%;background:${TYPE_COLOR[t]}"></i></div><span class="pct">${o.c}/${o.t}</span>`;prof.appendChild(row);});
+
+  const rb=$('rb');
+  if(kid){const g=GRADES[S.gradeIdx];const nextGradeReady=gradeComplete(S.gradeIdx)&&S.gradeIdx+1<GRADES.length&&S.gradeIdx+1<=P.unlocked;
+    const nextSubj=SUBJECTS.find(s=>!subjLit(S.gradeIdx,s.id));
+    if(nextGradeReady)mkBtn(rb,'Next grade ›',true,()=>{S.gradeIdx++;go('subjects');});
+    else if(nextSubj)mkBtn(rb,'Next: '+nextSubj.name+' ›',true,()=>{kidQuiz(S.gradeIdx,nextSubj.id);});
+    mkBtn(rb,'↺ Try again',!(nextGradeReady||nextSubj),()=>{kidQuiz(S.gradeIdx,S.subjId);});
+    mkBtn(rb,g.name+' subjects',false,()=>go('subjects'));
+    mkBtn(rb,'The path',false,()=>go('cats'));
+  } else if(S.mode==='adult'){const pr=PROFESSIONS.find(p=>p.id===S.profId);const sc=profStageCount(pr);const cleared=starsFor(score,total)>=2;const hasNext=S.stageIdx+1<sc;
+    if(cleared&&hasNext)mkBtn(rb,'Next stage ›',true,()=>startStage(S.profId,S.stageIdx+1));
+    mkBtn(rb,'↺ Retry stage',!(cleared&&hasNext),()=>startStage(S.profId,S.stageIdx));
+    mkBtn(rb,pr.name+' stages',false,()=>go('profstages'));
+    mkBtn(rb,'Another profession',false,()=>go('cats'));
+  } else { mkBtn(rb,'Home',true,()=>go('home')); }
+
+  setTimeout(()=>{
+    if(leveled){confetti(110);SFX.level();showModal(`<div class="big">⭐</div><h2>Level ${newLevel}!</h2><p>You crossed ${newLevel*100} XP. Your spirit shines brighter${unlockedCount(newLevel)>unlockedCount(prevLevel)?' — a new spirit unlocked!':''}.</p><button class="btn" data-close>Nice!</button>`);}
+    else if(newB.length){const b=badgeDef(newB[0]);confetti(90);SFX.star();showModal(`<div class="big">${b.ic}</div><h2>Badge unlocked!</h2><p><b>${b.n}</b> — ${b.d}${newB.length>1?`<br><span style="color:var(--muted)">+${newB.length-1} more on your shelf</span>`:''}</p><button class="btn" data-close>Collect</button>`);}
+    else if(gradeUp){confetti(110);SFX.level();showModal(`<div class="big">🏮</div><h2>${GRADES[S.gradeIdx].name} complete!</h2><p>The next grade just lit up on the path.</p><button class="btn" data-close>Onward ›</button>`);}
+    else if(celebrateStar){SFX.star();}
+  },420);
+}
+function mkBtn(w,label,primary,fn){const b=document.createElement('button');b.className='btn'+(primary?'':' ghost');b.textContent=label;b.onclick=()=>{SFX.click();fn();};w.appendChild(b);}
+
+// ===================== BOOT =====================
+
+// ===================== BRAIN ARCADE =====================
+let arcTimers=[];
+function clearArc(){arcTimers.forEach(t=>{clearTimeout(t);clearInterval(t);});arcTimers=[];}
+const aT=(fn,ms)=>{const id=setTimeout(fn,ms);arcTimers.push(id);return id;};
+const aI=(fn,ms)=>{const id=setInterval(fn,ms);arcTimers.push(id);return id;};
+const ARCADE=[
+  {id:'tap',name:'Quick Tap',icon:'⚡',color:'var(--lantern)',blurb:'Spot the answer and tap fast — a 30-second blitz.'},
+  {id:'match',name:'Memory Match',icon:'🃏',color:'var(--sky)',blurb:'Flip cards, find the pairs, remember where they hide.'},
+  {id:'simon',name:'Echo',icon:'🎵',color:'var(--berry)',blurb:'Watch the pattern, then repeat it. It grows each round.'},
+  {id:'hunt',name:'Number Hunt',icon:'🔎',color:'var(--leaf)',blurb:'Tap 1 to 9 in order, as fast as you can.'},
+];
+function arcHUD(label,right){return `<div class="qbar"><span class="qcount">${label}</span><div class="track"><div class="fill" id="arcFill" style="width:100%"></div></div><span class="combo" id="arcRight" style="color:var(--sky);background:rgba(79,182,255,.14);border-color:rgba(79,182,255,.35)">${right||''}</span></div>`;}
+function screenArcade(){sub.textContent='Brain Arcade';
+  app.innerHTML=`<div class="hero"><h1>🕹️ Brain Arcade</h1><p>Fast, playful puzzles for any age — memory, speed and focus. Beat your best score.</p></div><div class="cards multi" id="arc"></div>`;
+  const w=$('arc');ARCADE.forEach(g=>{const best=P.arcade[g.id];const b=document.createElement('button');b.className='card';b.style.setProperty('--rc',g.color);
+    b.innerHTML=`<div class="ic">${g.icon}</div><h3>${g.name}</h3><p>${g.blurb}</p><div class="meta">${best?('Best '+best+' ›'):'Play ›'}</div>`;
+    b.onclick=()=>{SFX.click();startArc(g.id);};w.appendChild(b);});}
+function startArc(id){S.arc={game:id};go('arcplay');}
+function screenArcPlay(){const g=S.arc.game;if(g==='tap')playTap();else if(g==='match')playMatch();else if(g==='simon')playSimon();else if(g==='hunt')playHunt();}
+
+// --- Quick Tap ---
+function playTap(){const A=S.arc;A.score=0;A.left=30;
+  app.innerHTML=arcHUD('⚡ Quick Tap','★ 0')+`<div class="qcard"><p class="qtext" id="tapPrompt" style="text-align:center"></p><div class="opts" id="tapOpts" style="margin-top:14px"></div></div>`;
+  nextTap();
+  A.tm=aI(()=>{A.left-=0.1;const f=Math.max(0,A.left/30);const bar=$('arcFill');if(bar)bar.style.width=(f*100)+'%';
+    if(A.left<=0){clearArc();finishArc('tap','Quick Tap','var(--lantern)',Math.round(A.score),A.score+' points');}},100);}
+function nextTap(){const A=S.arc;const t=['big','small','sum','odd'][Math.floor(Math.random()*4)];let prompt,opts,correct;
+  if(t==='big'||t==='small'){const ns=[];while(ns.length<4){const v=1+Math.floor(Math.random()*99);if(!ns.includes(v))ns.push(v);}correct=t==='big'?Math.max(...ns):Math.min(...ns);prompt=t==='big'?'Tap the BIGGEST number':'Tap the SMALLEST number';opts=ns.map(v=>({label:String(v),val:v}));}
+  else if(t==='sum'){const a=2+Math.floor(Math.random()*9),b=2+Math.floor(Math.random()*9);correct=a+b;prompt=`What is ${a} + ${b}?`;const set=new Set([correct]);while(set.size<4){const d=correct+(Math.floor(Math.random()*9)-4);if(d>0)set.add(d);}opts=shuffle([...set].map(v=>({label:String(v),val:v})));}
+  else{const cols=['var(--leaf)','var(--sky)','var(--berry)','var(--lantern)','var(--grape)'];const base=cols[Math.floor(Math.random()*cols.length)];let other=base;while(other===base)other=cols[Math.floor(Math.random()*cols.length)];const odd=Math.floor(Math.random()*4);prompt='Tap the DIFFERENT colour';opts=[0,1,2,3].map(i=>({color:i===odd?other:base,val:i}));correct=odd;}
+  A.round={correct};
+  $('tapPrompt').textContent=prompt;const w=$('tapOpts');w.innerHTML='';
+  opts.forEach(o=>{const b=document.createElement('button');b.className='opt';b.style.justifyContent='center';
+    b.innerHTML=o.color!==undefined?`<span style="display:inline-block;width:32px;height:32px;border-radius:50%;background:${o.color}"></span>`:`<span style="font-size:20px;font-weight:700">${o.label}</span>`;
+    b.onclick=()=>tapAns(o.val);w.appendChild(b);});}
+function tapAns(v){const A=S.arc;if(v===A.round.correct){A.score+=10;SFX.correct();const r=$('arcRight');if(r)r.textContent='★ '+A.score;}else{SFX.wrong();A.left=Math.max(0.1,A.left-2);}nextTap();}
+
+// --- Memory Match ---
+function playMatch(){const A=S.arc;const set=['🦊','🐢','🦉','🐝','🦋','🐙'];
+  A.deck=shuffle(set.concat(set).map(e=>({e,flipped:false,matched:false})));A.first=null;A.moves=0;A.lock=false;A.done=0;A.start=Date.now();
+  app.innerHTML=arcHUD('🃏 Memory Match','moves 0')+`<div class="qcard"><div id="matchGrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px"></div></div>`;
+  drawMatch();}
+function drawMatch(){const A=S.arc;const g=$('matchGrid');if(!g)return;g.innerHTML='';
+  A.deck.forEach((c,idx)=>{const b=document.createElement('button');b.className='matchcard'+((c.flipped||c.matched)?' up':'')+(c.matched?' done':'');
+    b.textContent=(c.flipped||c.matched)?c.e:'';b.onclick=()=>flipCard(idx);g.appendChild(b);});
+  const r=$('arcRight');if(r)r.textContent='moves '+A.moves;}
+function flipCard(idx){const A=S.arc;const c=A.deck[idx];if(A.lock||c.matched||c.flipped)return;c.flipped=true;
+  if(A.first===null){A.first=idx;drawMatch();return;}
+  A.moves++;const fr=A.deck[A.first];drawMatch();
+  if(fr.e===c.e){fr.matched=c.matched=true;A.first=null;A.done+=2;SFX.correct();drawMatch();
+    if(A.done===A.deck.length){const sec=Math.round((Date.now()-A.start)/1000);finishArc('match','Memory Match','var(--sky)',Math.max(100,1200-A.moves*15-sec*4),A.moves+' moves · '+sec+'s');}}
+  else{A.lock=true;SFX.wrong();aT(()=>{fr.flipped=false;c.flipped=false;A.first=null;A.lock=false;drawMatch();},750);}}
+
+// --- Echo (Simon) ---
+const SIMON_PADS=[{c:'var(--leaf)',f:330},{c:'var(--sky)',f:440},{c:'var(--berry)',f:550},{c:'var(--lantern)',f:660}];
+function playSimon(){const A=S.arc;A.seq=[];A.input=0;A.phase='show';
+  app.innerHTML=arcHUD('🎵 Echo','round 0')+`<div class="qcard"><div id="simonGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:280px;margin:0 auto"></div><p id="simonMsg" style="text-align:center;color:var(--muted);margin-top:14px">Watch the pattern…</p></div>`;
+  const g=$('simonGrid');SIMON_PADS.forEach((p,i)=>{const b=document.createElement('button');b.className='simonpad';b.id='pad'+i;b.style.background=p.c;b.onclick=()=>simonTap(i);g.appendChild(b);});
+  nextSimon();}
+function flashPad(i,cb){const el=$('pad'+i);if(el){el.classList.add('lit');tone(SIMON_PADS[i].f,0,.3,'sine',.2);}aT(()=>{if(el)el.classList.remove('lit');cb&&cb();},340);}
+function nextSimon(){const A=S.arc;A.seq.push(Math.floor(Math.random()*4));A.input=0;A.phase='show';
+  const r=$('arcRight');if(r)r.textContent='round '+A.seq.length;const m=$('simonMsg');if(m)m.textContent='Watch the pattern…';
+  let k=0;const step=()=>{if(k>=A.seq.length){A.phase='input';const mm=$('simonMsg');if(mm)mm.textContent='Your turn!';return;}flashPad(A.seq[k],()=>{k++;aT(step,170);});};aT(step,500);}
+function simonTap(i){const A=S.arc;if(A.phase!=='input')return;flashPad(i);
+  if(i===A.seq[A.input]){A.input++;if(A.input===A.seq.length){A.phase='wait';const m=$('simonMsg');if(m)m.textContent='Nice!';aT(nextSimon,650);}}
+  else{SFX.wrong();finishArc('simon','Echo','var(--berry)',Math.max(0,(A.seq.length-1)*20),'reached round '+A.seq.length);}}
+
+// --- Number Hunt ---
+function playHunt(){const A=S.arc;A.nums=shuffle([1,2,3,4,5,6,7,8,9]);A.next=1;A.penalty=0;A.start=Date.now();
+  app.innerHTML=arcHUD('🔎 Number Hunt','next: 1')+`<div class="qcard"><p style="text-align:center;color:var(--muted);margin:0 0 4px">Tap 1 → 9 in order, fast!</p><div id="huntGrid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:280px;margin:10px auto 0"></div></div>`;
+  drawHunt();}
+function drawHunt(){const A=S.arc;const g=$('huntGrid');if(!g)return;g.innerHTML='';
+  A.nums.forEach(n=>{const b=document.createElement('button');b.className='huntcell'+(n<A.next?' done':'');b.textContent=n;if(n>=A.next)b.onclick=()=>huntTap(n);g.appendChild(b);});
+  const r=$('arcRight');if(r)r.textContent=A.next<=9?('next: '+A.next):'done!';}
+function huntTap(n){const A=S.arc;if(n===A.next){A.next++;SFX.click();if(A.next>9){const sec=Math.round((Date.now()-A.start)/1000)+A.penalty;drawHunt();finishArc('hunt','Number Hunt','var(--leaf)',Math.max(100,1000-sec*25),sec+'s');return;}drawHunt();}else{SFX.wrong();A.penalty+=2;}}
+
+// --- shared arcade result ---
+function finishArc(id,label,color,score,detail){clearArc();
+  const best=P.arcade[id]||0;const isBest=score>best;if(isBest)P.arcade[id]=score;
+  const xp=Math.max(5,Math.floor(score/15));const prev=levelFor(P.xp);P.xp+=xp;const nl=levelFor(P.xp);
+  const newB=[];if(score>=400&&award('arcadia'))newB.push('arcadia');if(P.xp>=500&&award('brainiac'))newB.push('brainiac');
+  Store.save();
+  S.arcResult={id,label,color,score,detail,xp,isBest,leveled:nl>prev,newLevel:nl,newB,best:P.arcade[id]};
+  go('arcresult');}
+function screenArcResult(){const R=S.arcResult;sub.textContent=R.label+' · results';
+  app.innerHTML=`<div class="res"><div class="qtype" style="background:${R.color}">${R.label}</div>
+    <div class="scorebig">${R.score}</div><div class="restier">${R.isBest?'New best! ✦':'Nice run'}</div>
+    <p class="resmsg">${R.detail}. ${R.isBest?'Your best yet!':'Best: '+R.best+'.'}</p>
+    <div class="unlock" style="border-color:${R.color}">+${R.xp} XP</div>
+    <div class="resbtns" id="rb"></div></div>`;
+  const rb=$('rb');mkBtn(rb,'↺ Play again',true,()=>startArc(R.id));mkBtn(rb,'Brain Arcade',false,()=>go('arcade'));mkBtn(rb,'Home',false,()=>go('home'));
+  setTimeout(()=>{if(R.leveled){confetti(110);SFX.level();showModal(`<div class="big">⭐</div><h2>Level ${R.newLevel}!</h2><p>You crossed ${R.newLevel*100} XP.</p><button class="btn" data-close>Nice!</button>`);}
+    else if(R.newB.length){const b=badgeDef(R.newB[0]);confetti(90);SFX.star();showModal(`<div class="big">${b.ic}</div><h2>Badge unlocked!</h2><p><b>${b.n}</b> — ${b.d}</p><button class="btn" data-close>Collect</button>`);}
+    else if(R.isBest){confetti(70);SFX.star();}},360);}
+
+
+// ===================== READING CLUB =====================
+const WORDS=[
+ {w:'cat',e:'🐱',lv:1},{w:'dog',e:'🐶',lv:1},{w:'sun',e:'☀️',lv:1},{w:'hat',e:'🎩',lv:1},{w:'pig',e:'🐷',lv:1},
+ {w:'bus',e:'🚌',lv:1},{w:'cup',e:'☕',lv:1},{w:'box',e:'📦',lv:1},{w:'bee',e:'🐝',lv:1},{w:'fox',e:'🦊',lv:1},
+ {w:'car',e:'🚗',lv:1},{w:'key',e:'🔑',lv:1},{w:'egg',e:'🥚',lv:1},{w:'bed',e:'🛏️',lv:1},{w:'pen',e:'🖊️',lv:1},
+ {w:'fish',e:'🐟',lv:2},{w:'frog',e:'🐸',lv:2},{w:'star',e:'⭐',lv:2},{w:'tree',e:'🌳',lv:2},{w:'cake',e:'🍰',lv:2},
+ {w:'milk',e:'🥛',lv:2},{w:'book',e:'📖',lv:2},{w:'ball',e:'⚽',lv:2},{w:'moon',e:'🌙',lv:2},{w:'leaf',e:'🍃',lv:2},
+ {w:'duck',e:'🦆',lv:2},{w:'bear',e:'🐻',lv:2},{w:'shoe',e:'👟',lv:2},{w:'rain',e:'🌧️',lv:2},{w:'gift',e:'🎁',lv:2},
+];
+function speak(text,rate){try{if(!('speechSynthesis'in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.rate=rate||0.85;u.pitch=1.1;speechSynthesis.speak(u);}catch(e){}}
+function readHUD(label,i,total){return `<div class="qbar"><span class="qcount">${label} · ${i+1}/${total}</span><div class="track"><div class="fill" style="width:${i/total*100}%"></div></div></div>`;}
+
+let readLevel=1;
+function screenReading(){sub.textContent='Reading Club';
+  app.innerHTML=`<div class="hero"><h1>📖 Reading Club</h1><p>Learn to read and spell — every word is read aloud, with a picture to help. Tap 🔊 any time to hear a word again.</p>
+    <div class="modes" id="lvl" style="margin-top:12px"><button class="${readLevel===1?'on':''}">Starter words</button><button class="${readLevel===2?'on':''}">Bigger words</button></div></div>
+    <div class="cards multi" id="rc"></div>`;
+  const lv=$('lvl');
+  lv.children[0].onclick=()=>{readLevel=1;[...lv.children].forEach(c=>c.classList.remove('on'));lv.children[0].classList.add('on');};
+  lv.children[1].onclick=()=>{readLevel=2;[...lv.children].forEach(c=>c.classList.remove('on'));lv.children[1].classList.add('on');};
+  const defs=[['spell','🔤','Spell It','See the picture, hear the word, build it letter by letter.','var(--sky)'],
+    ['first','🅰️','First Sound','Which letter does the word start with?','var(--lantern)'],
+    ['match','👀','Read & Find','Read the word and tap the matching picture.','var(--grape)']];
+  const w=$('rc');defs.forEach(([id,ic,name,blurb,col])=>{const b=document.createElement('button');b.className='card';b.style.setProperty('--rc',col);
+    b.innerHTML=`<div class="ic">${ic}</div><h3>${name}</h3><p>${blurb}</p><div class="meta">Play ›</div>`;b.onclick=()=>{SFX.click();startReading(id);};w.appendChild(b);});
+  if(!('speechSynthesis'in window)){const n=document.createElement('div');n.className='note';n.textContent='Tip: turn on your device sound to hear each word.';app.appendChild(n);}
+}
+function startReading(mode){const pool=WORDS.filter(x=>readLevel===1?x.lv===1:true);const words=shuffle(pool).slice(0,6);
+  S.read={mode,level:readLevel,words,i:0,score:0,slots:[],slotTile:[],tiles:[]};go('readplay');}
+function screenReadPlay(){const m=S.read.mode;if(m==='spell')playSpell();else if(m==='first')playFirst();else playMatch();}
+function nextRead(){const R=S.read;R.i++;if(R.i>=R.words.length)finishReading(R.score,R.words.length,R.mode);else screenReadPlay();}
+
+// Spell It
+function playSpell(){const R=S.read;const word=R.words[R.i];R.target=word.w.toUpperCase();
+  R.slots=Array(R.target.length).fill('');R.slotTile=Array(R.target.length).fill(null);
+  let letters=R.target.split('');if(R.level>1){for(let k=0;k<2;k++)letters.push(String.fromCharCode(65+Math.floor(Math.random()*26)));}
+  R.tiles=shuffle(letters).map((ch,idx)=>({ch,used:false,id:idx}));
+  app.innerHTML=readHUD('Spell it',R.i,R.words.length)+`<div class="qcard">
+    <div class="bigemoji">${word.e}</div>
+    <div style="text-align:center"><button class="spk" id="spk">🔊</button></div>
+    <div class="slots" id="slots"></div><div class="tiles" id="tiles"></div>
+    <div class="qfoot" style="justify-content:center"><button class="btn ghost" id="back">⌫ Undo</button></div>
+    <div id="rmsg" style="text-align:center;margin-top:10px;min-height:24px;font-family:var(--disp);font-weight:700;font-size:18px"></div></div>`;
+  drawSpell();speak(word.w);
+  $('spk').onclick=()=>speak(word.w);
+  $('back').onclick=()=>{const R=S.read;for(let i=R.slots.length-1;i>=0;i--){if(R.slots[i]){const tid=R.slotTile[i];R.slots[i]='';if(tid!=null&&R.tiles[tid])R.tiles[tid].used=false;R.slotTile[i]=null;break;}}drawSpell();};
+}
+function drawSpell(){const R=S.read;const sl=$('slots');if(!sl)return;sl.innerHTML='';
+  R.slots.forEach(c=>{const d=document.createElement('div');d.className='slot2'+(c?' filled':'');d.textContent=c;sl.appendChild(d);});
+  const tl=$('tiles');tl.innerHTML='';
+  R.tiles.forEach(t=>{const b=document.createElement('button');b.className='tile2'+(t.used?' used':'');b.textContent=t.ch;b.onclick=()=>tapTile(t.id);tl.appendChild(b);});}
+function tapTile(id){const R=S.read;const t=R.tiles[id];if(t.used)return;const slot=R.slots.findIndex(x=>x==='');if(slot<0)return;
+  R.slots[slot]=t.ch;R.slotTile[slot]=id;t.used=true;SFX.click();drawSpell();
+  if(R.slots.every(x=>x!=='')){const guess=R.slots.join(''),word=R.words[R.i];const msg=$('rmsg');
+    if(guess===R.target){SFX.correct();if(msg){msg.textContent='✓ '+word.w.toUpperCase();msg.style.color='var(--leaf)';}speak(word.w);R.score++;aT(nextRead,1150);}
+    else{SFX.wrong();if(msg){msg.textContent='Try again';msg.style.color='var(--bad)';}
+      aT(()=>{R.slots=Array(R.target.length).fill('');R.slotTile=Array(R.target.length).fill(null);R.tiles.forEach(x=>x.used=false);if($('rmsg'))$('rmsg').textContent='';drawSpell();},900);}}
+}
+// First Sound
+function playFirst(){const R=S.read;const word=R.words[R.i];const first=word.w[0].toUpperCase();
+  const set=new Set([first]);while(set.size<4)set.add(String.fromCharCode(65+Math.floor(Math.random()*26)));
+  const opts=shuffle([...set]);
+  app.innerHTML=readHUD('First sound',R.i,R.words.length)+`<div class="qcard">
+    <div class="bigemoji">${word.e}</div>
+    <p class="qtext" style="text-align:center;font-size:18px">Which letter does it start with?</p>
+    <div style="text-align:center;margin-bottom:8px"><button class="spk" id="spk">🔊</button></div>
+    <div class="opts" id="opts"></div></div>`;
+  const w=$('opts');opts.forEach(L=>{const b=document.createElement('button');b.className='opt letteropt';b.textContent=L;b.onclick=()=>firstAns(L,first,word,b);w.appendChild(b);});
+  $('spk').onclick=()=>speak(word.w);speak(word.w);
+}
+function firstAns(L,first,word,btn){const R=S.read;if(L===first){SFX.correct();btn.classList.add('correct');speak(word.w);R.score++;aT(nextRead,900);}
+  else{SFX.wrong();btn.classList.add('wrong');btn.disabled=true;speak(word.w);}}
+// Read & Find
+function playMatch(){const R=S.read;const word=R.words[R.i];
+  const others=shuffle(WORDS.filter(x=>x.w!==word.w)).slice(0,3);const opts=shuffle([word,...others]);
+  app.innerHTML=readHUD('Read & find',R.i,R.words.length)+`<div class="qcard">
+    <p style="text-align:center;color:var(--muted);margin:0 0 6px">Read the word, then tap its picture</p>
+    <div class="bigword">${word.w}</div>
+    <div style="text-align:center;margin:10px 0"><button class="spk" id="spk">🔊</button></div>
+    <div class="picopts" id="pic"></div></div>`;
+  const w=$('pic');opts.forEach(o=>{const b=document.createElement('button');b.className='picopt';b.textContent=o.e;b.onclick=()=>matchAns(o,word,b);w.appendChild(b);});
+  $('spk').onclick=()=>speak(word.w);
+}
+function matchAns(o,word,btn){const R=S.read;if(o.w===word.w){SFX.correct();speak(word.w);R.score++;aT(nextRead,800);}
+  else{SFX.wrong();btn.style.opacity='.4';btn.disabled=true;}}
+// result
+function finishReading(score,total,mode){const xp=score*5;const prev=levelFor(P.xp);P.xp+=xp;const nl=levelFor(P.xp);
+  const newB=[];if(award('reader'))newB.push('reader');if(P.xp>=500&&award('brainiac'))newB.push('brainiac');Store.save();
+  S.readResult={score,total,xp,mode,leveled:nl>prev,newLevel:nl,newB};go('readresult');}
+function screenReadResult(){const R=S.readResult;sub.textContent='Reading Club · results';
+  const verb=R.mode==='spell'?'spelled':'read';
+  app.innerHTML=`<div class="res"><div class="qtype" style="background:var(--grape)">Reading Club</div>
+    <div class="scorebig">${R.score}<small>/${R.total}</small></div>
+    <div class="restier">Great reading! 📖</div>
+    <p class="resmsg">You ${verb} ${R.score} of ${R.total} words. Every word you sound out makes reading easier.</p>
+    <div class="unlock" style="border-color:var(--grape)">+${R.xp} XP</div>
+    <div class="resbtns" id="rb"></div></div>`;
+  const rb=$('rb');mkBtn(rb,'↺ Play again',true,()=>startReading(R.mode));mkBtn(rb,'Reading Club',false,()=>go('reading'));mkBtn(rb,'The path',false,()=>{S.audience='child';go('cats');});
+  setTimeout(()=>{if(R.leveled){confetti(110);SFX.level();showModal(`<div class="big">⭐</div><h2>Level ${R.newLevel}!</h2><p>You crossed ${R.newLevel*100} XP.</p><button class="btn" data-close>Nice!</button>`);}
+    else if(R.newB.length){const b=badgeDef(R.newB[0]);confetti(90);SFX.star();showModal(`<div class="big">${b.ic}</div><h2>Badge unlocked!</h2><p><b>${b.n}</b> — ${b.d}</p><button class="btn" data-close>Collect</button>`);}
+    else{confetti(60);SFX.star();}},360);
+}
+
+(async()=>{const saved=await Store.load();if(saved)P=Object.assign(defaultProfile(),saved,{settings:Object.assign({sound:true,timed:false},saved.settings||{}),mind:saved.mind||{},seen:saved.seen||{},arcade:saved.arcade||{}});
+  if(!P.name)go('welcome');else go('home');})();
+</script>
+</body>
+</html>

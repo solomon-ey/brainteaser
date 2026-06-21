@@ -1,0 +1,6 @@
+# The Brain Teaser
+User-agent: *
+Allow: /
+
+# Replace the domain below with your live URL after deploy
+Sitemap: https://REPLACE-WITH-YOUR-DOMAIN/sitemap.xml
