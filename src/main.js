@@ -95,16 +95,17 @@ let toastT;function toast(html){const t=$('toast');t.innerHTML=html;t.classList.
 
 // ===================== PWA INSTALL PROMPT =====================
 let _deferredInstall=null;
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();_deferredInstall=e;const b=$('install-banner');if(b)b.style.display='block';});
-window.addEventListener('appinstalled',()=>{const b=$('install-banner');if(b)b.style.display='none';_deferredInstall=null;});
+function showInstallBanner(){const ban=$('install-banner');if(!ban||sessionStorage.getItem('ib_dismissed'))return;ban.classList.add('visible');}
+function hideInstallBanner(){const ban=$('install-banner');if(ban)ban.classList.remove('visible');}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();_deferredInstall=e;setTimeout(showInstallBanner,5000);});
+window.addEventListener('appinstalled',()=>{hideInstallBanner();_deferredInstall=null;});
 document.addEventListener('DOMContentLoaded',()=>{
-  const btn=$('install-btn'),dis=$('install-dismiss'),ban=$('install-banner');
-  if(btn)btn.onclick=async()=>{if(!_deferredInstall)return;_deferredInstall.prompt();const{outcome}=await _deferredInstall.userChoice;if(outcome==='accepted')ban.style.display='none';_deferredInstall=null;};
-  if(dis)dis.onclick=()=>{if(ban)ban.style.display='none';};
-  // iOS Safari — show instructions via toast after a delay if not in standalone
-  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
-  const isStandalone=window.navigator.standalone===true;
-  if(isIOS&&!isStandalone){setTimeout(()=>toast('💡 Tap <b>Share ↑</b> then <b>Add to Home Screen</b> to install'),4000);}
+  const btn=$('install-btn'),dis=$('install-dismiss');
+  if(btn)btn.onclick=async()=>{if(!_deferredInstall)return;_deferredInstall.prompt();const{outcome}=await _deferredInstall.userChoice;if(outcome==='accepted')hideInstallBanner();_deferredInstall=null;};
+  if(dis)dis.onclick=()=>{sessionStorage.setItem('ib_dismissed','1');hideInstallBanner();};
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)&&!window.MSStream;
+  const isStandalone=window.navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches;
+  if(isIOS&&!isStandalone&&!sessionStorage.getItem('ib_dismissed')){setTimeout(()=>toast('💡 Tap the Share button ↑ then <b>Add to Home Screen</b>'),6000);}
 });
 
 // ===================== QUIZ AFFILIATE HELPER =====================
@@ -204,7 +205,14 @@ const stageStars=(id,i)=>P.prof[id+'#'+i]||0;
 const stageCleared=(id,i)=>stageStars(id,i)>=2;
 const stageUnlocked=(pr,i)=>i===0||stageCleared(pr.id,i-1);
 const profClearedCount=pr=>{let n=0;for(let i=0;i<profStageCount(pr);i++)if(stageCleared(pr.id,i))n++;return n;};
-function startStage(id,i){const pr=PROFESSIONS.find(p=>p.id===id);const pool=profStageQs(pr,i);S.profId=id;S.stageIdx=i;const round=drawSubset(pool,Math.min(STAGE_SIZE,pool.length),'st.'+id+'.'+i);startQuiz(round,pr.name+' · Stage '+(i+1),pr.color,'adult');}
+// Exam stage helpers
+const examStageCount=pr=>Math.ceil(((pr.examQ||[]).length)/STAGE_SIZE);
+const examStageQs=(pr,i)=>(pr.examQ||[]).slice(i*STAGE_SIZE,i*STAGE_SIZE+STAGE_SIZE);
+const examKey=(id,i)=>id+'#exam#'+i;
+const examStars=(id,i)=>P.prof[examKey(id,i)]||0;
+const examCleared=(id,i)=>examStars(id,i)>=2;
+const examUnlocked=(pr,i)=>i===0||examCleared(pr.id,i-1);
+function startStage(id,i,isExam=false){const pr=PROFESSIONS.find(p=>p.id===id);const pool=isExam?examStageQs(pr,i):profStageQs(pr,i);const k=isExam?'ex.'+id+'.'+i:'st.'+id+'.'+i;const label=isExam?(pr.name+' · Exam '+(i+1)):(pr.name+' · Stage '+(i+1));const col=isExam?'var(--berry)':pr.color;S.profId=id;S.stageIdx=i;S.examMode=isExam||false;const round=drawSubset(pool,Math.min(STAGE_SIZE,pool.length),k);startQuiz(round,label,col,'adult');}
 function startQuiz(questions,title,color,mode){S.quiz={questions:shuffle(questions).map(prepQ),title,color};S.mode=mode;S.qi=0;S.answers=[];S.streakLive=0;S.timed=!!P.settings.timed;go('quiz');}
 
 // ===================== WELCOME =====================
@@ -256,6 +264,13 @@ function screenProfile(){
 
     <div class="qcard" style="margin-top:16px"><h4 class="lab">Badges · ${earned}/${BADGES.length}</h4><div class="bgrid" id="bg"></div></div>
 
+    <div class="qcard" style="margin-top:16px"><h4 class="lab">Credits earned</h4>
+      <div class="credits-display">
+        <div class="credits-amount">${xpToCredits(P.xp)}</div>
+        <div class="credits-sub">from ${P.xp.toLocaleString()} XP · ${XP_MILESTONES.filter(m=>P.xp>=m).length}/${XP_MILESTONES.length} milestones reached</div>
+        <div class="credits-bar"><div class="credits-fill" style="width:${Math.min(100,P.xp/XP_MILESTONES[XP_MILESTONES.length-1]*100)}%"></div></div>
+        <a class="btn ghost" href="https://www.udemy.com/courses/search/?q=reasoning" target="_blank" rel="noopener sponsored" style="margin-top:10px;display:inline-block;font-size:13px">Redeem on Udemy →</a>
+      </div></div>
     <div class="qcard" style="margin-top:16px"><h4 class="lab">Settings</h4>
       <div class="resbtns" style="justify-content:flex-start">
         <button class="btn ghost" id="sndT">${P.settings.sound?'🔊 Sound: on':'🔇 Sound: off'}</button>
@@ -336,10 +351,12 @@ function screenProfessions(){
 }
 
 function screenProfStages(){const pr=PROFESSIONS.find(p=>p.id===S.profId);sub.textContent=pr.name+' · stages';
-  const sc=profStageCount(pr),cl=profClearedCount(pr);
-  app.innerHTML=`<div class="hero"><h1>${pr.icon} ${pr.name}</h1><p>${pr.blurb} Clear a stage (★★ or more) to unlock the next — each one a fresh, harder set of 10.</p>
-    <div class="plvl" style="font-size:13px;margin-top:12px">Mastery ✦ ${cl}/${sc} stage${sc>1?'s':''}<span class="xpbar" style="width:120px;height:8px"><i style="width:${cl/sc*100}%"></i></span></div></div>
-    <div class="ladder" id="lad"></div>`;
+  const sc=profStageCount(pr),cl=profClearedCount(pr),ec=examStageCount(pr);
+  app.innerHTML=`<div class="hero"><h1>${pr.icon} ${pr.name}</h1><p>${pr.blurb} Clear a stage (★★ or more) to unlock the next.</p>
+    <div class="plvl" style="font-size:13px;margin-top:12px">Practice ✦ ${cl}/${sc} cleared<span class="xpbar" style="width:120px;height:8px"><i style="width:${sc>0?cl/sc*100:0}%"></i></span></div></div>
+    <div class="stage-section-label">Practice</div>
+    <div class="ladder" id="lad"></div>
+    ${ec>0?'<div class="stage-section-label exam-label">Exam Prep 🎓</div><div class="ladder" id="elad"></div>':''}`;
   const w=$('lad');
   for(let i=0;i<sc;i++){const stars=stageStars(pr.id,i),open=stageUnlocked(pr,i),cleared=stageCleared(pr.id,i),current=open&&!cleared;
     const b=document.createElement('button');b.className='stage '+(open?'open ':'locked ')+(cleared?'complete lit ':'')+(current?'current':'');
@@ -347,7 +364,14 @@ function screenProfStages(){const pr=PROFESSIONS.find(p=>p.id===S.profId);sub.te
     const stat=cleared?`<span class="sstat done">★ ${stars}/3</span>`:open?`<span class="sstat go">${stars>0?'Improve ›':'Start ›'}</span>`:`<span class="sstat lock">Locked</span>`;
     b.innerHTML=`<div class="lnode" style="font-family:var(--disp);font-weight:700;font-size:20px;color:${open?'var(--lantern)':'#5a5183'}">${open?(cleared?'✦':(i+1)):'<span class="lock">🔒</span>'}</div>
       <div class="sbody"><div class="gr">Stage ${i+1}</div><div class="age">${open?(cleared?'Cleared — replay for 3★':'10 questions'):'Clear the stage before to open'}</div><div class="pips">${pips}</div></div>${stat}`;
-    if(!open)b.setAttribute('aria-disabled','true');if(open)b.onclick=()=>{SFX.click();startStage(pr.id,i);};w.appendChild(b);}
+    if(!open)b.setAttribute('aria-disabled','true');if(open)b.onclick=()=>{SFX.click();startStage(pr.id,i,false);};w.appendChild(b);}
+  if(ec>0){const ew=$('elad');for(let i=0;i<ec;i++){const stars=examStars(pr.id,i),open=examUnlocked(pr,i),cleared=examCleared(pr.id,i),current=open&&!cleared;
+    const b=document.createElement('button');b.className='stage exam-stage '+(open?'open ':'locked ')+(cleared?'complete lit ':'')+(current?'current':'');
+    const pips=[0,1,2].map(k=>`<i class="${k<stars?'on':''}"></i>`).join('');
+    const stat=cleared?`<span class="sstat done">★ ${stars}/3</span>`:open?`<span class="sstat go">${stars>0?'Improve ›':'Start ›'}</span>`:`<span class="sstat lock">Locked</span>`;
+    b.innerHTML=`<div class="lnode" style="font-family:var(--disp);font-weight:700;font-size:20px;color:${open?'var(--berry)':'#5a5183'}">${open?(cleared?'✦':(i+1)):'<span class="lock">🔒</span>'}</div>
+      <div class="sbody"><div class="gr">Exam ${i+1}</div><div class="age">${open?(cleared?'Cleared — replay for 3★':'10 exam questions'):'Complete Practice Stage 1 first'}</div><div class="pips">${pips}</div></div>${stat}`;
+    if(!open)b.setAttribute('aria-disabled','true');if(open)b.onclick=()=>{SFX.click();startStage(pr.id,i,true);};ew.appendChild(b);}}
 }
 const lanternIcon=`<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 3h6v2h-1v1.5a5 5 0 0 1 2 4V17a3 3 0 0 1-3 3h-2a3 3 0 0 1-3-3v-5.5a5 5 0 0 1 2-4V5H9V3Z"/></svg>`;
 function screenLadder(){
@@ -507,10 +531,10 @@ function screenResults(){
     if(newStars>prev){P.stars[key]=newStars;celebrateStar=newStars>=2;}
     if(newStars>=2&&prev<2)bonus+=20;
     if(gradeComplete(S.gradeIdx)&&S.gradeIdx===P.unlocked&&S.gradeIdx+1<GRADES.length){P.unlocked=S.gradeIdx+1;gradeUp=true;bonus+=100;}
-  } else if(S.mode==='adult'){const sk=S.profId+'#'+S.stageIdx,ns=starsFor(score,total),pv=P.prof[sk]||0;if(ns>pv)P.prof[sk]=ns;if(ns>=2&&pv<2)bonus+=30;
+  } else if(S.mode==='adult'){const sk=S.examMode?examKey(S.profId,S.stageIdx):(S.profId+'#'+S.stageIdx);const ns=starsFor(score,total),pv=P.prof[sk]||0;if(ns>pv)P.prof[sk]=ns;if(ns>=2&&pv<2)bonus+=30;
   } else if(S.mode==='daily'){const dk=dailyKey();if(P.daily[dk]===undefined){P.daily[dk]=score;bonus+=40;}else if(score>P.daily[dk])P.daily[dk]=score;}
   const xpGain=base+speed+bonus;
-  const prevLevel=levelFor(P.xp);P.xp+=xpGain;const newLevel=levelFor(P.xp);const leveled=newLevel>prevLevel;
+  const prevXp=P.xp;const prevLevel=levelFor(P.xp);P.xp+=xpGain;const newLevel=levelFor(P.xp);const leveled=newLevel>prevLevel;
 
   const byType={};S.answers.forEach(a=>{byType[a.type]=byType[a.type]||{c:0,t:0};byType[a.type].t++;if(a.correct)byType[a.type].c++;addMind(a.type,a.correct);});
 
@@ -528,6 +552,7 @@ function screenResults(){
   if(exploredTypes()>=6&&award('cartographer'))newB.push('cartographer');
   if(unlockedCount(newLevel)>=5&&award('collector'))newB.push('collector');
   Store.save();
+  checkXpMilestone(prevXp,P.xp);
 
   let tier,msg;
   if(pct===100){tier='Sharp thinking! ✦';msg=kid?'Every single one! Your brain was really paying attention.':'A clean sweep — strong, careful reasoning.';}
@@ -539,10 +564,11 @@ function screenResults(){
     if(gradeUp)unlockHTML=`<div class="unlock">✦ ${g.name} complete — ${GRADES[S.gradeIdx+1].name} just opened!</div>`;
     else if(newStars>=2)unlockHTML=`<div class="unlock">✦ Subject lit! ${litCount(S.gradeIdx)} of ${SUBJECTS.length} done in ${g.name}.</div>`;
     else if(!passed)unlockHTML=`<div class="unlock">Get ${Math.ceil(total*PASS)} of ${total} to light this lantern.</div>`;
-  } else if(S.mode==='adult'){const pr=PROFESSIONS.find(p=>p.id===S.profId);const sc=profStageCount(pr),ns=starsFor(score,total);
-    if(ns>=2&&S.stageIdx+1<sc)unlockHTML=`<div class="unlock">✦ Stage ${S.stageIdx+1} cleared — Stage ${S.stageIdx+2} unlocked!</div>`;
-    else if(ns>=2)unlockHTML=`<div class="unlock">✦ ${pr.name} mastered — every stage cleared!</div>`;
-    else unlockHTML=`<div class="unlock">Score ${Math.ceil(total*PASS)} of ${total} to clear this stage.</div>`;
+  } else if(S.mode==='adult'){const pr=PROFESSIONS.find(p=>p.id===S.profId);const sc=S.examMode?examStageCount(pr):profStageCount(pr);const ns=starsFor(score,total);
+    const stageLabel=S.examMode?'Exam':'Stage';
+    if(ns>=2&&S.stageIdx+1<sc)unlockHTML=`<div class="unlock">✦ ${stageLabel} ${S.stageIdx+1} cleared — ${stageLabel} ${S.stageIdx+2} unlocked!</div>`;
+    else if(ns>=2)unlockHTML=`<div class="unlock">✦ ${pr.name} ${S.examMode?'exam':'practice'} complete!</div>`;
+    else unlockHTML=`<div class="unlock">Score ${Math.ceil(total*PASS)} of ${total} to clear this ${stageLabel.toLowerCase()}.</div>`;
   }
 
   const recHTML = S.mode==='child' ? recBlock(S.subjId,{parent:true,heading:'Go deeper at home'})
@@ -569,9 +595,9 @@ function screenResults(){
     mkBtn(rb,'↺ Try again',!(nextGradeReady||nextSubj),()=>{kidQuiz(S.gradeIdx,S.subjId);});
     mkBtn(rb,g.name+' subjects',false,()=>go('subjects'));
     mkBtn(rb,'The path',false,()=>go('cats'));
-  } else if(S.mode==='adult'){const pr=PROFESSIONS.find(p=>p.id===S.profId);const sc=profStageCount(pr);const cleared=starsFor(score,total)>=2;const hasNext=S.stageIdx+1<sc;
-    if(cleared&&hasNext)mkBtn(rb,'Next stage ›',true,()=>startStage(S.profId,S.stageIdx+1));
-    mkBtn(rb,'↺ Retry stage',!(cleared&&hasNext),()=>startStage(S.profId,S.stageIdx));
+  } else if(S.mode==='adult'){const pr=PROFESSIONS.find(p=>p.id===S.profId);const sc=S.examMode?examStageCount(pr):profStageCount(pr);const cleared=starsFor(score,total)>=2;const hasNext=S.stageIdx+1<sc;const ex=S.examMode;
+    if(cleared&&hasNext)mkBtn(rb,(ex?'Next exam ›':'Next stage ›'),true,()=>startStage(S.profId,S.stageIdx+1,ex));
+    mkBtn(rb,'↺ Retry',!(cleared&&hasNext),()=>startStage(S.profId,S.stageIdx,ex));
     mkBtn(rb,pr.name+' stages',false,()=>go('profstages'));
     mkBtn(rb,'Another profession',false,()=>go('cats'));
   } else { mkBtn(rb,'Home',true,()=>go('home')); }
@@ -585,6 +611,17 @@ function screenResults(){
     else if(gradeUp){confetti(110);SFX.level();showModal(`<div class="big">🏮</div><h2>${GRADES[S.gradeIdx].name} complete!</h2><p>The next grade just lit up on the path.</p><button class="btn" data-close>Onward ›</button>`);}
     else if(celebrateStar){SFX.star();}
   },420);
+}
+const XP_RATE=2;// 1 XP = ₦2 in course credits
+const xpToCredits=xp=>`₦${(xp*XP_RATE).toLocaleString()}`;
+const XP_MILESTONES=[500,1000,2500,5000];
+function checkXpMilestone(prevXp,newXp){
+  P.milestones=P.milestones||{};
+  const hit=XP_MILESTONES.find(m=>prevXp<m&&newXp>=m&&!P.milestones[m]);
+  if(!hit)return;
+  P.milestones[hit]=true;Store.save();
+  const credits=xpToCredits(hit);
+  setTimeout(()=>showModal(`<div class="big">💰</div><h2>₦ Credits Unlocked!</h2><p>Your <b>${hit.toLocaleString()} XP</b> is worth <b>${credits} in course credits</b> on Udemy!</p><p style="font-size:13px;color:var(--muted)">Redeem on our Brain Shelf — affiliate links help keep The Brain Teaser free.</p><div class="resbtns"><button class="btn" onclick="window.open('https://www.udemy.com/courses/search/?q=reasoning','_blank')">Redeem credits →</button><button class="btn ghost" data-close>Later</button></div>`),600);
 }
 function mkBtn(w,label,primary,fn){const b=document.createElement('button');b.className='btn'+(primary?'':' ghost');b.textContent=label;b.onclick=()=>{SFX.click();fn();};w.appendChild(b);}
 function shareResult(t){if(navigator.share){navigator.share({title:'The Brain Teaser',text:t}).catch(()=>{});}else{navigator.clipboard.writeText(t).then(()=>toast('📋 Copied to clipboard!')).catch(()=>toast('Could not copy'));}}
