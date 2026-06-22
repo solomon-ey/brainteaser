@@ -6,6 +6,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    target: ['es2019', 'safari12'],
     rollupOptions: {
       output: {
         manualChunks: {
@@ -20,7 +21,7 @@ export default defineConfig({
   plugins: [
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg'],
+      includeAssets: ['favicon.ico', 'icon.svg', 'apple-touch-icon-180x180.png'],
       manifest: {
         name: 'The Brain Teaser',
         short_name: 'Brain Teaser',
@@ -32,22 +33,16 @@ export default defineConfig({
         start_url: '/',
         scope: '/',
         icons: [
-          {
-            src: 'icon.svg',
-            sizes: 'any',
-            type: 'image/svg+xml',
-            purpose: 'any',
-          },
-          {
-            src: 'icon.svg',
-            sizes: 'any',
-            type: 'image/svg+xml',
-            purpose: 'maskable',
-          },
+          { src: 'pwa-64x64.png',           sizes: '64x64',   type: 'image/png' },
+          { src: 'pwa-192x192.png',          sizes: '192x192', type: 'image/png' },
+          { src: 'pwa-512x512.png',          sizes: '512x512', type: 'image/png' },
+          { src: 'maskable-icon-512x512.png',sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,svg,ico,woff2}'],
+        skipWaiting: true,
+        clientsClaim: true,
+        globPatterns: ['**/*.{js,css,html,svg,png,ico,woff2}'],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,

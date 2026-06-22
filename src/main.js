@@ -93,6 +93,33 @@ function showModal(html){mcard.innerHTML=html;modal.classList.add('show');
   modal.onclick=e=>{if(e.target===modal)modal.classList.remove('show');};}
 let toastT;function toast(html){const t=$('toast');t.innerHTML=html;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2600);}
 
+// ===================== PWA INSTALL PROMPT =====================
+let _deferredInstall=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();_deferredInstall=e;const b=$('install-banner');if(b)b.style.display='block';});
+window.addEventListener('appinstalled',()=>{const b=$('install-banner');if(b)b.style.display='none';_deferredInstall=null;});
+document.addEventListener('DOMContentLoaded',()=>{
+  const btn=$('install-btn'),dis=$('install-dismiss'),ban=$('install-banner');
+  if(btn)btn.onclick=async()=>{if(!_deferredInstall)return;_deferredInstall.prompt();const{outcome}=await _deferredInstall.userChoice;if(outcome==='accepted')ban.style.display='none';_deferredInstall=null;};
+  if(dis)dis.onclick=()=>{if(ban)ban.style.display='none';};
+  // iOS Safari — show instructions via toast after a delay if not in standalone
+  const isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+  const isStandalone=window.navigator.standalone===true;
+  if(isIOS&&!isStandalone){setTimeout(()=>toast('💡 Tap <b>Share ↑</b> then <b>Add to Home Screen</b> to install'),4000);}
+});
+
+// ===================== QUIZ AFFILIATE HELPER =====================
+function quizAffCard(){
+  const kid=S.mode==='child';
+  const keys=kid?['math','words','logic','science']:[S.profId||'dev'];
+  const pool=keys.flatMap(k=>(RECS[k]||[]).filter(x=>x.u&&x.u!=='#'));
+  if(!pool.length)return '';
+  const it=pool[Math.floor(Math.random()*pool.length)];
+  return `<a class="quiz-aff" href="${it.u}" target="_blank" rel="sponsored nofollow noopener" aria-label="${it.t} — sponsored link">
+    <span class="qa-emoji">${it.e}</span>
+    <span class="qa-body"><span class="qa-t">${it.t}</span><span class="qa-b">${it.b}</span></span>
+    <span class="qa-cta">View ›</span></a>`;}
+
+
 // ===================== BADGES =====================
 const BADGES=[
  {id:'first_light',ic:'✦',n:'First Light',d:'Light your first subject.'},
@@ -394,7 +421,8 @@ function answer(i){
   const last=S.qi===S.quiz.questions.length-1;
   const verdict=i===-1?'⏰ Time! ':(correct?'✓ Correct':'✗ Not quite');
   $('afterwrap').innerHTML=`<div class="explain"><div class="verdict ${correct?'yes':'no'}">${verdict}</div>${q.e}</div>
-    <div class="qfoot"><button class="next" id="nextBtn">${last?'See results':'Next'} ›</button></div>`;
+    <div class="qfoot"><button class="next" id="nextBtn">${last?'See results':'Next'} ›</button></div>
+    ${quizAffCard()}`;
   setTimeout(()=>{const nb=$('nextBtn');if(nb)nb.focus({preventScroll:true});},40);
   $('nextBtn').onclick=()=>{SFX.click();last?go('results'):(S.qi++,render());};
 }
