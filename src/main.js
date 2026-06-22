@@ -425,7 +425,7 @@ function screenQuiz(){
   const opts=$('opts');
   q.o.forEach((o,i)=>{const b=document.createElement('button');b.className='opt';
     b.innerHTML=`<span class="key">${String.fromCharCode(65+i)}</span><span>${o}</span>`;b.onclick=()=>answer(i);opts.appendChild(b);});
-  if(S.timed)startTimer(18000,()=>answer(-1));
+  if(S.timed)startTimer(S.examMode?45000:18000,()=>answer(-1));
 }
 function updateCombo(){const el=$('comboSlot');if(!el)return;
   el.innerHTML = S.streakLive>=3?`<span class="combo">🔥 ${S.streakLive} combo${S.streakLive>=5?' ×3':' ×2'}</span>`:'';
@@ -437,7 +437,7 @@ function startTimer(dur,onEnd){clearTimer();S.qStart=Date.now();
 function answer(i){
   if(S.locked)return;S.locked=true;clearTimer();
   const q=S.quiz.questions[S.qi],correct=i===q.a;
-  let tl=null;if(S.timed){const el=Date.now()-S.qStart;tl=Math.max(0,1-el/18000);}
+  let tl=null;if(S.timed){const el=Date.now()-S.qStart;tl=Math.max(0,1-el/(S.examMode?45000:18000));}
   S.answers.push({type:q.t,correct,tl});
   if(correct){S.streakLive++;SFX.correct();}else{S.streakLive=0;SFX.wrong();}
   updateCombo();
@@ -612,8 +612,8 @@ function screenResults(){
     else if(celebrateStar){SFX.star();}
   },420);
 }
-const XP_RATE=2;// 1 XP = ₦2 in course credits
-const xpToCredits=xp=>`₦${(xp*XP_RATE).toLocaleString()}`;
+const XP_RATE=0.1;// 1000 XP = ₦100 in course credits
+const xpToCredits=xp=>`₦${Math.floor(xp*XP_RATE).toLocaleString()}`;
 const XP_MILESTONES=[500,1000,2500,5000];
 function checkXpMilestone(prevXp,newXp){
   P.milestones=P.milestones||{};
